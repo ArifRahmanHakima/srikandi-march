@@ -2,7 +2,7 @@
   <nav class="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8" aria-label="Global">
     <div class="relative md:flex md:items-center md:justify-between">
       <div class="flex items-center">
-        <a class="flex items-center" href="" aria-label="Brand">
+        <a class="flex items-center" href="/" aria-label="Brand">
         <img src="../img/logo.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
         <span class="text-5l font-bold text-black ml-4">Srikandi Merch</span>
         </a>
