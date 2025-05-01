@@ -1,10 +1,10 @@
 <header class="flex z-50 sticky top-0 flex-wrap md:justify-start md:flex-nowrap w-full bg-white text-sm py-3 md:py-0 shadow-md">
   <nav class="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8" aria-label="Global">
     <div class="relative md:flex md:items-center md:justify-between">
-      <div class="flex items-center justify-between">
+      <div class="flex items-center">
         <a class="flex items-center" href="" aria-label="Brand">
-        <img src="https://img.freepik.com/free-vector/peacock-design-silhouette-logo-design_779267-1631.jpg" alt="" class="object-cover w-20 h-20 rounded-full">
-        <span class="text-5l font-bold text-black-600">Srikandi March</span>
+        <img src="../img/logo.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
+        <span class="text-5l font-bold text-black ml-4">Srikandi Merch</span>
         </a>
         <div class="md:hidden">
           <button type="button" class="hs-collapse-toggle flex justify-center items-center w-9 h-9 text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-collapse="#navbar-collapse-with-animation" aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
@@ -33,6 +33,12 @@
 
             <a wire:navigate class="font-medium hover:text-gray-400 py-3 md:py-6 dark:hover:text-blue-500 focus:outline-none dark:focus:ring-0 dark:focus:ring-gray-600" href="/products">
               Products
+            </a>
+            <!-- <a wire:navigate class="font-medium hover:text-gray-400 py-3 md:py-6 dark:hover:text-blue-500 focus:outline-none dark:focus:ring-0 dark:focus:ring-gray-600" href="#">
+              About
+            </a> -->
+            <a wire:navigate class="font-medium hover:text-gray-400 py-3 md:py-6 dark:hover:text-blue-500 focus:outline-none dark:focus:ring-0 dark:focus:ring-gray-600" href="contactus">
+              Contact
             </a>
 
             <a wire:navigate class="font-medium flex items-center hover:text-gray-400 py-3 md:py-6 dark:hover:text-blue-500 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/cart">
