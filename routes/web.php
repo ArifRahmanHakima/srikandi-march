@@ -19,11 +19,13 @@ use Illuminate\Support\Facades\Auth;
 use Filament\Notifications\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
 
+/*Router Navbar*/
 Route::get('/', HomePage::class);
 Route::get('/categories', CategoriesPage::class);
 Route::get('/products', ProductsPage::class);
 Route::get('/cart', CartPage::class);
 Route::get('/products/{slug}', ProductDetailPage::class);
+Route::get('/contact-us', ContactUs::class);
 
 Route::get('/login', LoginPage::class)->name('login');
 Route::get('/register', RegisterPage::class);
