@@ -1,5 +1,5 @@
 <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-  <section class="overflow-hidden bg-white py-11 font-poppins dark:bg-gray-800">
+  <section class="overflow-hidden bg-white py-11 font-poppins bg-gray-800">
     <div class="max-w-6xl px-4 py-4 mx-auto lg:py-8 md:px-6">
       
       <div class="flex flex-wrap -mx-4">
@@ -62,6 +62,10 @@
           </div>
         </div>
       </div>
+
+      
     </div>
   </section>
 </div>
+
+
