@@ -37,7 +37,7 @@
             <!-- <a wire:navigate class="font-medium hover:text-gray-400 py-3 md:py-6 dark:hover:text-blue-500 focus:outline-none dark:focus:ring-0 dark:focus:ring-gray-600" href="#">
               About
             </a> -->
-            <a wire:navigate class="font-medium hover:text-gray-400 py-3 md:py-6 dark:hover:text-blue-500 focus:outline-none dark:focus:ring-0 dark:focus:ring-gray-600" href="/contact-us">
+            <a wire:navigate class="font-medium hover:text-gray-400 py-3 md:py-6 dark:hover:text-blue-500 focus:outline-none dark:focus:ring-0 dark:focus:ring-gray-600" href=" /contact-us">
               Contact
             </a>
 

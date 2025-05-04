@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 use Filament\Notifications\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
 
+/*Router Navbar*/
 Route::get('/', HomePage::class);
 Route::get('/categories', CategoriesPage::class);
 Route::get('/products', ProductsPage::class);
