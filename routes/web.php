@@ -24,6 +24,7 @@ Route::get('/categories', CategoriesPage::class);
 Route::get('/products', ProductsPage::class);
 Route::get('/cart', CartPage::class);
 Route::get('/products/{slug}', ProductDetailPage::class);
+Route::get('/contact-us', ContactUs::class);
 
 Route::get('/login', LoginPage::class)->name('login');
 Route::get('/register', RegisterPage::class);
