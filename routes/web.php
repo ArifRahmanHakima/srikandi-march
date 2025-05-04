@@ -15,6 +15,7 @@ use App\Livewire\MyOrdersPage;
 use App\Livewire\ProductDetailPage;
 use App\Livewire\ProductsPage;
 use App\Livewire\SuccessPage;
+use Illuminate\Support\Facades\Auth;
 use Filament\Notifications\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
 
@@ -22,8 +23,7 @@ Route::get('/', HomePage::class);
 Route::get('/categories', CategoriesPage::class);
 Route::get('/products', ProductsPage::class);
 Route::get('/cart', CartPage::class);
-Route::get('/products/{product}', ProductDetailPage::class);
-Route::get('/contactus', ContactUs::class);
+Route::get('/products/{slug}', ProductDetailPage::class);
 
 Route::get('/login', LoginPage::class)->name('login');
 Route::get('/register', RegisterPage::class);
@@ -36,7 +36,8 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/logout', function () {
-        auth()->logout();
+        Auth::logout();
+
         return redirect('/');
     });
     Route::get('/checkout', CheckoutPage::class);
