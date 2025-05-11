@@ -57,8 +57,8 @@ class OrderResource extends Resource
 
                         Select::make('payment_method')
                             ->options([
-                                'stripe' => 'Stripe',
-                                'cod' => 'Cash on Delivery',
+                                'dana' => 'DANA',
+                                'gopay' => 'GOPAY',
                             ])
                             ->required(),
 
@@ -79,29 +79,21 @@ class OrderResource extends Resource
                                 'new' => 'New',
                                 'processing' => 'Processing',
                                 'shipped' => 'Shipped',
-                                'delivered' => 'Delivered',
-                                'cancelled' => 'Cancelled',
                             ])
                             ->colors([
                                 'new' => 'info',
                                 'processing' => 'warning',
                                 'shipped' => 'success',
-                                'delivered' => 'success',
-                                'cancelled' => 'danger',
                             ])
                             ->icons([
                                 'new' => 'heroicon-m-sparkles',
                                 'processing' => 'heroicon-m-arrow-path',
                                 'shipped' => 'heroicon-m-truck',
-                                'delivered' => 'heroicon-m-check-badge',
-                                'cancelled' => 'heroicon-m-x-mark',
                             ]),
 
                         Select::make('currency')
                             ->options([
-                                   'idr' => 'IDR',
-                                   'usd' => 'USD',
-                                   'eur' => 'EUR',
+                                'idr' => 'IDR',
                             ])
                             ->default('idr')
                             ->required(),
@@ -216,8 +208,6 @@ class OrderResource extends Resource
                         'new' => 'New',
                         'processing' => 'Processing',
                         'shipped' => 'Shipped',
-                        'delivered' => 'Delivered',
-                        'cancelled' => 'Cancelled',
                     ])
                     ->searchable()
                     ->sortable(),
