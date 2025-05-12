@@ -40,7 +40,7 @@
                 <!-- <span class="text-base font-normal text-gray-500 line-through dark:text-gray-400">$1800.99</span> -->
               </p>
               <p class="max-w-md text-gray-700 dark:text-gray-400">
-                {!!Str::markdown($product->description)!!}
+                {!!Str::markdown($product->description ?? '')!!}
               </p>
             </div>
             <div class="w-32 mb-8 ">
@@ -57,8 +57,8 @@
             </div>
             <div class="flex flex-wrap items-center gap-4">
               <button wire:click="addToCart({{$product->id}})" class="w-full p-4 bg-blue-500 rounded-md lg:w-2/5 dark:text-gray-200 text-gray-50 hover:bg-blue-600 dark:bg-blue-500 dark:hover:bg-blue-700">
-                <span wire:loading.remove>Add to cart</span>
-                <span wire:loading>Adding...</span>
+                <span wire:loading.remove wire:target='addToCart({{$product->id}})'>Add to cart</span>
+                <span wire:loading wire:target='addToCart({{$product->id}})'>Adding...</span>
               </button>
             </div>
           </div>

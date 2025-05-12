@@ -27,13 +27,11 @@ Route::get('/cart', CartPage::class);
 Route::get('/products/{slug}', ProductDetailPage::class);
 Route::get('/contact-us', ContactUs::class);
 
-Route::get('/login', LoginPage::class)->name('login');
-Route::get('/register', RegisterPage::class);
-Route::get('/forgot', ForgotPasswordPage::class);
-Route::get('/reset', ResetPasswordPage::class);
-
 Route::middleware('guest')->group(function () {
-    
+    Route::get('/login', LoginPage::class)->name('login');
+    Route::get('/register', RegisterPage::class);
+    Route::get('/forgot', ForgotPasswordPage::class);
+    Route::get('/reset', ResetPasswordPage::class);
 });
 
 Route::middleware('auth')->group(function () {
