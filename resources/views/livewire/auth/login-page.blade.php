@@ -22,7 +22,7 @@
               <div>
                 <label for="email" class="block text-sm mb-2 dark:text-grey">Email</label>
                 <div class="relative">
-                  <input type="email" id="email" wire:model="email" class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none white:bg-slate-900 dark:border-white-700 dark:text-gray-400 dark:focus:ring-gray-600" required aria-describedby="email-error">
+                  <input type="email" id="email" wire:model="email" class="py-3 px-4 block w-full border border-gray-300 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none white:bg-slate-900 dark:border-white-700 dark:text-gray-400 dark:focus:ring-gray-600" aria-describedby="email-error">
                   @error('email')
                   <div class="absolute inset-y-0 end-0 flex items-center pointer-events-none pe-3">
                     <svg class="h-5 w-5 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
@@ -53,7 +53,9 @@
                   </div>
                   @enderror
                 </div>
-                <p class="hidden text-xs text-red-600 mt-2" id="password-error">8+ characters required</p>
+                @error('email')
+                <p class="text-xs text-red-600 mt-2" id="password-error">{{ $message }}</p>
+                @enderror
               </div>
               <!-- End Form Group -->
               <button type="submit" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Login</button>
