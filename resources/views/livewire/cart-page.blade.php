@@ -7,11 +7,11 @@
           <table class="w-full">
             <thead>
               <tr>
-                <th class="text-left font-semibold">Product</th>
-                <th class="text-left font-semibold">Price</th>
-                <th class="text-left font-semibold">Quantity</th>
+                <th class="text-left font-semibold">Produk</th>
+                <th class="text-left font-semibold">Harga</th>
+                <th class="text-left font-semibold">Jumlah</th>
                 <th class="text-left font-semibold">Total</th>
-                <th class="text-left font-semibold">Remove</th>
+                <th class="text-left font-semibold">Hapus</th>
               </tr>
             </thead>
             <tbody>
@@ -34,8 +34,8 @@
                 </td>
                 <td class="py-4">{{ Number::currency($item['total_amount'], 'IDR') }}</td>
                 <td><button wire:click="removeItem({{ $item['product_id'] }})" class="bg-slate-300 border-2 border-slate-400 rounded-lg px-3 py-1 hover:bg-red-500 hover:text-white hover:border-red-700">
-                  <span wire:loading.remove wire:target="removeItem({{ $item['product_id'] }})">Remove</span>
-                  <span wire:loading wire:target="removeItem({{ $item['product_id'] }})">Removing...</span>
+                  <span wire:loading.remove wire:target="removeItem({{ $item['product_id'] }})">Hapus</span>
+                  <span wire:loading wire:target="removeItem({{ $item['product_id'] }})">Menghapus...</span>
                 </button></td>
               </tr>
               @empty
@@ -49,17 +49,13 @@
       </div>
       <div class="md:w-1/4">
         <div class="bg-white rounded-lg shadow-md p-6">
-          <h2 class="text-lg font-semibold mb-4">Summary</h2>
+          <h2 class="text-lg font-semibold mb-4">Ringkasan</h2>
           <div class="flex justify-between mb-2">
             <span>Subtotal</span>
             <span>{{ Number::currency($grand_total, 'IDR') }}</span>
           </div>
           <div class="flex justify-between mb-2">
-            <span>Taxes</span>
-            <span>{{ Number::currency(0, 'IDR') }}</span>
-          </div>
-          <div class="flex justify-between mb-2">
-            <span>Shipping</span>
+            <span>Biaya Ongkir</span>
             <span>{{ Number::currency(0, 'IDR') }}</span>
           </div>
           <hr class="my-2">
