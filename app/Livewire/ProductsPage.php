@@ -36,6 +36,9 @@ class ProductsPage extends Component
     #[Url]
     public $sort = 'latest';
 
+    #[Url]
+    public $search = '';
+
     // add product to cart method
     public function addToCart($product_id) {
         $total_count = CartManagement::addItemToCart($product_id);
@@ -65,6 +68,20 @@ class ProductsPage extends Component
 
         if($this->price_range) {
             $productQuery->whereBetween('price',[0, $this->price_range]);
+        }
+
+        if (!empty($this->search)) {
+            $productQuery->where(function($query) {
+                $query->where('name', 'like', '%' . $this->search . '%')
+                    ->orWhere('description', 'like', '%' . $this->search . '%')
+                    ->orWhereHas('brand', function ($q) {
+                        $q->where('name', 'like', '%' . $this->search . '%');
+                    })
+                    ->orWhereHas('category', function ($q) {
+                        $q->where('name', 'like', '%' . $this->search . '%');
+                    });
+
+            });
         }
 
         if($this->sort == 'latest') {
