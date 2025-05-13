@@ -60,9 +60,6 @@
                         <input type="email" name="email" class="w-full border border-blue-300 rounded p-3" placeholder="Email">
                     </div>
                     <div class="mb-4">
-                        <input type="text" name="website" class="w-full border border-blue-300 rounded p-3" placeholder="Website">
-                    </div>
-                    <div class="mb-4">
                         <textarea name="message" rows="4" class="w-full border border-blue-300 rounded p-3" placeholder="Pesan"></textarea>
                     </div>
                     <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded sentencecase font-semibold">Kirim Pesan</button>
