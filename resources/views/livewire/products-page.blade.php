@@ -1,5 +1,5 @@
 <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-  <section class="py-10 bg-white-50 font-poppins rounded-lg">
+  <section class="py-10 bg-white font-poppins rounded-lg">
     <div class="px-4 py-4 mx-auto max-w-7xl lg:py-6 md:px-6">
       <div class="flex flex-wrap mb-24 -mx-3">
         <div class="w-full pr-2 lg:w-1/4 lg:block">
@@ -66,6 +66,7 @@
         </div>
         <div class="w-full px-3 lg:w-3/4">
           <div class="px-3 mb-4">
+            <!-- Sorting produk -->
             <div class="items-center justify-between hidden px-3 py-2 bg-gray-100 md:flex ">
               <div class="flex items-center justify-between">
                 <select wire:model.live="sort" class="block w-40 text-base bg-gray-100 cursor-pointer">
@@ -73,6 +74,11 @@
                   <option value="price">Sort by Price</option>
                 </select>
               </div>
+              <!-- Pencarian produk -->
+              <div class="relative">
+                <input wire:model.live="search" type="text" class="w-full bg-transparent placeholder:text-slate-700 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow" placeholder="Masukan nama produk..." />
+              </div>
+              
             </div>
           </div>
           <div class="flex flex-wrap items-center ">
