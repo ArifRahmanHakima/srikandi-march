@@ -9,17 +9,17 @@
 
   <!-- Product -->
   <div>
-    <h4 class="font-semibold text-gray-100">Product</h4>
+    <h4 class="font-semibold text-gray-100">Produk</h4>
     <div class="mt-3 grid space-y-3">
-      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="/categories">Categories</a></p>
-      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="/products">All Products</a></p>
-      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="/products">Featured Products</a></p>
+      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="/categories">Kategori</a></p>
+      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="/products">Semua Produk</a></p>
+      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="/products">Produk Unggulan</a></p>
     </div>
   </div>
 
   <!-- Social Brands -->
   <div>
-    <h4 class="font-semibold text-gray-100">Social Brands</h4>
+    <h4 class="font-semibold text-gray-100">Media Brands</h4>
     <div class="mt-3 grid space-y-3">
       <a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="https://www.instagram.com/srikandimerch_official" target="_blank">
         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0,0,256,256">
@@ -34,22 +34,22 @@
 
   <!-- Company -->
   <div>
-    <h4 class="font-semibold text-gray-100">Company</h4>
+    <h4 class="font-semibold text-gray-100">Perusahaan</h4>
     <div class="mt-3 grid space-y-3">
-      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="contactus">Contact</a></p>
-      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="#">Customers</a></p>
+      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="contactus">Kontak</a></p>
+      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="#">Pelanggan</a></p>
     </div>
   </div>
 
   <!-- Newsletter -->
   <div class="col-span-full lg:col-span-2">
-    <h4 class="font-semibold text-gray-100">Stay up to date</h4>
+    <h4 class="font-semibold text-gray-100">Perkembangan</h4>
     <form>
       <div class="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-3 bg-white rounded-lg p-2 dark:bg-gray-800">
         <div class="w-full">
-          <input type="text" placeholder="Enter your email" class="py-3 px-4 block w-full rounded-lg text-sm dark:bg-slate-900 dark:text-gray-400" />
+          <input type="text" placeholder="Masukan Email Anda" class="py-3 px-4 block w-full rounded-lg text-sm dark:bg-slate-900 dark:text-gray-400" />
         </div>
-        <a class="w-full sm:w-auto whitespace-nowrap p-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700" href="#">Subscribe</a>
+        <a class="w-full sm:w-auto whitespace-nowrap p-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700" href="#">Berlangganan</a>
       </div>
     </form>
   </div>

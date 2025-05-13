@@ -1,14 +1,14 @@
-<header class="flex z-[999] sticky top-0 flex-wrap md:justify-start md:flex-nowrap w-full bg-white text-sm py-3 md:py-0 shadow-md">
+<header class="flex z-[999] sticky top-0 flex-wrap md:justify-start md:flex-nowrap w-full bg-white text-sm py-5 shadow-md">
   <nav class="max-w-[85rem] w-full mx-auto px-4 md:px-6 lg:px-8" aria-label="Global">
     <div class="relative md:flex md:items-center md:justify-between">
       <div class="flex items-center">
         <a class="flex items-center" href="/" aria-label="Brand">
         <img src="../img/logo.jpg" alt="" class="object-cover w-12 h-12 rounded-full">
-        <span class="text-5l font-bold text-black ml-4">Srikandi Merch</span>
+        <span class="text-5l font-bold text-base text-black ml-4">Srikandi Merch</span>
         </a>
         <div class="md:hidden">
           <button type="button" class="hs-collapse-toggle flex justify-center items-center w-9 h-9 text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-gray-700 dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-hs-collapse="#navbar-collapse-with-animation" aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
-            <svg class="hs-collapse-open:hidden flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg class="hs-collapse-open:hidden flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="3" x2="21" y1="6" y2="6" />
               <line x1="3" x2="21" y1="12" y2="12" />
               <line x1="3" x2="21" y1="18" y2="18" />
@@ -29,27 +29,27 @@
                 $currentRoute = request()->path();
             @endphp
 
-            <a wire:navigate href="/" class="relative px-4 py-3 font-medium {{ $currentRoute == '/' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
-                Home
+            <a wire:navigate href="/" class="relative px-4 py-3 font-medium text-base {{ $currentRoute == '/' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
+                Beranda
             </a>
 
-            <a wire:navigate href="/categories" class="relative px-4 py-3 font-medium {{ $currentRoute == 'categories' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
-                Categories
+            <a wire:navigate href="/categories" class="relative px-4 py-3 font-medium text-base {{ $currentRoute == 'categories' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
+                Kategori
             </a>
 
-            <a wire:navigate href="/products" class="relative px-4 py-3 font-medium {{ $currentRoute == 'products' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
-                Products
+            <a wire:navigate href="/products" class="relative px-4 py-3 font-medium text-base {{ $currentRoute == 'products' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
+                Produk
             </a>
 
-            <a wire:navigate href="/contact-us" class="relative px-4 py-3 font-medium {{ $currentRoute == 'contact-us' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
-                Contact
+            <a wire:navigate href="/contact-us" class="relative px-4 py-3 font-medium text-base {{ $currentRoute == 'contact-us' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
+                Kontak
             </a>
 
-            <a wire:navigate href="/cart" class="relative flex items-center gap-1 px-4 py-3 font-medium {{ $currentRoute == 'cart' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
+            <a wire:navigate href="/cart" class="relative flex items-center gap-1 px-4 py-3 font-medium text-base {{ $currentRoute == 'cart' ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0' : 'text-black hover:text-blue-400' }}">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
             </svg>
-            <span>Cart</span>
+            <span>Keranjang</span>
             <span class="py-0.5 px-1.5 rounded-full text-xs font-medium bg-blue-50 border border-blue-200 text-blue-600">{{ $total_count }}</span>
             </a>
 

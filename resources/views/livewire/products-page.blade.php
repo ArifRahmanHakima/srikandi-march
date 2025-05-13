@@ -4,7 +4,7 @@
       <div class="flex flex-wrap mb-24 -mx-3">
         <div class="w-full pr-2 lg:w-1/4 lg:block">
           <div class="p-4 mb-5 bg-white border border-gray-200">
-            <h2 class="text-2xl font-bold "> Categories</h2>
+            <h2 class="text-2xl font-bold "> Kategori</h2>
             <div class="w-16 pb-2 mb-6 border-b border-rose-600 "></div>
             <ul>
               @foreach ($categories as $category)
@@ -33,26 +33,26 @@
             </ul>
           </div>
           <div class="p-4 mb-5 bg-white border border-gray-200">
-            <h2 class="text-2xl font-bold">Product Status</h2>
+            <h2 class="text-2xl font-bold">Status Produk</h2>
             <div class="w-16 pb-2 mb-6 border-b border-rose-600"></div>
             <ul>
               <li class="mb-4">
                 <label for="featured" class="flex items-center">
                   <input type="checkbox" id="featured" wire:model.live="featured" value="1" class="w-4 h-4 mr-2">
-                  <span class="text-lg">Featured Products</span>
+                  <span class="text-lg">Produk Ungulan</span>
                 </label>
               </li>
               <li class="mb-4">
                 <label for="on_sale" class="flex items-center">
                   <input type="checkbox" id="on_sale" wire:model.live="on_sale" value="1" class="w-4 h-4 mr-2">
-                  <span class="text-lg">On Sale</span>
+                  <span class="text-lg">Tersedia</span>
                 </label>
               </li>
             </ul>
           </div>
 
           <div class="p-4 mb-5 bg-white border border-gray-200">
-            <h2 class="text-2xl font-bold">Price</h2>
+            <h2 class="text-2xl font-bold">Harga</h2>
             <div class="w-16 pb-2 mb-6 border-b border-rose-600"></div>
             <div>
               <div>{{ Number::currency($price_range, 'IDR') }}</div>
@@ -70,8 +70,8 @@
             <div class="items-center justify-between hidden px-3 py-2 bg-gray-100 md:flex ">
               <div class="flex items-center justify-between">
                 <select wire:model.live="sort" class="block w-40 text-base bg-gray-100 cursor-pointer">
-                  <option value="latest">Sort by latest</option>
-                  <option value="price">Sort by Price</option>
+                  <option value="latest">Urutkan berdasarkan terbaru</option>
+                  <option value="price">Urutkan berdasarkan harga</option>
                 </select>
               </div>
               <!-- Pencarian produk -->
