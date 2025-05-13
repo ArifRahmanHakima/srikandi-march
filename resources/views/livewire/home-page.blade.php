@@ -61,7 +61,7 @@
       </div>
       <!-- End Col -->
 
-      <div class="relative ms-4 overflow-hidden" id="autoSlider">
+      <div class="relative ms-9 overflow-hidden" id="autoSlider">
         <!-- Container untuk gambar-gambar slider -->
         <div class="flex w-full transition-transform duration-2000 ease-in-out">
           <!-- Gambar 1 slider -->
