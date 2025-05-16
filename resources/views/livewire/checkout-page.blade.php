@@ -2,7 +2,8 @@
 	<h1 class="text-2xl font-bold text-gray-800 grey:text-white mb-4">
 		Checkout
 	</h1>
-	<div class="grid grid-cols-12 gap-4">
+	<form wire:submit.prevent="placeOrder">
+		<div class="grid grid-cols-12 gap-4">
 		<div class="md:col-span-12 lg:col-span-8 col-span-12">
 			<!-- Card -->
 			<div class="bg-white rounded-xl shadow p-4 sm:p-7 white:bg-slate-900">
@@ -16,52 +17,73 @@
 							<label class="block text-gray-700 grey:text-white mb-1" for="first_name">
 								Nama Depan
 							</label>
-							<input class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400" id="first_name" type="text">
+							<input wire:model="first_name" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('first_name') border-red-500 @enderror" id="first_name" type="text">
 							</input>
+							@error('first_name')
+							<div class="text-red-500 text-sm">{{ $message }}</div>
+							@enderror
 						</div>
 						<div>
 							<label class="block text-gray-700 grey:text-white mb-1" for="last_name">
 								Nama Belakang
 							</label>
-							<input class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400" id="last_name" type="text">
+							<input wire:model="last_name" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('last_name') border-red-500 @enderror" id="last_name" type="text">
 							</input>
+							@error('last_name')
+							<div class="text-red-500 text-sm">{{ $message }}</div>
+							@enderror
 						</div>
 					</div>
 					<div class="mt-4">
 						<label class="block text-gray-700 grey:text-white mb-1" for="phone">
 						No.Telp
 						</label>
-						<input class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400" id="phone" type="text">
+						<input wire:model="phone" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('phone') border-red-500 @enderror" id="phone" type="text">
 						</input>
+						@error('phone')
+						<div class="text-red-500 text-sm">{{ $message }}</div>
+						@enderror
 					</div>
 					<div class="mt-4">
 						<label class="block text-gray-700 grey:text-white mb-1" for="address">
 							Alamat
 						</label>
-						<input class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400" id="address" type="text">
+						<input wire:model="street_address" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('street_address') border-red-500 @enderror" id="address" type="text">
 						</input>
+						@error('street_address')
+							<div class="text-red-500 text-sm">{{ $message }}</div>
+						@enderror
 					</div>
 					<div class="mt-4">
 						<label class="block text-gray-700 grey:text-white mb-1" for="city">
 							Kota
 						</label>
-						<input class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400" id="city" type="text">
+						<input wire:model="city" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('city') border-red-500 @enderror" id="city" type="text">
 						</input>
+						@error('city')
+							<div class="text-red-500 text-sm">{{ $message }}</div>
+						@enderror
 					</div>
 					<div class="grid grid-cols-2 gap-4 mt-4">
 						<div>
 							<label class="block text-gray-700 grey:text-white mb-1" for="state">
 								Negara
 							</label>
-							<input class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400" id="state" type="text">
+							<input wire:model="state" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('state') border-red-500 @enderror" id="state" type="text">
 							</input>
+							@error('state')
+							<div class="text-red-500 text-sm">{{ $message }}</div>
+							@enderror
 						</div>
 						<div>
 							<label class="block text-gray-700 grey:text-white mb-1" for="zip">
 								Kode Pos
 							</label>
-							<input class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400" id="zip" type="text">
+							<input wire:model="zip_code" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('zip_code') border-red-500 @enderror" id="zip" type="text">
 							</input>
+							@error('zip_code')
+							<div class="text-red-500 text-sm">{{ $message }}</div>
+							@enderror
 						</div>
 					</div>
 				</div>
@@ -70,11 +92,11 @@
 				</div>
 				<ul class="grid w-full gap-6 md:grid-cols-2">
 					<li>
-						<input class="hidden peer" id="hosting-small" name="hosting" required="" type="radio" value="hosting-small" />
+						<input wire:model="payment_method" class="hidden peer" id="hosting-small" required="" type="radio" value="dana" />
 						<label class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer grey:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 white:bg-gray-800 dark:hover:bg-white-200" for="hosting-small">
 							<div class="block">
 								<div class="w-full text-lg text-gray-600 font-semibold">
-									Bayar Ditempat
+									DANA
 								</div>
 							</div>
 							<svg aria-hidden="true" class="w-5 h-5 ms-3 rtl:rotate-180" fill="none" viewbox="0 0 14 10" xmlns="http://www.w3.org/2000/svg">
@@ -84,11 +106,11 @@
 						</label>
 					</li>
 					<li>
-						<input class="hidden peer" id="hosting-big" name="hosting" type="radio" value="hosting-big">
+						<input wire:model="payment_method" class="hidden peer" id="hosting-big" type="radio" value="gopay" wire:model="payment_method" required="" id="hosting-big">
 						<label class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 white:bg-gray-800 dark:hover:bg-white-200" for="hosting-big">
 							<div class="block">
 								<div class="w-full text-lg text-gray-600 font-semibold">
-									Kartu Kredit
+									GOPAY
 								</div>
 							</div>
 							<svg aria-hidden="true" class="w-5 h-5 ms-3 rtl:rotate-180" fill="none" viewbox="0 0 14 10" xmlns="http://www.w3.org/2000/svg">
@@ -99,6 +121,9 @@
 						</input>
 					</li>
 				</ul>
+				@error('payment_method')
+					<div class="text-red-500 text-sm">{{ $message }}</div>
+				@enderror
 			</div>
 			<!-- End Card -->
 		</div>
@@ -109,18 +134,10 @@
 				</div>
 				<div class="flex justify-between mb-2 text-gray-700">
 					<span>
-						Jumlah Keseluruhan
+						SubTotal
 					</span>
 					<span>
-						45,000.00
-					</span>
-				</div>
-				<div class="flex justify-between mb-2 text-gray-700">
-					<span>
-						Pajak
-					</span>
-					<span>
-						0.00
+						{{ Number::currency($grand_total, 'IDR') }}
 					</span>
 				</div>
 				<div class="flex justify-between mb-2 text-gray-700">
@@ -128,7 +145,7 @@
 						Biaya Pengiriman
 					</span>
 					<span>
-						0.00
+						{{ Number::currency(0, 'IDR') }}
 					</span>
 				</div>
 				<hr class="bg-slate-400 my-4 h-1 rounded">
@@ -137,12 +154,12 @@
 						Total
 					</span>
 					<span>
-						45,000.00
+						{{ Number::currency($grand_total, 'IDR') }}
 					</span>
 				</div>
 				</hr>
 			</div>
-			<button class="bg-green-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-green-600">
+			<button type="submit" class="bg-green-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-green-600">
 				Buat Pesanan
 			</button>
 			<div class="bg-white mt-4 rounded-xl shadow p-4 sm:p-7 grey:bg-slate-900">
@@ -150,65 +167,30 @@
 					Rincian Pesanan
 				</div>
 				<ul class="divide-y divide-gray-200 grey:divide-gray-700" role="list">
-					<li class="py-3 sm:py-4">
+					@foreach($cart_items as $ci)
+					<li class="py-3 sm:py-4" wire:key="{{ $ci['product_id'] }}">
 						<div class="flex items-center">
 							<div class="flex-shrink-0">
-								<img alt="Neil image" class="w-12 h-12 rounded-full" src="https://iplanet.one/cdn/shop/files/iPhone_15_Pro_Max_Blue_Titanium_PDP_Image_Position-1__en-IN_1445x.jpg?v=1695435917">
+								<img alt="{{ $ci['name'] }}" class="w-12 h-12 rounded-full" src="{{ url('storage/', $ci['image']) }}">
 								</img>
 							</div>
 							<div class="flex-1 min-w-0 ms-4">
 								<p class="text-sm font-medium text-gray-900 truncate grey:text-white">
-									Apple iPhone 15 Pro Max
+									{{ $ci['name'] }}
 								</p>
 								<p class="text-sm text-gray-500 truncate grey:text-gray-400">
-									Jumlah: 1
+									Jumlah: {{ $ci['quantity'] }}
 								</p>
 							</div>
 							<div class="inline-flex items-center text-base font-semibold text-gray-900 grey:text-white">
-								$320
+								{{ Number::currency($ci['total_amount'], 'IDR') }}
 							</div>
 						</div>
 					</li>
-					<li class="py-3 sm:py-4">
-						<div class="flex items-center">
-							<div class="flex-shrink-0">
-								<img alt="Neil image" class="w-12 h-12 rounded-full" src="https://iplanet.one/cdn/shop/files/iPhone_15_Pro_Max_Blue_Titanium_PDP_Image_Position-1__en-IN_1445x.jpg?v=1695435917">
-								</img>
-							</div>
-							<div class="flex-1 min-w-0 ms-4">
-								<p class="text-sm font-medium text-gray-900 truncate grey:text-white">
-									Apple iPhone 15 Pro Max
-								</p>
-								<p class="text-sm text-gray-500 truncate grey:text-gray-400">
-									Jumlah: 1
-								</p>
-							</div>
-							<div class="inline-flex items-center text-base font-semibold text-gray-900 grey:text-white">
-								$320
-							</div>
-						</div>
-					</li>
-					<li class="py-3 sm:py-4">
-						<div class="flex items-center">
-							<div class="flex-shrink-0">
-								<img alt="Neil image" class="w-12 h-12 rounded-full" src="https://iplanet.one/cdn/shop/files/iPhone_15_Pro_Max_Blue_Titanium_PDP_Image_Position-1__en-IN_1445x.jpg?v=1695435917">
-								</img>
-							</div>
-							<div class="flex-1 min-w-0 ms-4">
-								<p class="text-sm font-medium text-gray-900 truncate grey:text-white">
-									Apple iPhone 15 Pro Max
-								</p>
-								<p class="text-sm text-gray-500 truncate grey:text-gray-400">
-									Jumlah: 1
-								</p>
-							</div>
-							<div class="inline-flex items-center text-base font-semibold text-gray-900 grey:text-white">
-								$320
-							</div>
-						</div>
-					</li>
+					@endforeach
 				</ul>
 			</div>
 		</div>
 	</div>
+	</form>
 </div>
