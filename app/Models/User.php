@@ -70,8 +70,9 @@ class User extends Authenticatable implements FilamentUser
         if ($this->state) $parts[] = $this->state;
         
         return count($parts) > 0 ? implode(', ', $parts) : '';
-
-     public function canAccessPanel(Panel $panel): bool
+    }
+    
+    public function canAccessPanel(Panel $panel): bool
     {
         return $this->email == 'admin@gmail.com';
 
