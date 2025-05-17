@@ -24,6 +24,14 @@ class User extends Authenticatable implements FilamentUser
         'email',
         'email_verified_at',
         'password',
+        'phone',
+        'bio',
+        'profile_photo_path',
+        'country',
+        'city',
+        'state',
+        'code_post',
+        'street_address',
     ];
 
     /**
@@ -54,8 +62,18 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Order::class);
     }
 
+
+    public function getCityStateAttribute()
+    {
+        $parts = [];
+        if ($this->city) $parts[] = $this->city;
+        if ($this->state) $parts[] = $this->state;
+        
+        return count($parts) > 0 ? implode(', ', $parts) : '';
+
      public function canAccessPanel(Panel $panel): bool
     {
         return $this->email == 'admin@gmail.com';
+
     }
 }

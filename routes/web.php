@@ -14,6 +14,7 @@ use App\Livewire\MyOrderDetailPage;
 use App\Livewire\MyOrdersPage;
 use App\Livewire\ProductDetailPage;
 use App\Livewire\ProductsPage;
+use App\Livewire\ProfilePage;
 use App\Livewire\SuccessPage;
 use Illuminate\Support\Facades\Auth;
 use Filament\Notifications\Auth\ResetPassword;
@@ -32,6 +33,10 @@ Route::middleware('guest')->group(function () {
     Route::get('/register', RegisterPage::class);
     Route::get('/forgot', ForgotPasswordPage::class)->name('password.request');
     Route::get('/reset/{token}', ResetPasswordPage::class)->name('password.reset');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', ProfilePage::class)->name('profile');
 });
 
 Route::middleware('auth')->group(function () {
