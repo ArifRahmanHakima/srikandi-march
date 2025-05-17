@@ -3,7 +3,6 @@
 namespace App\Helpers;
 
 use App\Models\Product;
-use App\Helpers\CartManagement;
 use Illuminate\Support\Facades\Cookie;
 
 class CartManagement {

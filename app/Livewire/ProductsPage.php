@@ -8,7 +8,6 @@ use Livewire\Component;
 use App\Models\Category;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
-use App\Livewire\ProductsPage;
 use Livewire\Attributes\Title;
 use App\Helpers\CartManagement;
 use App\Livewire\Partials\Navbar;
