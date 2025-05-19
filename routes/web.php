@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\AboutPage;
 use App\Livewire\Auth\ForgotPasswordPage;
 use App\Livewire\Auth\LoginPage;
 use App\Livewire\Auth\RegisterPage;
@@ -27,6 +28,8 @@ Route::get('/products', ProductsPage::class);
 Route::get('/cart', CartPage::class);
 Route::get('/products/{slug}', ProductDetailPage::class);
 Route::get('/contact-us', ContactUs::class);
+Route::get('/about', AboutPage::class);
+
 
 Route::middleware('guest')->group(function () {
     Route::get('/login', LoginPage::class)->name('login');
