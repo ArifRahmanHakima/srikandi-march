@@ -64,6 +64,12 @@
       <div class="relative ms-9 overflow-hidden" id="autoSlider">
         <!-- Container untuk gambar-gambar slider -->
         <div class="flex w-full transition-transform duration-2000 ease-in-out">
+          @foreach ($banners as $banner)
+            <div class="min-w-full relative">
+              <img class="w-full rounded-md" src="{{ $banner->image_url }}" alt="{{ $banner->name }}">
+              <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
+            </div>
+          @endforeach
           <!-- Gambar 1 slider -->
           <div class="min-w-full relative">
             <img class="w-full rounded-md" src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/99/MTA-178802225/no_brand_baju_batik_couple_dewasa_-_baju_batk_sarimbit_-_baju_batik_keluarga_-_baju_batik_pria_-_baju_batik_wanita_full02_poyjy5at.jpg" alt="Batik Mayung">
@@ -74,10 +80,9 @@
           <div class="min-w-full relative">
             <img class="w-full rounded-md" src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/99/MTA-178802225/no_brand_baju_batik_couple_dewasa_-_baju_batk_sarimbit_-_baju_batik_keluarga_-_baju_batik_pria_-_baju_batik_wanita_full03_uor0ra8l.jpg" alt="Batik Modern">
             <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
-            </div>
+          </div>
 
-
-            <!-- Gambar 3 slider -->
+          <!-- Gambar 3 slider -->
           <div class="min-w-full relative">
             <img class="w-full rounded-md" src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/99/MTA-178802225/no_brand_baju_batik_couple_dewasa_-_baju_batk_sarimbit_-_baju_batik_keluarga_-_baju_batik_pria_-_baju_batik_wanita_full04_dh05gdwn.jpg?width=1600&format=webp&w=1600" alt="Batik Mayung">
             <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
@@ -87,7 +92,7 @@
           <div class="min-w-full relative">
             <img class="w-full rounded-md" src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/99/MTA-178802225/no_brand_baju_batik_couple_dewasa_-_baju_batk_sarimbit_-_baju_batik_keluarga_-_baju_batik_pria_-_baju_batik_wanita_full01_fw7xlre0.jpg" alt="Batik Mayung">
             <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
-            </div>
+          </div>
         </div>
         
           <!-- SVG (Tetap di bagian bawah) -->
