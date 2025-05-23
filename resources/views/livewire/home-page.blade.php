@@ -7,22 +7,26 @@
         
         <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/60"></div>
         
-        <div class="relative z-10 max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+        <div class="ml-10 relative z-10 max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div>
-            <h1 class="ml-10 text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
-              Kuasai Dunia Fashion Bersama <span class="text-blue-400">Srikandi March</span>
-            </h1>
-            
-            <!-- <div class="flex w-40 mt-2 mb-6 overflow-hidden rounded">
-              <div class="flex-1 h-2 bg-blue-200"></div>
-              <div class="flex-1 h-2 bg-blue-400"></div>
-              <div class="flex-1 h-2 bg-blue-600"></div>
-            </div> -->
+            <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white" style="max-width: 50%;">Kuasai Dunia Fashion Bersama <span class="text-blue-600">Srikandi March</span></h1>
+              <div class="flex w-120 mt-2 mb-6 overflow-hidden rounded" style="max-width: 50%;">
+                <div class="flex-1 h-2 bg-blue-200"></div>
+                <div class="flex-1 h-2 bg-blue-400"></div>
+                <div class="flex-1 h-2 bg-blue-600"></div>
+              </div>
 
-            <p class="ml-10 text-lg text-white">Beli Sekarang dan dapatkan Promo Menarik lainnya.</p>
-            <div class="ml-10 mt-7 grid gap-3 sm:inline-flex">
-              <a href="/products" class="py-3 px-5 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">Beli Sekarang</a>
-              <a href="/contact-us" class="py-3 px-5 bg-white text-gray-800 rounded-lg hover:bg-gray-100">Hubungi Kami</a>
+            <p class="text-lg text-white">Beli Sekarang dan dapatkan Promo Menarik lainnya.</p>
+            <div class="mt-7 grid gap-3 w-full sm:inline-flex">
+              <a wire:navigate class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products">
+                Beli Sekarang
+                <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </a>
+              <a wire:navigate class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/contact-us">
+                Hubungi Kami
+              </a>
             </div>
           </div>
         </div>
