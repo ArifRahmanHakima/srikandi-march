@@ -23,6 +23,7 @@ class HomePage extends Component
     {
         $brands = Brand::where('is_active', 1)->get();
         $categories = Category::where('is_active', 1)->get();
+        $banners = Banner::where('is_active', 1)->get();
 
         $newProducts = \App\Models\Product::where('is_active', 1)
             ->where('is_new', 1)
@@ -36,14 +37,7 @@ class HomePage extends Component
             'brands' => $brands,
             'categories' => $categories,
             'newProducts' => $newProducts,
-
-        $banners = Banner::where('is_active', 1)->get();
-
-        return view('livewire.home-page', [
-            'brands' => $brands,
-            'categories' => $categories,
             'banners' => $banners
-
-        ]); 
+        ]);
     }
 }
