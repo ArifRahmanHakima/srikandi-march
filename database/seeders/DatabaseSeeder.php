@@ -14,12 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::factory(10)->create();
 
         User::factory()->create([
             'name' => 'Akun Admin',
             'email' => 'srikandi@gmail.com',
             'password' => Hash::make('hanyaadmin123'),
+        ]);
+
+        $this->call([
+            BannerSeeder::class,
+            // Tambahkan seeder lainnya jika diperlukan
         ]);
     }
 }
