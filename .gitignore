@@ -2,7 +2,10 @@
 /node_modules
 /public/build
 /public/hot
-/public/storage
+/public/storage/brands
+/public/storage/categories
+/public/storage/products
+/public/storage/profile-photos
 /storage/*.key
 /storage/pail
 /vendor

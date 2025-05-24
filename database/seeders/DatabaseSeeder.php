@@ -21,5 +21,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'srikandi@gmail.com',
             'password' => Hash::make('hanyaadmin123'),
         ]);
+
+        $this->call([
+            BannerSeeder::class,
+            // Tambahkan seeder lainnya jika diperlukan
+        ]);
     }
 }
