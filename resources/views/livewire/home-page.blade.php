@@ -1,176 +1,136 @@
 <div>
-<div class="w-full h-screen bg-gradient-to-r from-gray-800 to-cyan-200 py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-  <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-    <!-- Grid -->
-    <div class="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
-      <div>
-        <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">Kuasai Dunia Fashion Bersama <span class="text-blue-600">Srikandi March</span></h1>
-          <div class="flex w-120 mt-2 mb-6 overflow-hidden rounded">
-            <div class="flex-1 h-2 bg-blue-200">
-            </div>
-            <div class="flex-1 h-2 bg-blue-400">
-            </div>
-            <div class="flex-1 h-2 bg-blue-600">
+<div id="autoSlider" class="relative w-full h-screen overflow-hidden">
+  <div class="flex h-full transition-transform duration-500 ease-in-out">
+    @foreach($banners as $banner)
+      <div class="min-w-full relative bg-cover bg-center flex items-center"
+           style="background-image: url('{{ $banner->image_url }}'); height: 100vh;">
+        
+        <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/60"></div>
+        
+        <div class="ml-10 relative z-10 max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+          <div>
+            <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white" style="max-width: 50%;">Kuasai Dunia Fashion Bersama <span class="text-blue-600">Srikandi March</span></h1>
+              <div class="flex w-120 mt-2 mb-6 overflow-hidden rounded" style="max-width: 50%;">
+                <div class="flex-1 h-2 bg-blue-200"></div>
+                <div class="flex-1 h-2 bg-blue-400"></div>
+                <div class="flex-1 h-2 bg-blue-600"></div>
+              </div>
+
+            <p class="text-lg text-white">Beli Sekarang dan dapatkan Promo Menarik lainnya.</p>
+            <div class="mt-7 grid gap-3 w-full sm:inline-flex">
+              <a wire:navigate class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products">
+                Beli Sekarang
+                <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="m9 18 6-6-6-6" />
+                </svg>
+              </a>
+              <a wire:navigate class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/contact-us">
+                Hubungi Kami
+              </a>
             </div>
           </div>
-        <p class="mt-3 text-lg text-gray-800 dark:text-gray-400">Beli Sekarang dan dapatkan Promo Menarik lainnya.</p>
-
-        <!-- Buttons -->
-        <div class="mt-7 grid gap-3 w-full sm:inline-flex">
-          <a wire:navigate class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/products">
-            Beli Sekarang
-            <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="m9 18 6-6-6-6" />
-            </svg>
-          </a>
-          <a wire:navigate class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="/contact-us">
-            Hubungi Kami
-          </a>
         </div>
-        <!-- End Buttons -->
-
-        <!-- Review -->
-        <div class="mt-6 lg:mt-10 grid grid-cols-2 gap-x-5">
-          <!-- Review -->
-          <div class="py-5">
-            <div class="flex space-x-1">
-            </div>
-
-            <p class="mt-3 text-sm text-gray-800 dark:text-gray-200">
-              <span class="font-bold"></span> 
-            </p>
-
-            <div class="mt-5">
-            </div>
-          </div>
-          <!-- End Review -->
-
-          <!-- Review -->
-          <div class="py-5">
-            <div class="flex space-x-1">
-            </div>
-            <p class="mt-3 text-sm text-gray-800 dark:text-gray-200">
-              <span class="font-bold"></span> 
-            </p>
-            <div class="mt-5">
-            </div>
-          </div>
-          <!-- End Review -->
-        </div>
-        <!-- End Review -->
       </div>
-      <!-- End Col -->
-
-      <div class="relative ms-9 overflow-hidden" id="autoSlider">
-        <!-- Container untuk gambar-gambar slider -->
-        <div class="flex w-full transition-transform duration-2000 ease-in-out">
-          <!-- Gambar 1 slider -->
-          <div class="min-w-full relative">
-            <img class="w-full rounded-md" src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/99/MTA-178802225/no_brand_baju_batik_couple_dewasa_-_baju_batk_sarimbit_-_baju_batik_keluarga_-_baju_batik_pria_-_baju_batik_wanita_full02_poyjy5at.jpg" alt="Batik Mayung">
-            <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
-          </div>
-        
-          <!-- Gambar 2 slider -->
-          <div class="min-w-full relative">
-            <img class="w-full rounded-md" src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/99/MTA-178802225/no_brand_baju_batik_couple_dewasa_-_baju_batk_sarimbit_-_baju_batik_keluarga_-_baju_batik_pria_-_baju_batik_wanita_full03_uor0ra8l.jpg" alt="Batik Modern">
-            <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
-            </div>
-
-
-            <!-- Gambar 3 slider -->
-          <div class="min-w-full relative">
-            <img class="w-full rounded-md" src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/99/MTA-178802225/no_brand_baju_batik_couple_dewasa_-_baju_batk_sarimbit_-_baju_batik_keluarga_-_baju_batik_pria_-_baju_batik_wanita_full04_dh05gdwn.jpg?width=1600&format=webp&w=1600" alt="Batik Mayung">
-            <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
-          </div>
-
-          <!-- Gambar 4 slider -->
-          <div class="min-w-full relative">
-            <img class="w-full rounded-md" src="https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/catalog-image/99/MTA-178802225/no_brand_baju_batik_couple_dewasa_-_baju_batk_sarimbit_-_baju_batik_keluarga_-_baju_batik_pria_-_baju_batik_wanita_full01_fw7xlre0.jpg" alt="Batik Mayung">
-            <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0"></div>
-            </div>
-        </div>
-        
-          <!-- SVG (Tetap di bagian bawah) -->
-          <div class="absolute bottom-0 start-0">
-            <svg class="w-2/3 ms-auto h-auto text-white dark:text-slate-900" width="630" height="451" viewBox="0 0 630 451" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- <rect x="531" y="352" width="99" height="99" fill="currentColor" />
-              <rect x="140" y="352" width="106" height="99" fill="currentColor" />
-              <rect x="482" y="402" width="64" height="49" fill="currentColor" />
-              <rect x="433" y="402" width="63" height="49" fill="currentColor" />
-              <rect x="384" y="352" width="49" height="50" fill="currentColor" />
-              <rect x="531" y="328" width="50" height="50" fill="currentColor" />
-              <rect x="99" y="303" width="49" height="58" fill="currentColor" />
-              <rect x="99" y="352" width="49" height="50" fill="currentColor" />
-              <rect x="99" y="392" width="49" height="59" fill="currentColor" />
-              <rect x="44" y="402" width="66" height="49" fill="currentColor" />
-              <rect x="234" y="402" width="62" height="49" fill="currentColor" />
-              <rect x="334" y="303" width="50" height="49" fill="currentColor" />
-              <rect x="581" width="49" height="49" fill="currentColor" />
-              <rect x="581" width="49" height="64" fill="currentColor" />
-              <rect x="482" y="123" width="49" height="49" fill="currentColor" />
-              <rect x="507" y="124" width="49" height="24" fill="currentColor" />
-              <rect x="531" y="49" width="99" height="99" fill="currentColor" /> -->
-            </svg>
-          </div>
-      </div>
-      <!-- End Slider -->
-
-      <!-- Script untuk auto slider -->
-      <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const slider = document.getElementById('autoSlider');
-        const slidesContainer = slider.querySelector('.flex');
-        const slides = slider.querySelectorAll('.min-w-full');
-        
-        // Clone slide pertama dan tambahkan di akhir untuk efek infinite
-        const firstSlide = slides[0].cloneNode(true);
-        slidesContainer.appendChild(firstSlide);
-        
-        const totalSlides = slides.length + 1; // +1 untuk clone
-        let currentSlide = 0;
-        const slideDuration = 3000; // 3 detik per slide
-        
-        function goToNextSlide() {
-          currentSlide++;
-          slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-          slidesContainer.style.transition = 'transform 0.5s ease-in-out';
-          
-          // Jika mencapai slide clone, langsung pindah ke slide asli tanpa animasi
-          if (currentSlide === totalSlides - 1) {
-            setTimeout(() => {
-              slidesContainer.style.transition = 'none';
-              currentSlide = 0;
-              slidesContainer.style.transform = 'translateX(0)';
-            }, 500); // Sesuaikan dengan durasi transisi
-          }
-        }
-        
-        // Mulai auto slide
-        setInterval(goToNextSlide, slideDuration);
-      });
-    </script>
-
-    <style>
-      #autoSlider {
-        overflow: hidden;
-        height:90;
-      }
-      #autoSlider .flex {
-        display: flex;
-        width: 100%;
-      }
-      #autoSlider .min-w-full {
-        flex: 0 0 100%;
-      }
-    </style>
-    <!-- end slide scrip -->
-
-
-
-      <!-- End Col -->
-    </div>
-    <!-- End Grid -->
+    @endforeach
   </div>
+
+  <!-- Tombol Prev -->
+  <button id="prevBtn" aria-label="Previous slide"
+          class="absolute left-6 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/60 text-white rounded-full p-3 z-20 transition">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+
+  <!-- Tombol Next -->
+  <button id="nextBtn" aria-label="Next slide"
+          class="absolute right-6 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/60 text-white rounded-full p-3 z-20 transition">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('autoSlider');
+    const slidesContainer = slider.querySelector('.flex');
+    const slides = slider.querySelectorAll('.min-w-full');
+    
+    // Clone slide pertama untuk infinite loop
+    const firstSlide = slides[0].cloneNode(true);
+    slidesContainer.appendChild(firstSlide);
+    
+    const totalSlides = slides.length + 1;
+    let currentSlide = 0;
+    const slideDuration = 6000; // 6 detik per slide
+    
+    function updateSlide() {
+      slidesContainer.style.transition = 'transform 0.5s ease-in-out';
+      slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    function goToNextSlide() {
+      currentSlide++;
+      updateSlide();
+      
+      if (currentSlide === totalSlides - 1) {
+        setTimeout(() => {
+          slidesContainer.style.transition = 'none';
+          currentSlide = 0;
+          slidesContainer.style.transform = 'translateX(0)';
+        }, 500);
+      }
+    }
+
+    function goToPrevSlide() {
+      if (currentSlide === 0) {
+        slidesContainer.style.transition = 'none';
+        currentSlide = totalSlides - 1;
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        // Delay kemudian ke slide asli sebelum clone
+        setTimeout(() => {
+          slidesContainer.style.transition = 'transform 0.5s ease-in-out';
+          currentSlide--;
+          updateSlide();
+        }, 20);
+      } else {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    let slideInterval = setInterval(goToNextSlide, slideDuration);
+
+    // Event tombol
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      clearInterval(slideInterval);
+      goToNextSlide();
+      slideInterval = setInterval(goToNextSlide, slideDuration);
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      clearInterval(slideInterval);
+      goToPrevSlide();
+      slideInterval = setInterval(goToNextSlide, slideDuration);
+    });
+  });
+  </script>
+
+  <style>
+    #autoSlider {
+      overflow: hidden;
+      height: 100vh;
+    }
+    #autoSlider .flex {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+    #autoSlider .min-w-full {
+      flex: 0 0 100%;
+      position: relative;
+    }
+  </style>
 </div>
 
 <!-- brand section start -->
@@ -181,16 +141,12 @@
         <h1 class="text-5xl font-bold dark:text-gray-200">Brand<span class="text-blue-500"> Batik Terbaik
           </span> </h1>
         <div class="flex w-40 mt-2 mb-6 overflow-hidden rounded">
-          <div class="flex-1 h-2 bg-blue-200">
-          </div>
-          <div class="flex-1 h-2 bg-blue-400">
-          </div>
-          <div class="flex-1 h-2 bg-blue-600">
-          </div>
+          <div class="flex-1 h-2 bg-blue-200"></div>
+          <div class="flex-1 h-2 bg-blue-400"></div>
+          <div class="flex-1 h-2 bg-blue-600"></div>
         </div>
       </div>
-      <p class="mb-12 text-base text-center text-gray-500">
-      </p>
+      <p class="mb-12 text-base text-center text-gray-500"></p>
     </div>
   </div>
   <div class="justify-center max-w-6xl px-4 py-4 mx-auto lg:py-0">
@@ -232,8 +188,7 @@
           </div>
         </div>
       </div>
-      <p class="mb-12 text-base text-center text-gray-500">
-      </p>
+      <p class="mb-12 text-base text-center text-gray-500"></p>
     </div>
   </div>
 
@@ -263,7 +218,6 @@
       @endforeach
     </div>
   </div>
-
 </div>
 <!-- category section end -->
 
@@ -276,16 +230,12 @@
           <h1 class="text-5xl font-bold dark:text-gray-200"> Ulasan <span class="text-blue-500"> Pengguna
             </span> </h1>
           <div class="flex w-40 mt-2 mb-6 overflow-hidden rounded">
-            <div class="flex-1 h-2 bg-blue-200">
-            </div>
-            <div class="flex-1 h-2 bg-blue-400">
-            </div>
-            <div class="flex-1 h-2 bg-blue-600">
-            </div>
+            <div class="flex-1 h-2 bg-blue-200"></div>
+            <div class="flex-1 h-2 bg-blue-400"></div>
+            <div class="flex-1 h-2 bg-blue-600"></div>
           </div>
         </div>
-        <p class="mb-12 text-base text-center text-gray-500">
-        </p>
+        <p class="mb-12 text-base text-center text-gray-500"></p>
       </div>
     </div>
 
@@ -302,8 +252,7 @@
               <p class="text-xs text-gray-500 dark:text-gray-400">Web Designer</p>
             </div>
           </div>
-          <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022
-          </p>
+          <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022</p>
         </div>
         <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate similique,
