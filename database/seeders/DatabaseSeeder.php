@@ -16,11 +16,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Akun Admin',
-            'email' => 'srikandi@gmail.com',
-            'password' => Hash::make('hanyaadmin123'),
-        ]);
+        if (!User::where('email', 'srikandi@gmail.com')->exists()) {
+            User::factory()->create([
+                'name' => 'Akun Admin',
+                'email' => 'srikandi@gmail.com',
+                'password' => Hash::make('hanyaadmin123'),
+            ]);
+            $this->command->info('Pengguna admin berhasil dibuat.'); // Optional: Berikan informasi di console
+        } else {
+            $this->command->info('Pengguna admin dengan email srikandi@gmail.com sudah ada.'); // Optional: Berikan informasi di console
+        }
 
         $this->call([
             BannerSeeder::class,
