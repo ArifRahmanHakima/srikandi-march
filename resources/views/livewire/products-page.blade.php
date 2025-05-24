@@ -81,36 +81,48 @@
               
             </div>
           </div>
-          <div class="flex flex-wrap items-center ">
+          <div class="flex flex-wrap items-center pt-8 ">
 
             @foreach ($products as $product)
             <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key="{{$product->id}}">
-              <div class="border border-gray-300">
-                <div class="relative bg-gray-200 h-64 flex items-center justify-center overflow-hidden">
-                  <a href="/products/{{$product->slug}}" class="">
-                    <img src="{{url('storage', $product->images[0]) }}" alt="{{$product->name}}" class="object-cover w-full h-full">
-                  </a>
-                </div>
-                <div class="p-3 ">
-                  <div class="flex items-center justify-between gap-2 mb-2">
-                    <h3 class="text-xl font-medium">
-                      {{$product->name}}
-                    </h3>
-                  </div>
-                  <p class="text-lg ">
-                    <span class="text-blue-600">{{Number::currency($product->price, 'IDR')}}</span>
-                  </p>
-                </div>
-                <div class="flex justify-center p-4 border-t border-gray-300">
+                <div class="relative w-full max-w-xs overflow-hidden rounded-lg bg-gray-200 shadow-md mx-auto">
+                    <a href="/products/{{$product->slug}}">
+                        <img class="h-60 rounded-t-lg object-cover w-full transition-transform duration-1000 hover:scale-111" src="{{url('storage', $product->images[0]) }}" alt="{{$product->name}}" />
+                    </a>
 
-                  <a wire:click.prevent='addToCart({{ $product->id }})' href="#" class="text-gray-500 flex items-center space-x-2 dark:text-gray-400 hover:text-blue-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="w-4 h-4 bi bi-cart3 " viewBox="0 0 16 16">
-                      <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
-                    </svg><span wire:loading.remove wire:target='addToCart({{ $product->id }})'>Add to Cart</span><span wire:loading wire:target='addToCart({{ $product->id }})'>Adding...</span>
-                  </a>
+                    @if(isset($product->is_new) && $product->is_new) {{-- Asumsi ada properti is_on_sale --}}
+                    <span class="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-blue-600 text-center text-sm text-white">Baru</span>
+                    @elseif(isset($product->on_sale) && $product->on_sale) {{-- Asumsi ada properti on_sale --}}
+                    <span class="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-red-600 text-center text-sm text-white">Sale</span>
+                    @endif
 
+                    <div class="mt-4 px-5 pb-5">
+                        <a href="/products/{{$product->slug}}">
+                            <h5 class="text-xl font-semibold tracking-tight text-slate-900 truncate">{{$product->name}}</h5>
+                        </a>
+
+                        <span class="text-gray-500 text-xs mt-1 block">
+                            {{ $product->brand->name ?? 'N/A' }} 
+                            @if($product->category) - {{ $product->category->name }} @endif
+                        </span>
+
+                        <div class="flex items-center justify-between mt-2.5 mb-2.5"> <p>
+                                <span class="text-l font-bold text-slate-900">{{Number::currency($product->price, 'IDR')}}</span> @if(isset($product->old_price) && $product->old_price > $product->price)
+                                <span class="text-sm text-slate-900 line-through ml-2">{{Number::currency($product->old_price, 'IDR')}}</span>
+                                @endif
+                            </p>
+                            
+                            <button wire:click.prevent='addToCart({{ $product->id }})'
+                                class="flex items-center rounded-md bg-slate-900 px-3 py-2 text-center text-sm font-medium text-white 
+                                     hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                                <span wire:loading.remove wire:target='addToCart({{ $product->id }})'>Tambah</span>
+                                <span wire:loading wire:target='addToCart({{ $product->id }})'>Menambah..</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
             @endforeach
 
