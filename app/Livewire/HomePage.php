@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Brand;
+use App\Models\Banner;
 use Livewire\Component;
 use App\Models\Category;
 use Livewire\Attributes\Title;
@@ -22,6 +23,7 @@ class HomePage extends Component
     {
         $brands = Brand::where('is_active', 1)->get();
         $categories = Category::where('is_active', 1)->get();
+
         $newProducts = \App\Models\Product::where('is_active', 1)
             ->where('is_new', 1)
             ->where('in_stock', 1)
@@ -34,6 +36,14 @@ class HomePage extends Component
             'brands' => $brands,
             'categories' => $categories,
             'newProducts' => $newProducts,
+
+        $banners = Banner::where('is_active', 1)->get();
+
+        return view('livewire.home-page', [
+            'brands' => $brands,
+            'categories' => $categories,
+            'banners' => $banners
+
         ]); 
     }
 }
