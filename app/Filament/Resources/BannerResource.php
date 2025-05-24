@@ -33,7 +33,7 @@ class BannerResource extends Resource
                 ->required()
                 ->live(onBlur: true)
                 ->afterStateUpdated(fn ($state, callable $set) =>
-                    $set('slug', \Str::slug($state))
+                    $set('slug', Str::slug($state))
                 ),
 
             TextInput::make('slug')
@@ -64,7 +64,24 @@ class BannerResource extends Resource
             TextColumn::make('name')->searchable(),
             TextColumn::make('slug')->toggleable(),
             BooleanColumn::make('is_active')->label('Aktif'),
+        ])
+        ->filters([
+            //
+        ])
+        ->actions([
+            Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make(),
+                    Tables\Actions\DeleteAction::make(),
+                ]),
+        ])
+        ->bulkActions([
+            Tables\Actions\BulkActionGroup::make([
+                Tables\Actions\DeleteBulkAction::make(),
+            ]),
         ]);
+        
+
     }
 
     public static function getRelations(): array
