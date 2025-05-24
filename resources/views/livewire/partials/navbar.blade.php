@@ -29,7 +29,7 @@
                 $currentRoute = request()->path();
             @endphp
 
-            <div x-data="{ hoverTab: null }" class="flex gap-0,5">
+            <div x-data="{ hoverTab: null }" class="flex gap-0.5">
                 <!-- Beranda -->
                 <a
                     href="/"
@@ -40,7 +40,7 @@
                         : '{{ request()->is('/') ? 'true' : 'false' }}' === 'true'
                             ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0'
                             : 'text-black hover:text-blue-400'"
-                    class="relative px-4 py-3 font-medium text-base">
+                    class="relative flex items-center gap-1 px-4 py-3 font-medium text-base">
                     Beranda
                 </a>
                 <!-- Kategori -->
@@ -53,7 +53,7 @@
                         : '{{ request()->is('categories*') ? 'true' : 'false' }}' === 'true'
                             ? 'text-blue-800 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0'
                             : 'text-black hover:text-blue-400'"
-                    class="relative px-4 py-3 font-medium text-base">
+                    class="relative flex items-center gap-1 px-4 py-3 font-medium text-base">
                     Kategori
                 </a>
                 <!-- Produk -->
@@ -66,36 +66,36 @@
                         : '{{ request()->is('products*') ? 'true' : 'false' }}' === 'true'
                             ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0'
                             : 'text-black hover:text-blue-400'"
-                    class="relative px-4 py-3 font-medium text-base">
+                    class="relative flex items-center gap-1 px-4 py-3 font-medium text-base">
                     Produk
                 </a>
                 <!-- Kontak -->
                 <a
-                    href="/kontak"
+                    href="/contact-us"
                     @mouseenter="hoverTab = 'kontak'"
                     @mouseleave="hoverTab = null"
-                    :class="(hoverTab === 'kontak' && '{{ request()->is('kontak') ? 'false' : 'true' }}' === 'true')
+                    :class="(hoverTab === 'kontak' && '{{ request()->is('contact-us') ? 'false' : 'true' }}' === 'true')
                         ? 'text-gray-800 after:block after:h-[2px] after:bg-gray-400 after:w-full after:absolute after:bottom-0 after:left-0'
-                        : '{{ request()->is('kontak') ? 'true' : 'false' }}' === 'true'
+                        : '{{ request()->is('contact-us') ? 'true' : 'false' }}' === 'true'
                             ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0'
                             : 'text-black hover:text-blue-400'"
-                    class="relative px-4 py-3 font-medium text-base">
+                    class="relative flex items-center gap-1 px-4 py-3 font-medium text-base">
                     Kontak
                 </a>
                 <!-- Tentang Kami -->
                 <a
-                    href="/tentang-kami"
+                    href="/about-us"
                     @mouseenter="hoverTab = 'tentang'"
                     @mouseleave="hoverTab = null"
-                    :class="(hoverTab === 'tentang' && '{{ request()->is('tentang-kami') ? 'false' : 'true' }}' === 'true')
+                    :class="(hoverTab === 'tentang' && '{{ request()->is('about-us') ? 'false' : 'true' }}' === 'true')
                         ? 'text-gray-800 after:block after:h-[2px] after:bg-gray-400 after:w-full after:absolute after:bottom-0 after:left-0'
-                        : '{{ request()->is('tentang-kami') ? 'true' : 'false' }}' === 'true'
+                        : '{{ request()->is('about-us') ? 'true' : 'false' }}' === 'true'
                             ? 'text-blue-600 after:block after:h-[2px] after:bg-blue-600 after:w-full after:absolute after:bottom-0 after:left-0'
                             : 'text-black hover:text-blue-400'"
-                    class="relative px-4 py-3 font-medium text-base">
+                    class="relative flex items-center gap-1 px-4 py-3 font-medium text-base">
                     Tentang Kami
                 </a>
-                <div x-data="{ hoverTab: null }" class="flex gap-4">
+                <div x-data="{ hoverTab: null }" class="flex gap-0.5">
                   <!-- Keranjang -->
                   <a 
                     wire:navigate 
@@ -134,7 +134,7 @@
             <div class="hs-dropdown relative md:[--strategy:fixed] md:[--trigger:hover] md:py-4">
               <button type="button" class="flex items-center w-full text-gray-500 hover:text-blue-400 font-medium text-base rounded-lg transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:text-grey dark:hover:text-blue-400" aria-controls="hs-basic-dropdown" aria-haspopup="true" data-hs-dropdown="#hs-basic-dropdown">
                 @if(Auth::user()->profile_photo_path)
-                    <img src="{{ Storage::url(Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->name }}" class="h-13 w-13 rounded-full object-cover mr-2">
+                    <img src="{{ Storage::url(Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->name }}" class="h-10 w-10 rounded-full object-cover mr-2">
                 @else
                     <div class="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 mr-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
