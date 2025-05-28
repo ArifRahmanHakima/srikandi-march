@@ -55,11 +55,11 @@
             <h2 class="text-2xl font-bold">Harga</h2>
             <div class="w-16 pb-2 mb-6 border-b border-rose-600"></div>
             <div>
-              <div>{{ Number::currency($price_range, 'IDR') }}</div>
+              <div>{{ 'Rp ' . number_format($price_range, 0, ',', '.') }}</div>
               <input type="range" wire:model.live="price_range" class="w-full h-1 mb-4 bg-blue-100 rounded appearance-none cursor-pointer" max="500000" value="300000" step="1000">
               <div class="flex justify-between ">
-                <span class="inline-block text-lg font-bold text-blue-400 ">{{ Number::currency(1000, 'IDR') }}</span>
-                <span class="inline-block text-lg font-bold text-blue-400 ">{{ Number::currency(500000, 'IDR') }}</span>
+                <span class="inline-block text-lg font-bold text-blue-400 ">{{ 'Rp ' . number_format(1000, 0, ',', '.') }}</span>
+                <span class="inline-block text-lg font-bold text-blue-400 ">{{ 'Rp ' . number_format(500000, 0, ',', '.') }}</span>
               </div>
             </div>
           </div>
@@ -107,8 +107,8 @@
                         </span>
 
                         <div class="flex items-center justify-between mt-2.5 mb-2.5"> <p>
-                                <span class="text-l font-bold text-slate-900">{{Number::currency($product->price, 'IDR')}}</span> @if(isset($product->old_price) && $product->old_price > $product->price)
-                                <span class="text-sm text-slate-900 line-through ml-2">{{Number::currency($product->old_price, 'IDR')}}</span>
+                                <span class="text-l font-bold text-slate-900">{{'Rp ' . number_format($product->price, 0, ',', '.')}}</span> @if(isset($product->old_price) && $product->old_price > $product->price)
+                                <span class="text-sm text-slate-900 line-through ml-2">{{'Rp ' . number_format($product->old_price, 0, ',', '.')}}</span>
                                 @endif
                             </p>
                             

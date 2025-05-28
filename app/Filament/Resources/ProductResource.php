@@ -129,8 +129,8 @@ class ProductResource extends Resource
                     Section::make('Price')->schema([
                         TextInput::make('price')
                             ->required()
-                            ->prefix('IDR')
-                            ->numeric(),
+                            ->prefix('Rp')
+                            ->numeric()
                     ]),
                    
                     Section::make('Associations')->schema([
@@ -220,8 +220,11 @@ class ProductResource extends Resource
                     ->sortable(),
 
                 TextColumn::make('price')
-                    ->money('IDR')
-                    ->sortable(),
+                    ->label('Harga')
+                    ->sortable()
+                    ->formatStateUsing(function ($state) {
+                        return 'Rp ' . number_format($state, 0, ',', '.');
+                    }),
 
                 TextColumn::make('color')
                     ->toggleable(),
