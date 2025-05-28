@@ -53,7 +53,10 @@ class CheckoutPage extends Component
                         'name' => $item['name'],
                     ]
                 ],
-                'quantity' => $item['quantity']
+                'quantity' => $item['quantity'],
+                'sku' => $item['sku'] ?? null,
+                'color' => $item['color'] ?? null,
+                'size' => $item['size'] ?? null,
             ];
         }
 

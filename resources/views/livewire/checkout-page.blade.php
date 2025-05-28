@@ -219,6 +219,16 @@
 								<p class="text-sm text-gray-500 truncate grey:text-gray-400">
 									Jumlah	: {{ $ci['quantity'] }}
 								</p>
+								@if(isset($ci['size']))
+									<p class="text-sm text-gray-500 truncate grey:text-gray-400">
+										Ukuran: {{ $ci['size'] }}
+									</p>
+								@endif
+								@if(isset($ci['color']))
+									<p class="text-sm text-gray-500 truncate grey:text-gray-400">
+										Warna: {{ $ci['color'] }}
+									</p>
+								@endif
 							</div>
 							<div class="inline-flex items-center text-base font-semibold text-gray-900 grey:text-white">
 								{{ 'Rp ' . number_format($ci['total_amount'], 0, ',', '.') }}
