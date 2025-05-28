@@ -10,16 +10,20 @@ use App\Livewire\CartPage;
 use App\Livewire\CategoriesPage;
 use App\Livewire\CheckoutPage;
 use App\Livewire\ContactUs;
+use App\Livewire\OrderSuccessPage;
 use App\Livewire\HomePage;
 use App\Livewire\MyOrderDetailPage;
 use App\Livewire\MyOrdersPage;
 use App\Livewire\ProductDetailPage;
 use App\Livewire\ProductsPage;
+use App\Livewire\ShippingEwallet;
 use App\Livewire\ProfilePage;
 use App\Livewire\SuccessPage;
 use Illuminate\Support\Facades\Auth;
 use Filament\Notifications\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/shipping-ewallet', ShippingEwallet::class);
 
 /*Router Navbar*/
 Route::get('/', HomePage::class);
@@ -53,6 +57,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-orders/{order}', MyOrderDetailPage::class);
     Route::get('/success', SuccessPage::class)->name('success');
     Route::get('/cancel', CancelPage::class);
+
 });
+
 
 

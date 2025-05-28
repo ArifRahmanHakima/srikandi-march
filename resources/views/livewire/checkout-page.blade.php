@@ -87,43 +87,80 @@
 						</div>
 					</div>
 				</div>
-				<div class="text-xl font-bold underline text-gray-700 grey:text-white mb-2">
+				<div class="text-xl font-bold underline text-gray-700 grey:text-white mt-6 mb-2">
 					Pilih Metode Pembayaran
 				</div>
-				<ul class="grid w-full gap-6 md:grid-cols-2">
-					<li>
-						<input wire:model="payment_method" class="hidden peer" id="hosting-small" required="" type="radio" value="dana" />
-						<label class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer grey:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 white:bg-gray-800 dark:hover:bg-white-200" for="hosting-small">
-							<div class="block">
-								<div class="w-full text-lg text-gray-600 font-semibold">
-									DANA
-								</div>
-							</div>
-							<svg aria-hidden="true" class="w-5 h-5 ms-3 rtl:rotate-180" fill="none" viewbox="0 0 14 10" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-								</path>
-							</svg>
-						</label>
-					</li>
-					<li>
-						<input wire:model="payment_method" class="hidden peer" id="hosting-big" type="radio" value="gopay" wire:model="payment_method" required="" id="hosting-big">
-						<label class="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-blue-600 peer-checked:text-blue-600 hover:text-gray-600 hover:bg-gray-100 dark:text-gray-400 white:bg-gray-800 dark:hover:bg-white-200" for="hosting-big">
-							<div class="block">
-								<div class="w-full text-lg text-gray-600 font-semibold">
-									GOPAY
-								</div>
-							</div>
-							<svg aria-hidden="true" class="w-5 h-5 ms-3 rtl:rotate-180" fill="none" viewbox="0 0 14 10" xmlns="http://www.w3.org/2000/svg">
-								<path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-								</path>
-							</svg>
-						</label>
-						</input>
-					</li>
-				</ul>
+
+				<div class="grid grid-cols-2 gap-4 mb-4">
+					<!-- E-Wallet -->
+					<div>
+						<p class="font-semibold text-gray-600 mb-2">E-Wallet</p>
+						<div class="space-y-3">
+						<!-- DANA -->
+						<button type="button" class="flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100 border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png" alt="DANA" class="h-6">
+							<span class="ml-2 font-semibold text-gray-700">DANA</span>
+						</button>
+
+						<!-- GOPAY -->
+						<button type="button" class="flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100 border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1024px-Gopay_logo.svg.png" alt="Gopay" class="h-6">
+							<span class="ml-2 font-semibold text-gray-700">GOPAY</span>
+						</button>
+						</div>
+					</div>
+					<!-- Transfer Bank -->
+					<div>
+						<p class="font-semibold text-gray-600 mb-2">Transfer Bank</p>
+						<div class="space-y-3">
+							 <!-- BRI -->
+							<button
+								type="button"
+								onclick="selectBank('bri')"
+								class="flex items-center justify-between w-full p-4 border rounded-lg hover:bg-gray-100 border-gray-400 text-gray-700 font-semibold"
+								id="btn-bri"
+								>
+								<img src="https://buatlogoonline.com/wp-content/uploads/2022/10/Logo-Bank-BRI.png" alt="BRI" class="h-6">
+								<span class="ml-2">BRI</span>
+							</button>
+							<!-- BNI -->
+							<button
+								type="button"
+								onclick="selectBank('bni')"
+								class="flex items-center justify-between w-full p-4 border rounded-lg hover:bg-gray-100 border-gray-400 text-gray-700 font-semibold"
+								id="btn-bni"
+								>
+								<img src="https://jasalogocepat.com/wp-content/uploads/2023/12/Logo-Bank-BNI-PNG.png" alt="BNI" class="h-6">
+								<span class="ml-2">BNI</span>
+							</button>
+						</div>
+					</div>
+				</div>
 				@error('payment_method')
 					<div class="text-red-500 text-sm">{{ $message }}</div>
 				@enderror
+
+				<!-- Metode Pengiriman -->
+				<div class="text-xl font-bold underline text-gray-700 grey:text-white mt-6 mb-2">
+					Pilih Metode Pengiriman
+				</div>
+					<div class="grid grid-cols-2 gap-4">
+						<!-- J&T -->
+						<button type="button" onclick="document.getElementById('jnt').checked = true; updateSelection(this)"
+							class="flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100 border-gray-400">
+							<input type="radio" id="jnt" name="shipping_method" value="jnt" class="hidden peer" required>
+							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/J%26T_Express_logo.svg/2560px-J%26T_Express_logo.svg.png" alt="J&T Express" class="h-6">
+							<span class="ml-2 font-semibold text-gray-700">J&T EXPRESS</span>
+						</button>
+
+						<!-- JNE -->
+						<button type="button" onclick="document.getElementById('jnt').checked = true; updateSelection(this)"
+							class="flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100 border-gray-400">
+							<input type="radio" id="jnt" name="shipping_method" value="jnt" class="hidden peer" required>
+							<img src="https://upload.wikimedia.org/wikipedia/commons/9/92/New_Logo_JNE.png" alt="J&T Express" class="h-6">
+							<span class="ml-2 font-semibold text-gray-700">JNE</span>
+						</button>
+					</div>
 			</div>
 			<!-- End Card -->
 		</div>
