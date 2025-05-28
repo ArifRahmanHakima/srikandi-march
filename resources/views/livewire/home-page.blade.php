@@ -376,9 +376,9 @@ type();
 
                 <div class="flex items-center justify-between mt-2.5 mb-2.5">
                   <p>
-                    <span class="text-l font-bold text-slate-900">{{Number::currency($product->price, 'IDR')}}</span>
+                    <span class="text-l font-bold text-slate-900">{{'Rp ' . number_format($product->price, 0, ',', '.')}}</span>
                     @if($product->on_sale)
-                    <span class="text-sm text-slate-900 line-through ml-2">{{Number::currency($product->price * 1.2, 'IDR')}}</span>
+                    <span class="text-sm text-slate-900 line-through ml-2">{{'Rp ' . number_format($product->price * 1.2, 0, ',', '.')}}</span>
                     @endif
                   </p>
                   
@@ -420,9 +420,9 @@ type();
 
                 <div class="flex items-center justify-between mt-2.5 mb-2.5">
                   <p>
-                    <span class="text-l font-bold text-slate-900">{{Number::currency($product->price, 'IDR')}}</span>
+                    <span class="text-l font-bold text-slate-900">{{'Rp ' . number_format($product->price, 0, ',', '.')}}</span>
                     @if($product->on_sale)
-                    <span class="text-sm text-slate-900 line-through ml-2">{{Number::currency($product->price * 1.2, 'IDR')}}</span>
+                    <span class="text-sm text-slate-900 line-through ml-2">{{'Rp ' . number_format($product->price * 1.2, 0, ',', '.')}}</span>
                     @endif
                   </p>
                   

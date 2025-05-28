@@ -93,9 +93,9 @@ class OrderResource extends Resource
 
                         Select::make('currency')
                             ->options([
-                                'idr' => 'IDR',
+                                'rp' => 'Rp',
                             ])
-                            ->default('idr')
+                            ->default('rp')
                             ->required(),
 
                         Select::make('shipping_method')
@@ -163,7 +163,7 @@ class OrderResource extends Resource
                                 }
 
                                 $set('grand_total', $total);
-                                return Number::currency($total, 'IDR');
+                                return 'Rp ' . number_format($total, 0, ',', '.');
                             }),
 
                             Hidden::make('grand_total')
@@ -185,17 +185,13 @@ class OrderResource extends Resource
                 TextColumn::make('grand_total')
                     ->numeric()
                     ->sortable()
-                    ->money('IDR'),
+                    ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
                     
                 TextColumn::make('payment_method')
                     ->sortable()
                     ->searchable(),
 
                 TextColumn::make('payment_method')
-                    ->sortable()
-                    ->searchable(),
-
-                TextColumn::make('currency')
                     ->sortable()
                     ->searchable(),
 

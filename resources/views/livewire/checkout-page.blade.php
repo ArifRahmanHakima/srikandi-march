@@ -137,7 +137,7 @@
 						SubTotal
 					</span>
 					<span>
-						{{ Number::currency($grand_total, 'IDR') }}
+						{{ 'Rp ' . number_format(0, 0, ',', '.') }}
 					</span>
 				</div>
 				<div class="flex justify-between mb-2 text-gray-700">
@@ -145,7 +145,7 @@
 						Biaya Pengiriman
 					</span>
 					<span>
-						{{ Number::currency(0, 'IDR') }}
+						{{ 'Rp ' . number_format(0, 0, ',', '.') }}
 					</span>
 				</div>
 				<hr class="bg-slate-400 my-4 h-1 rounded">
@@ -154,13 +154,14 @@
 						Total
 					</span>
 					<span>
-						{{ Number::currency($grand_total, 'IDR') }}
+						{{ 'Rp ' . number_format($grand_total, 0, ',', '.') }}
 					</span>
 				</div>
 				</hr>
 			</div>
 			<button type="submit" class="bg-green-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-green-600">
-				Buat Pesanan
+				<span wire:loading.remove>Buat Pesanan</span>
+				<span wire:loading>Sedang Diproses...</span>
 			</button>
 			<div class="bg-white mt-4 rounded-xl shadow p-4 sm:p-7 grey:bg-slate-900">
 				<div class="text-xl font-bold underline text-gray-700 grey:text-white mb-2">
@@ -179,11 +180,11 @@
 									{{ $ci['name'] }}
 								</p>
 								<p class="text-sm text-gray-500 truncate grey:text-gray-400">
-									Jumlah: {{ $ci['quantity'] }}
+									Jumlah	: {{ $ci['quantity'] }}
 								</p>
 							</div>
 							<div class="inline-flex items-center text-base font-semibold text-gray-900 grey:text-white">
-								{{ Number::currency($ci['total_amount'], 'IDR') }}
+								{{ 'Rp ' . number_format($ci['total_amount'], 0, ',', '.') }}
 							</div>
 						</div>
 					</li>

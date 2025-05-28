@@ -79,7 +79,7 @@
               </h1>
               <div class="mb-4">
                 <span class="text-3xl font-bold text-blue-600 lg:text-4xl">
-                  {{Number::currency($product->price, 'IDR')}}
+                  {{'Rp ' . number_format($product->price, 0, ',', '.')}}
                 </span>
               </div>
               
