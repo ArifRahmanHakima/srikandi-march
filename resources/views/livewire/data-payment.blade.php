@@ -73,9 +73,24 @@
                 @endfor
             </div>
 
-            <div class="bg-green-600 text-white text-center text-2xl font-bold py-2 rounded">
-                Nomor E-Wallet : <br> 085234333123
-            </div>
+            @if ($selectedPaymentMethod === 'dana' || $selectedPaymentMethod === 'gopay')
+                <div class="bg-green-600 text-white text-center text-2xl font-bold py-2 rounded">
+                    Nomor E-Wallet : <br> 085234333123
+                </div>
+            @elseif ($selectedPaymentMethod === 'bri' || $selectedPaymentMethod === 'bni')
+                <div class="bg-green-600 text-white text-center text-2xl font-bold py-2 rounded">
+                    Nomor Rekening : <br>
+                    @if ($selectedPaymentMethod === 'bri')
+                        BRI: 809764321
+                    @elseif ($selectedPaymentMethod === 'bni')
+                        BNI: 12231231231
+                    @endif
+                </div>
+            @else
+                <div class="text-center text-gray-500 py-2">
+                    Pilih metode pembayaran terlebih dahulu.
+                </div>
+            @endif
 
             <div class="flex flex-col gap-2">
                 <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center justify-center gap-1">
