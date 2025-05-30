@@ -5,73 +5,95 @@
             <h2 class="text-xl font-bold mb-4">Thank you. Your order has been received.</h2>
             <div class="grid grid-cols-3 text-sm gap-y-1">
                 <div class="font-semibold">Nama</div>
-                <div class="col-span-2">: Singgih Romadhoni</div>
+                <div class="col-span-2">: {{ $address->first_name }} {{ $address->last_name }}</div>
+
+                <div class="font-semibold">Email</div>
+                <div class="col-span-2">: {{ $user->email }}</div>
 
                 <div class="font-semibold">Alamat</div>
-                <div class="col-span-2">: Kore</div>
-
-                <div class="font-semibold">No. HP</div>
-                <div class="col-span-2">: 0882-6903-6400</div>
+                <div class="col-span-2">: {{ $address->state }}, {{ $address->city }}</div>
 
                 <div class="font-semibold">Jalan</div>
-                <div class="col-span-2">: Kalimo Sodo, Tamanan Kulon</div>
+                <div class="col-span-2">: {{ $address->address }}</div>
             </div>
             <div class="text-sm space-y-1">
             <hr class="my-2 border-gray-300">
 
             <div class="grid grid-cols-3 text-sm gap-y-1">
                 <div class="font-semibold">Nomor Pesanan</div>
-                <div class="col-span-2">: 20</div>
+                <div class="col-span-2">: {{ $orders->id }}</div>
 
-                <div class="font-semibold">Tgl</div>
-                <div class="col-span-2">: 17-02-2025</div>
+                <div class="font-semibold">Tanggal</div>
+                <div class="col-span-2">: {{ $orders->created_at }}</div>
 
                 <div class="font-semibold">Metode Pembayaran</div>
-                <div class="col-span-2">: E-Wallet (DANA)</div>
+                <div class="col-span-2">: {{ $orders->payment_method }}</div>
 
                 <div class="font-semibold">Layanan Pengiriman</div>
-                <div class="col-span-2">: JNT</div>
+                <div class="col-span-2">: {{ $orders->shipping_method }}</div>
             </div>
             
                 <hr class="my-2 border-gray-300">
                 <h3 class="font-semibold">Detail Pesanan</h3>
                 <div class="flex justify-between">
                     <span>Subtotal</span>
-                    <span>IDR 14,000.00</span>
+                    <span>{{ 'Rp ' . number_format($orders->total, 0, ',', '.') }}</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Discount</span>
-                    <span>00</span>
+                    <span>Rp. 00</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Shipping</span>
-                    <span>00</span>
+                    <span>{{ 'Rp ' . number_format($orders->ongkir, 0, ',', '.') }}</span>
                 </div>
                 <hr class="my-2 border-gray-300">
                 <div class="flex justify-between font-bold text-lg mt-2">
                     <span>Total</span>
-                    <span>IDR 14,000.00</span>
+                    <span>{{ 'Rp ' . number_format($orders->total, 0, ',', '.') }}</span>
                 </div>
             </div>
         </div>
 
         <div class="bg-white p-6 border border-gray-200 rounded space-y-4">
             <div>
-                <h3 class="font-semibold text-lg mb-2">Rincian Pesanan</h3>
-                @for ($i = 0; $i < 3; $i++)
-                    <div class="flex items-center justify-between mb-2">
-                        <div class="flex items-center gap-2">
-                            <img src="https://via.placeholder.com/40" alt="Iphone 15" class="rounded w-10 h-10 object-cover">
-                            <div>
-                                <p class="text-sm font-medium">Iphone 15 PRO MAX</p>
-                                <p class="text-xs text-gray-600">Jumlah: 1</p>
+				<div class="text-xl font-bold underline text-gray-700 grey:text-white mb-2">
+					Rincian Pesanan
+				</div>
+				<ul class="divide-y divide-gray-200 grey:divide-gray-700" role="list">
+					@foreach($order->items as $item)
+                    <li class="py-3 sm:py-4">
+                        <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                                <img alt="{{ $item->product->name }}" class="w-12 h-12 rounded-full" src="{{ url('storage/', $item->product->images) }}">
+                                </img>
+                            </div>
+                            <div class="flex-1 min-w-0 ms-4">
+                                <p class="text-sm font-medium text-gray-900 truncate grey:text-white">
+                                    {{ $item->product->name }}
+                                </p>
+                                <p class="text-sm text-gray-500 truncate grey:text-gray-400">
+                                    Jumlah	: {{ $item->quantity }}
+                                </p>
+                                @if(isset($item->size))
+                                    <p class="text-sm text-gray-500 truncate grey:text-gray-400">
+                                        Ukuran: {{ $item->size }}
+                                    </p>
+                                @endif
+                                @if(isset($item->color))
+                                    <p class="text-sm text-gray-500 truncate grey:text-gray-400">
+                                        Warna: {{ $item->color }}
+                                    </p>
+                                @endif
+                            </div>
+                            <div class="inline-flex items-center text-base font-semibold text-gray-900 grey:text-white">
+                                {{ 'Rp ' . number_format($item->total_amount, 0, ',', '.') }}
                             </div>
                         </div>
-                        <p class="text-sm font-semibold">IDR 13JT</p>
-                    </div>
-                    <hr class="my-2 border-gray-300 mb-4">
-                @endfor
-            </div>
+                    </li>
+                    @endforeach
+				</ul>
+			</div>
 
             @if ($selectedPaymentMethod === 'dana' || $selectedPaymentMethod === 'gopay')
                 <div class="bg-green-600 text-white text-center text-2xl font-bold py-2 rounded">
