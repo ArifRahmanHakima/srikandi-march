@@ -67,7 +67,7 @@
 					<div class="grid grid-cols-2 gap-4 mt-4">
 						<div>
 							<label class="block text-gray-700 grey:text-white mb-1" for="state">
-								Negara
+								Provinsi
 							</label>
 							<input wire:model="state" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('state') border-red-500 @enderror" id="state" type="text">
 							</input>
@@ -87,6 +87,7 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="text-xl font-bold underline text-gray-700 grey:text-white mt-6 mb-2">
 					Pilih Metode Pembayaran
 				</div>
@@ -96,46 +97,43 @@
 					<div>
 						<p class="font-semibold text-gray-600 mb-2">E-Wallet</p>
 						<div class="space-y-3">
+
 						<!-- DANA -->
-						<button type="button" class="flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100 border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600">
+						 <label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
+							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
 							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png" alt="DANA" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">DANA</span>
-						</button>
+						</label>
 
 						<!-- GOPAY -->
-						<button type="button" class="flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100 border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600">
+						 <label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
+							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
 							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1024px-Gopay_logo.svg.png" alt="Gopay" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">GOPAY</span>
-						</button>
+						</label>
 						</div>
 					</div>
+
 					<!-- Transfer Bank -->
 					<div>
 						<p class="font-semibold text-gray-600 mb-2">Transfer Bank</p>
 						<div class="space-y-3">
 							 <!-- BRI -->
-							<button
-								type="button"
-								onclick="selectBank('bri')"
-								class="flex items-center justify-between w-full p-4 border rounded-lg hover:bg-gray-100 border-gray-400 text-gray-700 font-semibold"
-								id="btn-bri"
-								>
-								<img src="https://buatlogoonline.com/wp-content/uploads/2022/10/Logo-Bank-BRI.png" alt="BRI" class="h-6">
-								<span class="ml-2">BRI</span>
-							</button>
+						<label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
+							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
+							<img src="https://buatlogoonline.com/wp-content/uploads/2022/10/Logo-Bank-BRI.png" alt="Gopay" class="h-6">
+							<span class="ml-2 font-semibold text-gray-700">BRI</span>
+						</label>
+
 							<!-- BNI -->
-							<button
-								type="button"
-								onclick="selectBank('bni')"
-								class="flex items-center justify-between w-full p-4 border rounded-lg hover:bg-gray-100 border-gray-400 text-gray-700 font-semibold"
-								id="btn-bni"
-								>
-								<img src="https://jasalogocepat.com/wp-content/uploads/2023/12/Logo-Bank-BNI-PNG.png" alt="BNI" class="h-6">
-								<span class="ml-2">BNI</span>
-							</button>
-						</div>
+						<label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
+							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
+							<img src="https://jasalogocepat.com/wp-content/uploads/2023/12/Logo-Bank-BNI-PNG.png" alt="Gopay" class="h-6">
+							<span class="ml-2 font-semibold text-gray-700">BNI</span>
+						</label>
 					</div>
 				</div>
+			</div>
 				@error('payment_method')
 					<div class="text-red-500 text-sm">{{ $message }}</div>
 				@enderror
@@ -146,22 +144,36 @@
 				</div>
 					<div class="grid grid-cols-2 gap-4">
 						<!-- J&T -->
-						<button type="button" onclick="document.getElementById('jnt').checked = true; updateSelection(this)"
-							class="flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100 border-gray-400">
-							<input type="radio" id="jnt" name="shipping_method" value="jnt" class="hidden peer" required>
-							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/J%26T_Express_logo.svg/2560px-J%26T_Express_logo.svg.png" alt="J&T Express" class="h-6">
-							<span class="ml-2 font-semibold text-gray-700">J&T EXPRESS</span>
-						</button>
+						 <label class="shipping-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="shipping">
+							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
+							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/J%26T_Express_logo.svg/2560px-J%26T_Express_logo.svg.png" alt="J&T" class="h-6">
+							<span class="ml-2 font-semibold text-gray-700">J&T</span>
+						</label>
 
 						<!-- JNE -->
-						<button type="button" onclick="document.getElementById('jnt').checked = true; updateSelection(this)"
-							class="flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100 border-gray-400">
-							<input type="radio" id="jnt" name="shipping_method" value="jnt" class="hidden peer" required>
-							<img src="https://upload.wikimedia.org/wikipedia/commons/9/92/New_Logo_JNE.png" alt="J&T Express" class="h-6">
+						<label class="shipping-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="shipping">
+							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
+							<img src="https://upload.wikimedia.org/wikipedia/commons/9/92/New_Logo_JNE.png" alt="JNE" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">JNE</span>
-						</button>
+						</label>
 					</div>
-			</div>
+				</div>
+				<style>
+							.selected {
+							border: 2px solid #2563eb; /* Tailwind blue-600 */
+							background-color: #eff6ff; /* Tailwind blue-50 */
+						}
+						</style>
+						<script>
+							document.querySelectorAll('label[data-group]').forEach(label => {
+								label.addEventListener('click', () => {
+								const group = label.dataset.group;
+								// Reset semua dalam grup yang sama
+								document.querySelectorAll(`label[data-group="${group}"]`).forEach(el => el.classList.remove('selected'));
+								label.classList.add('selected');
+								});
+							});
+						</script>
 			<!-- End Card -->
 		</div>
 		<div class="md:col-span-12 lg:col-span-4 col-span-12">
