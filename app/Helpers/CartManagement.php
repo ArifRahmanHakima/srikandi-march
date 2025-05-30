@@ -84,7 +84,7 @@ class CartManagement {
                     'warranty' => $product->warranty ?? null,
                     'quantity' => $quantity,
                     'unit_amount' => $product->price,
-                    'total_amount' => $product->price
+                    'total_amount' => $product->price * $quantity
                 ];
             }
         }
