@@ -425,7 +425,6 @@ type();
                     <span class="text-sm text-slate-900 line-through ml-2">{{'Rp ' . number_format($product->price * 1.2, 0, ',', '.')}}</span>
                     @endif
                   </p>
-                  
                   <a href="/products/{{ $product->slug }}"
                           class="flex items-center rounded-md bg-slate-900 px-3 py-2 text-center text-sm font-medium text-white
                               hover:bg-blue-600 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
