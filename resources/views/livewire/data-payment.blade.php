@@ -115,22 +115,47 @@
             @endif
 
             <div class="flex flex-col gap-2">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 flex items-center justify-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
-                        <path d="M12 16V4" />
-                        <path d="M6 10l6-6 6 6" />
-                    </svg>
-                    Upload Bukti Pembayaran
-                    <span class="text-red-500">*</span>
-                </button>
+                {{-- Tombol Custom untuk Memicu Upload --}}
+                <div class="relative">
+                    <button type="button" onclick="document.getElementById('buktiBayar').click();" class="w-full mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center justify-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+                            <path d="M12 16V4" />
+                            <path d="M6 10l6-6 6 6" />
+                        </svg>
+                        <span>Upload Bukti Pembayaran <span class="text-red-500">*</span></span>
+                    </button>
 
-                <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                    Konfirmasi Pembayaran
-                </button>
+                    <input type="file" id="buktiBayar" wire:model="buktiBayar" class="hidden">
+                </div>
+
+                {{-- Preview dan Validasi --}}
+                @error('buktiBayar') <p class="text-red-500 text-sm mt-2">{{ $message }}</p> @enderror
+
+                <div wire:loading wire:target="buktiBayar" class="text-blue-500 text-sm mt-2">Mengunggah...</div>
+
+                @if ($buktiBayar)
+                    <div class="mt-4">
+                        <img src="{{ $buktiBayar->temporaryUrl() }}" class="w-32 h-32 object-cover rounded border">
+                    </div>
+
+                    <button type="submit" wire:click="simpanBuktiBayar" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                        Simpan Bukti Pembayaran
+                    </button>
+                @endif
+
+                @if (session()->has('message'))
+                    <div class="mt-4 text-green-600 text-sm">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
+                @if ($order->bukti_pembayaran)
+                    <button wire:click="konfirmasiPembayaran" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        Konfirmasi Pembayaran
+                    </button>
+                @endif
             </div>
-
-
 
             <div class="text-xs text-blue-700 bg-blue-100 p-2 rounded">
                 Silakan lakukan transfer pada nomor Rekening/e-wallet di atas dan upload bukti pembayaran anda.

@@ -5,10 +5,14 @@ namespace App\Livewire;
 use App\Models\Order;
 use App\Models\Address;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Helpers\CartManagement;
 
 class DataPayment extends Component
 {
+    use WithFileUploads;
+
+    public $buktiBayar;
     public $order;
     public $orders;
     public $user;
@@ -80,12 +84,32 @@ class DataPayment extends Component
         }
     }
 
+   public function simpanBuktiBayar()
+    {
+        $this->validate([
+            'buktiBayar' => 'required|image|max:2048',
+        ]);
+
+        $filename = $this->buktiBayar->store('bukti_pembayaran', 'public');
+
+        $this->order->bukti_pembayaran = $filename;
+        $this->order->save();
+
+        session()->flash('message', 'Bukti pembayaran berhasil diupload.');
+    }
+
+    public function konfirmasiPembayaran()
+    {
+        if (!$this->order->bukti_pembayaran) {
+            session()->flash('message', 'Harap upload bukti pembayaran terlebih dahulu.');
+            return;
+        }
+
+        return redirect()->route('order-success', ['order' => $this->order->id]);
+    }
+
     public function render()
     {
-        $cart_items = CartManagement::getCartItemsFromCookie();
-        
-        return view('livewire.data-payment', [
-            'cart_items' => $cart_items,
-        ]);
+        return view('livewire.data-payment');
     }
 }

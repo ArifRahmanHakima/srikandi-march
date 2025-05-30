@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/success', SuccessPage::class)->name('success');
     Route::get('/cancel', CancelPage::class)->name('cancel');
     Route::get('/data-payment/{order}', DataPayment::class)->name('data-payment');
-
+    Route::get('/order-success/{order}', OrderSuccessPage::class)->name('order-success');
 });
 
 
