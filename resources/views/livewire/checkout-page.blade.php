@@ -107,7 +107,7 @@
 
 						<!-- GOPAY -->
 						 <label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
-							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
+							<input type="radio" wire:model="payment_method" name="payment_method" value="gopay" class="hidden" />
 							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1024px-Gopay_logo.svg.png" alt="Gopay" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">GOPAY</span>
 						</label>
@@ -120,14 +120,14 @@
 						<div class="space-y-3">
 							 <!-- BRI -->
 						<label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
-							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
+							<input type="radio" wire:model="payment_method" name="payment_method" value="bri" class="hidden" />
 							<img src="https://buatlogoonline.com/wp-content/uploads/2022/10/Logo-Bank-BRI.png" alt="Gopay" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">BRI</span>
 						</label>
 
 							<!-- BNI -->
 						<label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
-							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
+							<input type="radio" wire:model="payment_method" name="payment_method" value="bni" class="hidden" />
 							<img src="https://jasalogocepat.com/wp-content/uploads/2023/12/Logo-Bank-BNI-PNG.png" alt="Gopay" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">BNI</span>
 						</label>
@@ -145,14 +145,14 @@
 					<div class="grid grid-cols-2 gap-4">
 						<!-- J&T -->
 						 <label class="shipping-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="shipping">
-							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
+							<input type="radio" wire:model="shipping_method" name="shipping_method" value="jte" class="hidden" />
 							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/J%26T_Express_logo.svg/2560px-J%26T_Express_logo.svg.png" alt="J&T" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">J&T</span>
 						</label>
 
 						<!-- JNE -->
 						<label class="shipping-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="shipping">
-							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
+							<input type="radio" wire:model="shipping_method" name="shipping_method" value="jne" class="hidden" />
 							<img src="https://upload.wikimedia.org/wikipedia/commons/9/92/New_Logo_JNE.png" alt="JNE" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">JNE</span>
 						</label>
@@ -186,7 +186,7 @@
 						SubTotal
 					</span>
 					<span>
-						{{ 'Rp ' . number_format(0, 0, ',', '.') }}
+						{{ 'Rp ' . number_format($grand_total, 0, ',', '.') }}
 					</span>
 				</div>
 				<div class="flex justify-between mb-2 text-gray-700">
@@ -208,7 +208,7 @@
 				</div>
 				</hr>
 			</div>
-			<button type="submit" class="bg-green-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-green-600">
+			<button type="submit" class="bg-blue-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-blue-600">
 				<span wire:loading.remove>Buat Pesanan</span>
 				<span wire:loading>Sedang Diproses...</span>
 			</button>

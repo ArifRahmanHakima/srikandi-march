@@ -12,14 +12,30 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('sku')->unique()->after('slug');
-            $table->string('color')->nullable()->after('sku');
-            $table->string('size')->nullable()->after('color');
-            $table->string('material')->nullable()->after('size');
-            $table->string('pattern')->nullable()->after('material'); // motif
-            $table->decimal('weight', 8, 2)->nullable()->after('pattern'); // berat dalam kg
-            $table->string('warranty')->nullable()->after('weight'); // garansi
-            $table->boolean('is_new')->default(false)->after('is_featured');
+            if (!Schema::hasColumn('products', 'sku')) {
+                $table->string('sku')->unique()->after('slug');
+            }
+            if (!Schema::hasColumn('products', 'color')) {
+                $table->string('color')->nullable()->after('sku');
+            }
+            if (!Schema::hasColumn('products', 'size')) {
+                $table->string('size')->nullable()->after('color');
+            }
+            if (!Schema::hasColumn('products', 'material')) {
+                $table->string('material')->nullable()->after('size');
+            }
+            if (!Schema::hasColumn('products', 'pattern')) {
+                $table->string('pattern')->nullable()->after('material');
+            }
+            if (!Schema::hasColumn('products', 'weight')) {
+                $table->decimal('weight', 8, 2)->nullable()->after('pattern');
+            }
+            if (!Schema::hasColumn('products', 'warranty')) {
+                $table->string('warranty')->nullable()->after('weight');
+            }
+            if (!Schema::hasColumn('products', 'is_new')) {
+                $table->boolean('is_new')->default(false)->after('is_featured');
+            }
         });
     }
 

@@ -20,6 +20,7 @@ class CheckoutPage extends Component
     public $state;
     public $zip_code;
     public $payment_method;
+    public $shipping_method;
 
     public function mount(){
         $cart_items = CartManagement::getCartItemsFromCookie();
@@ -28,7 +29,8 @@ class CheckoutPage extends Component
         }
     }
 
-    public function placeOrder(){
+    public function placeOrder()
+    {
         $this->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -37,28 +39,11 @@ class CheckoutPage extends Component
             'city' => 'required',
             'state' => 'required',
             'zip_code' => 'required',
-            'payment_method' => 'required'
+            'payment_method' => 'required',
+            'shipping_method' => 'required',
         ]);
 
         $cart_items = CartManagement::getCartItemsFromCookie();
-
-        $line_items = [];
-
-        foreach($cart_items as $item){
-            $line_items[] = [
-                'price_data' => [
-                    'currency' => 'idr',
-                    'unit_amount' => $item['unit_amount'] * 100,
-                    'product_data' => [
-                        'name' => $item['name'],
-                    ]
-                ],
-                'quantity' => $item['quantity'],
-                'sku' => $item['sku'] ?? null,
-                'color' => $item['color'] ?? null,
-                'size' => $item['size'] ?? null,
-            ];
-        }
 
         $order = new Order();
         $order->user_id = auth()->user()->id;
@@ -66,12 +51,14 @@ class CheckoutPage extends Component
         $order->payment_method = $this->payment_method;
         $order->payment_status = 'pending';
         $order->status = 'new';
-        $order->currency = 'idr';
+        $order->currency = 'rp';
         $order->shipping_amount = 0; // Assuming no shipping for simplicity
-        $order->shipping_method = 'none';
-        $order->notes = 'Order placed by' . auth()->user()->name;
+        $order->shipping_method = $this->shipping_method;
+        $order->notes = 'Order placed by ' . auth()->user()->name;
+        $order->save();
 
         $address = new Address();
+        $address->order_id = $order->id;
         $address->first_name = $this->first_name;
         $address->last_name = $this->last_name;
         $address->phone = $this->phone;
@@ -79,22 +66,29 @@ class CheckoutPage extends Component
         $address->city = $this->city;
         $address->state = $this->state;
         $address->zip_code = $this->zip_code;
+        $address->save();
 
-        $redirect_url = '';
+        // 💡 Format ulang item agar cocok untuk tabel order_items
+        $order_items = [];
 
-        if($this->payment_method === 'dana') {
-            $redirect_url = route('success');
-        } elseif($this->payment_method === 'gopay') {
-            $redirect_url = route('success');
+        foreach ($cart_items as $item) {
+            $order_items[] = [
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
+                'unit_amount' => $item['unit_amount'],
+                'total_amount' => $item['unit_amount'] * $item['quantity'], 
+                'size' => $item['size'] ?? null,
+                'color' => $item['color'] ?? null,
+            ];
         }
 
-        $order->save();
-        $address->order_id = $order->id;
-        $address->save();
-        $order->Items()->createMany($cart_items);
+        $order->items()->createMany($order_items);
+
         CartManagement::clearCartItems();
+
+        $redirect_url = route('data-payment', ['order' => $order->id]);
         return redirect($redirect_url);
-    } 
+    }
 
     public function render()
     {
