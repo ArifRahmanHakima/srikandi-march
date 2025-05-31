@@ -8,6 +8,8 @@
             <thead>
               <tr>
                 <th class="text-left font-semibold">Produk</th>
+                <th class="text-left font-semibold">Warna</th>
+                <th class="text-left font-semibold">Ukuran</th>
                 <th class="text-left font-semibold">Harga</th>
                 <th class="text-left font-semibold">Jumlah</th>
                 <th class="text-left font-semibold">Total</th>
@@ -24,6 +26,8 @@
                     <span class="font-semibold">{{ $item['name'] }}</span>
                   </div>
                 </td>
+                <td class="py-4">{{ $item['color'] }}</td>
+                <td class="py-4">{{ $item['size'] }}</td>
                 <td class="py-4">{{ 'Rp ' . number_format($item['unit_amount'], 0, ',', '.') }}</td>
                 <td class="py-4">
                   <div class="flex items-center">

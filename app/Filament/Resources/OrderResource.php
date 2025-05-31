@@ -59,6 +59,8 @@ class OrderResource extends Resource
                             ->options([
                                 'dana' => 'DANA',
                                 'gopay' => 'GOPAY',
+                                'bri' => 'BRI',
+                                'bni' => 'BNI',
                             ])
                             ->required(),
 
@@ -102,8 +104,6 @@ class OrderResource extends Resource
                             ->options([
                                 'jne' => 'JNE',
                                 'jnt' => 'JNT',
-                                'shopee' => 'Shopee',
-                                'tiki' => 'TIKI',
                             ]),
                             
                         Textarea::make('notes')

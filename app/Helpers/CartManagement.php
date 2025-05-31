@@ -24,12 +24,19 @@ class CartManagement {
             $cart_items[$existing_item]['quantity']++;
             $cart_items[$existing_item]['total_amount'] = $cart_items[$existing_item]['quantity'] * $cart_items[$existing_item]['unit_amount'];
         } else {
-            $product = Product::where('id', $product_id)->first(['id', 'name', 'price', 'images']);
+            $product = Product::where('id', $product_id)->first(['id', 'name', 'price', 'images', 'sku', 'color', 'size', 'material', 'pattern', 'weight', 'warranty']);
             if ($product) {
                 $cart_items[] = [
                     'product_id' => $product_id,
                     'name' => $product->name,
                     'image' => $product->images[0],
+                    'sku' => $product->sku ?? null,
+                    'color' => $product->color ?? null,
+                    'size' => $product->size ?? null,
+                    'material' => $product->material ?? null,
+                    'patterm' => $product->pattern ?? null,
+                    'weight' => $product->weight ?? null,
+                    'warranty' => $product->warranty ?? null,
                     'quantity' => 1,
                     'unit_amount' => $product->price,
                     'total_amount' => $product->price
@@ -42,13 +49,17 @@ class CartManagement {
     }
 
     // add item to cart with quantity
-    static public function addItemToCartWithQty($product_id, $quantity = 1) {
+    static public function addItemToCartWithQty($product_id, $quantity = 1, $options = []) {
         $cart_items = self::getCartItemsFromCookie();
 
         $existing_item = null;
 
         foreach($cart_items as $key => $item) {
-            if($item['product_id'] == $product_id) {
+
+            $colorMatch = ($options['color'] ?? null) === ($item['color'] ?? null);
+            $sizeMatch = ($options['size'] ?? null) === ($item['size'] ?? null);
+
+            if($item['product_id'] == $product_id && $colorMatch && $sizeMatch) {
                 $existing_item = $key;
                 break;
             }
@@ -58,15 +69,22 @@ class CartManagement {
             $cart_items[$existing_item]['quantity'] = $quantity;
             $cart_items[$existing_item]['total_amount'] = $cart_items[$existing_item]['quantity'] * $cart_items[$existing_item]['unit_amount'];
         } else {
-            $product = Product::where('id', $product_id)->first(['id', 'name', 'price', 'images']);
+            $product = Product::where('id', $product_id)->first(['id', 'name', 'price', 'images', 'sku', 'color', 'size', 'material', 'pattern', 'weight', 'warranty']);
             if ($product) {
                 $cart_items[] = [
                     'product_id' => $product_id,
                     'name' => $product->name,
                     'image' => $product->images[0],
+                    'sku' => $product->sku ?? null,
+                    'color' => $options['color'] ?? ($product->color ?? null),
+                    'size' => $options['size'] ?? ($product->size ?? null),
+                    'material' => $product->material ?? null,
+                    'patterm' => $product->pattern ?? null,
+                    'weight' => $product->weight ?? null,
+                    'warranty' => $product->warranty ?? null,
                     'quantity' => $quantity,
                     'unit_amount' => $product->price,
-                    'total_amount' => $product->price
+                    'total_amount' => $product->price * $quantity
                 ];
             }
         }
@@ -106,7 +124,7 @@ class CartManagement {
             $cart_items = [];
         }
 
-        return $cart_items;
+        return is_array($cart_items) ? $cart_items : [];
     }
 
     // increment item quantity
