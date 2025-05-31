@@ -1,29 +1,28 @@
 <?php
 
-use App\Livewire\AboutPage;
-use App\Livewire\Auth\ForgotPasswordPage;
-use App\Livewire\Auth\LoginPage;
-use App\Livewire\Auth\RegisterPage;
-use App\Livewire\Auth\ResetPasswordPage;
-use App\Livewire\CancelPage;
 use App\Livewire\CartPage;
-use App\Livewire\CategoriesPage;
-use App\Livewire\CheckoutPage;
-use App\Livewire\ContactUs;
-use App\Livewire\OrderSuccessPage;
 use App\Livewire\HomePage;
-use App\Livewire\MyOrderDetailPage;
-use App\Livewire\MyOrdersPage;
-use App\Livewire\ProductDetailPage;
-use App\Livewire\ProductsPage;
-use App\Livewire\ShippingEwallet;
+use App\Livewire\AboutPage;
+use App\Livewire\ContactUs;
+use App\Livewire\CancelPage;
+use App\Livewire\DataPayment;
 use App\Livewire\ProfilePage;
 use App\Livewire\SuccessPage;
+use App\Livewire\CheckoutPage;
+use App\Livewire\MyOrdersPage;
+use App\Livewire\ProductsPage;
+use App\Livewire\Auth\LoginPage;
+use App\Livewire\CategoriesPage;
+use App\Livewire\ShippingEwallet;
+use App\Livewire\OrderSuccessPage;
+use App\Livewire\Auth\RegisterPage;
+use App\Livewire\MyOrderDetailPage;
+use App\Livewire\ProductDetailPage;
 use Illuminate\Support\Facades\Auth;
-use Filament\Notifications\Auth\ResetPassword;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/shipping-ewallet', ShippingEwallet::class);
+use App\Livewire\Auth\ResetPasswordPage;
+use App\Livewire\Auth\ForgotPasswordPage;
+use Filament\Notifications\Auth\ResetPassword;
 
 /*Router Navbar*/
 Route::get('/', HomePage::class);
@@ -42,22 +41,20 @@ Route::middleware('guest')->group(function () {
     Route::get('/reset/{token}', ResetPasswordPage::class)->name('password.reset');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', ProfilePage::class)->name('profile');
-});
-
 Route::middleware('auth')->group(function () {
     Route::get('/logout', function () {
         Auth::logout();
 
         return redirect('/');
     });
+    Route::get('/profile', ProfilePage::class)->name('profile');
     Route::get('/checkout', CheckoutPage::class);
     Route::get('/my-orders', MyOrdersPage::class);
     Route::get('/my-orders/{order}', MyOrderDetailPage::class);
     Route::get('/success', SuccessPage::class)->name('success');
-    Route::get('/cancel', CancelPage::class);
-
+    Route::get('/cancel', CancelPage::class)->name('cancel');
+    Route::get('/data-payment/{order}', DataPayment::class)->name('data-payment');
+    Route::get('/order-success/{order}', OrderSuccessPage::class)->name('order-success');
 });
 
 

@@ -57,11 +57,11 @@ class ProductDetailPage extends Component
     }
 
     public function selectColor($color) {
-        $this->selectedColor = trim($color);
+        $this->selectedColor = $color;
     }
 
     public function selectSize($size) {
-        $this->selectedSize = trim($size);
+        $this->selectedSize = $size;
     }
 
     public function addToCart($product_id) {
