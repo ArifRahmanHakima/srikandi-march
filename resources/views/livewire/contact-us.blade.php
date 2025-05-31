@@ -51,34 +51,97 @@
             <!-- Send Message Form -->
             <div>
                 <h2 class="text-2xl font-bold mb-4">Kirim Pesan</h2>
-                <form method="POST" action="#" class="bg-white">
-                    @csrf
-                    <div class="mb-4">
-                        <input type="text" name="name" class="w-full border border-blue-300 rounded p-3" placeholder="Nama">
+                
+                <!-- Success Message -->
+                @if($successMessage)
+                    <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg" 
+                         x-data="{ show: true }" 
+                         x-show="show" 
+                         x-transition
+                         x-init="setTimeout(() => show = false, 5000)">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            {{ $successMessage }}
+                        </div>
                     </div>
-                    <div class="mb-4">
-                        <input type="email" name="email" class="w-full border border-blue-300 rounded p-3" placeholder="Email">
+                @endif
+
+                <!-- Error Message -->
+                @if($errorMessage)
+                    <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                            </svg>
+                            {{ $errorMessage }}
+                        </div>
                     </div>
+                @endif
+
+                <form wire:submit.prevent="sendMessage" class="bg-white">
                     <div class="mb-4">
-                        <textarea name="message" rows="4" class="w-full border border-blue-300 rounded p-3" placeholder="Pesan"></textarea>
+                        <input type="text" 
+                               wire:model.live="name" 
+                               class="w-full border @error('name') border-red-500 @else border-blue-300 @enderror rounded p-3" 
+                               placeholder="Nama">
+                        @error('name')
+                            <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                        @enderror
                     </div>
-                    <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded sentencecase font-semibold">Kirim Pesan</button>
+                    
+                    <div class="mb-4">
+                        <input type="email" 
+                               wire:model.live="email" 
+                               class="w-full border @error('email') border-red-500 @else border-blue-300 @enderror rounded p-3" 
+                               placeholder="Email">
+                        @error('email')
+                            <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    
+                    <div class="mb-4">
+                        <textarea wire:model.live="message" 
+                                  rows="4" 
+                                  class="w-full border @error('message') border-red-500 @else border-blue-300 @enderror rounded p-3" 
+                                  placeholder="Pesan"></textarea>
+                        @error('message')
+                            <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    
+                    <button type="submit" 
+                            wire:loading.attr="disabled"
+                            class="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white py-2 px-4 rounded font-semibold transition-colors duration-200 flex items-center">
+                        <span wire:loading.remove>Kirim Pesan</span>
+                        <span wire:loading class="flex items-center">
+                            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Mengirim...
+                        </span>
+                    </button>
                 </form>
             </div>
         </div>
 
-   <!-- Map Section -->
-<div class="w-full md:w-1/2">
-    <div class="h-full bg-white p-6 rounded-lg shadow-sm">
-        <!-- Embedded Google Maps iframe -->
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.144752493113!2d110.35976347628225!3d-7.790797974161504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59a1f8a3b7a9%3A0x1a7a3a1b1b1b1b1b!2sJl.%20Gandekan%20No.84,%20Pringgokusuman,%20Gedong%20Tengen,%20Kota%20Yogyakarta,%20Daerah%20Istimewa%20Yogyakarta%2055272!5e0!3m2!1sen!2sid!4v1714624357186&z=19&ll=-7.79080,110.35976"
-            class="w-full h-full min-h-[500px] rounded border-0"
-            style="border:0;"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            title="Lokasi Jl. Gandekan No.84">
-        </iframe>
+        <!-- Map Section -->
+        <div class="w-full md:w-1/2">
+            <div class="h-full bg-white p-6 rounded-lg shadow-sm">
+                <!-- Embedded Google Maps iframe -->
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.144752493113!2d110.35976347628225!3d-7.790797974161504!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a59a1f8a3b7a9%3A0x1a7a3a1b1b1b1b1b!2sJl.%20Gandekan%20No.84,%20Pringgokusuman,%20Gedong%20Tengen,%20Kota%20Yogyakarta,%20Daerah%20Istimewa%20Yogyakarta%2055272!5e0!3m2!1sen!2sid!4v1714624357186&z=19&ll=-7.79080,110.35976"
+                    class="w-full h-full min-h-[500px] rounded border-0"
+                    style="border:0;"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Lokasi Jl. Gandekan No.84">
+                </iframe>
+            </div>
+        </div>
     </div>
+</div>
 </div>
