@@ -5,39 +5,39 @@
             <h2 class="text-xl font-bold mb-4">Thank you. Your order has been received.</h2>
             <div class="grid grid-cols-3 text-sm gap-y-1">
                 <div class="font-semibold">Nama</div>
-                <div class="col-span-2">: {{ $address->first_name }} {{ $address->last_name }}</div>
+                <div class="col-span-2">: {{ $address->full_name }}</div>
 
                 <div class="font-semibold">Email</div>
                 <div class="col-span-2">: {{ $user->email }}</div>
 
                 <div class="font-semibold">Alamat</div>
-                <div class="col-span-2">: {{ $address->state }}, {{ $address->city }}</div>
+                <div class="col-span-2">: {{ $address->province }}, {{ $address->city }}, {{ $address->subdistrict }}</div>
 
                 <div class="font-semibold">Jalan</div>
-                <div class="col-span-2">: {{ $address->address }}</div>
+                <div class="col-span-2">: {{ $address->street_address }}</div>
             </div>
             <div class="text-sm space-y-1">
             <hr class="my-2 border-gray-300">
 
             <div class="grid grid-cols-3 text-sm gap-y-1">
                 <div class="font-semibold">Nomor Pesanan</div>
-                <div class="col-span-2">: {{ $orders->id }}</div>
+                <div class="col-span-2">: {{ $order->id }}</div>
 
                 <div class="font-semibold">Tanggal</div>
-                <div class="col-span-2">: {{ $orders->created_at }}</div>
+                <div class="col-span-2">: {{ $order->created_at }}</div>
 
                 <div class="font-semibold">Metode Pembayaran</div>
-                <div class="col-span-2">: {{ $orders->payment_method }}</div>
+                <div class="col-span-2">: {{ $order->payment_method }}</div>
 
                 <div class="font-semibold">Layanan Pengiriman</div>
-                <div class="col-span-2">: {{ $orders->shipping_method }}</div>
+                <div class="col-span-2">: {{ $order->shipping_method }}</div>
             </div>
             
                 <hr class="my-2 border-gray-300">
                 <h3 class="font-semibold">Detail Pesanan</h3>
                 <div class="flex justify-between">
                     <span>Subtotal</span>
-                    <span>{{ 'Rp ' . number_format($orders->total, 0, ',', '.') }}</span>
+                    <span>{{ 'Rp ' . number_format($order->total, 0, ',', '.') }}</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Discount</span>
@@ -45,12 +45,12 @@
                 </div>
                 <div class="flex justify-between">
                     <span>Shipping</span>
-                    <span>{{ 'Rp ' . number_format($orders->ongkir, 0, ',', '.') }}</span>
+                    <span>{{ 'Rp ' . number_format($order->ongkir, 0, ',', '.') }}</span>
                 </div>
                 <hr class="my-2 border-gray-300">
                 <div class="flex justify-between font-bold text-lg mt-2">
                     <span>Total</span>
-                    <span>{{ 'Rp ' . number_format($orders->total, 0, ',', '.') }}</span>
+                    <span>{{ 'Rp ' . number_format($order->total, 0, ',', '.') }}</span>
                 </div>
             </div>
         </div>

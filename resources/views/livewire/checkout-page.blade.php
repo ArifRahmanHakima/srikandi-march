@@ -177,6 +177,7 @@
 							});
 						</script>
 			<!-- End Card -->
+			</div>
 		</div>
 		<div class="md:col-span-12 lg:col-span-4 col-span-12">
 			<div class="bg-white rounded-xl shadow p-4 sm:p-7 white:bg-slate-900">
