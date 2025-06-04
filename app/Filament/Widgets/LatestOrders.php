@@ -25,14 +25,15 @@ class LatestOrders extends BaseWidget
             ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('id')
-                    ->label('Order ID')
+                    ->label('ID Pesanan')
                     ->searchable(),
 
                 TextColumn::make('user.name')
+                    ->label('Pelanggan')
                     ->searchable(),
 
                 TextColumn::make('grand_total')
-                    ->label('Total')
+                    ->label('Total Pembayaran')
                     ->sortable()
                     ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
 
@@ -51,20 +52,22 @@ class LatestOrders extends BaseWidget
                     ->sortable(),
 
                 TextColumn::make('payment_method')
+                    ->label('Metode Pembayaran')
                     ->sortable()
                     ->searchable(),
 
                 TextColumn::make('payment_status')
+                    ->label('Status Pembayaran')
                     ->sortable()
                     ->badge()
                     ->searchable(),
 
                 TextColumn::make('created_at')
-                    ->label('Order Date')
+                    ->label('Tanggal Pesanan')
                     ->dateTime(),
             ])
             ->actions([
-                Action::make('View Order')
+                Action::make('Lihat Pesanan')
                     ->url(fn (Order $record): string => OrderResource::getUrl('view', ['record' => $record]))
                     ->icon('heroicon-m-eye'),
             ]);
