@@ -67,9 +67,9 @@ class OrderResource extends Resource
 
                         Select::make('payment_status')
                             ->options([
-                                'pending' => 'Pending',
-                                'paid' => 'Paid',
-                                'failed' => 'Failed',
+                                'pending' => 'Tertunda',
+                                'paid' => 'Dibayar',
+                                'failed' => 'Gagal',
                             ])
                             ->default('pending')
                             ->required(),
@@ -79,9 +79,9 @@ class OrderResource extends Resource
                             ->default('new')
                             ->required()
                             ->options([
-                                'new' => 'New',
-                                'processing' => 'Processing',
-                                'shipped' => 'Shipped',
+                                'new' => 'Baru',
+                                'processing' => 'Diproses',
+                                'shipped' => 'Dikirim',
                             ])
                             ->colors([
                                 'new' => 'info',
@@ -191,32 +191,32 @@ class OrderResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('user.name')
-                    ->label('Customer')    
+                    ->label('Pelanggan')    
                     ->sortable()
                     ->searchable(),
 
                 TextColumn::make('grand_total')
+                    ->label('Total Pembayaran')
                     ->numeric()
                     ->sortable()
                     ->formatStateUsing(fn ($state) => 'Rp ' . number_format($state, 0, ',', '.')),
                     
                 TextColumn::make('payment_method')
-                    ->sortable()
-                    ->searchable(),
-
-                TextColumn::make('payment_method')
+                    ->label('Metode Pembayaran')
                     ->sortable()
                     ->searchable(),
 
                 TextColumn::make('shipping_method')
+                    ->label('Metode Pengiriman')
                     ->sortable()
                     ->searchable(),
 
                 SelectColumn::make('status')
+                    ->label('Status Pesanan')
                     ->options([
-                        'new' => 'New',
-                        'processing' => 'Processing',
-                        'shipped' => 'Shipped',
+                        'new' => 'Baru',
+                        'processing' => 'Diproses',
+                        'shipped' => 'Dikirim',
                     ])
                     ->searchable()
                     ->sortable(),

@@ -12,24 +12,15 @@
 					<h2 class="text-xl font-bold underline text-gray-700 grey:text-white mb-2">
 						Alamat Pengiriman
 					</h2>
-					<div class="grid grid-cols-2 gap-4">
+					<!-- <div class="grid grid-cols-2 gap-4"> -->
+					<div class="mt-4">
 						<div>
-							<label class="block text-gray-700 grey:text-white mb-1" for="first_name">
-								Nama Depan
+							<label class="block text-gray-700 grey:text-white mb-1" for="full_name">
+								Nama Lengkap
 							</label>
-							<input wire:model="first_name" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('first_name') border-red-500 @enderror" id="first_name" type="text">
+							<input wire:model="full_name" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('full_name') border-red-500 @enderror" id="full_name" type="text">
 							</input>
-							@error('first_name')
-							<div class="text-red-500 text-sm">{{ $message }}</div>
-							@enderror
-						</div>
-						<div>
-							<label class="block text-gray-700 grey:text-white mb-1" for="last_name">
-								Nama Belakang
-							</label>
-							<input wire:model="last_name" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('last_name') border-red-500 @enderror" id="last_name" type="text">
-							</input>
-							@error('last_name')
+							@error('full_name')
 							<div class="text-red-500 text-sm">{{ $message }}</div>
 							@enderror
 						</div>
@@ -44,40 +35,42 @@
 						<div class="text-red-500 text-sm">{{ $message }}</div>
 						@enderror
 					</div>
-					<div class="mt-4">
-						<label class="block text-gray-700 grey:text-white mb-1" for="address">
-							Alamat
-						</label>
-						<input wire:model="street_address" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('street_address') border-red-500 @enderror" id="address" type="text">
-						</input>
-						@error('street_address')
-							<div class="text-red-500 text-sm">{{ $message }}</div>
-						@enderror
-					</div>
-					<div class="mt-4">
-						<label class="block text-gray-700 grey:text-white mb-1" for="city">
-							Kota
-						</label>
-						<input wire:model="city" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('city') border-red-500 @enderror" id="city" type="text">
-						</input>
-						@error('city')
-							<div class="text-red-500 text-sm">{{ $message }}</div>
-						@enderror
-					</div>
 					<div class="grid grid-cols-2 gap-4 mt-4">
 						<div>
-							<label class="block text-gray-700 grey:text-white mb-1" for="state">
+							<label class="block text-gray-700 grey:text-white mb-1" for="province">
 								Provinsi
 							</label>
-							<input wire:model="state" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('state') border-red-500 @enderror" id="state" type="text">
+							<input wire:model="province" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('province') border-red-500 @enderror" id="province" type="text">
 							</input>
-							@error('state')
+							@error('province')
 							<div class="text-red-500 text-sm">{{ $message }}</div>
 							@enderror
 						</div>
 						<div>
 							<label class="block text-gray-700 grey:text-white mb-1" for="zip">
-								Kode Pos
+								Kabupaten/Kota
+							</label>
+							<input wire:model="city" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('city') border-red-500 @enderror" id="zip" type="text">
+							</input>
+							@error('city')
+							<div class="text-red-500 text-sm">{{ $message }}</div>
+							@enderror
+						</div>
+					</div>
+					<div class="grid grid-cols-2 gap-4 mt-4">
+						<div>
+							<label class="block text-gray-700 grey:text-white mb-1" for="subdistrict">
+								Kecamatan
+							</label>
+							<input wire:model="subdistrict" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('subdistrict') border-red-500 @enderror" id="subdistrict" type="text">
+							</input>
+							@error('subdistrict')
+							<div class="text-red-500 text-sm">{{ $message }}</div>
+							@enderror
+						</div>
+						<div>
+							<label class="block text-gray-700 grey:text-white mb-1" for="zip">
+								Kode pos
 							</label>
 							<input wire:model="zip_code" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('zip_code') border-red-500 @enderror" id="zip" type="text">
 							</input>
@@ -86,8 +79,17 @@
 							@enderror
 						</div>
 					</div>
-				</div>
-				
+					<div class="mt-4">
+						<label class="block text-gray-700 grey:text-white mb-1" for="address">
+							Alamat Lengkap
+						</label>
+						<input wire:model="street_address" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('street_address') border-red-500 @enderror" id="address" type="text">
+						</input>
+						@error('street_address')
+							<div class="text-red-500 text-sm">{{ $message }}</div>
+						@enderror
+					</div>
+
 				<div class="text-xl font-bold underline text-gray-700 grey:text-white mt-6 mb-2">
 					Pilih Metode Pembayaran
 				</div>

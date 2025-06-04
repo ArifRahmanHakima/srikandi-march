@@ -5,8 +5,10 @@ namespace App\Livewire;
 use App\Models\Order;
 use App\Models\Address;
 use Livewire\Component;
+use App\Mail\OrderPlaced;
 use Livewire\Attributes\Title;
 use App\Helpers\CartManagement;
+use Illuminate\Support\Facades\Mail;
 
 #[Title('Checkout')]
 class CheckoutPage extends Component
@@ -85,6 +87,8 @@ class CheckoutPage extends Component
         $order->items()->createMany($order_items);
 
         CartManagement::clearCartItems();
+
+        Mail::to(request()->user())->send(new OrderPlaced($order));
 
         $redirect_url = route('data-payment', ['order' => $order->id]);
         return redirect($redirect_url);

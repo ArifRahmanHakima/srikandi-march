@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Auth\ResetPasswordPage;
 use App\Livewire\Auth\ForgotPasswordPage;
+use App\Livewire\NotFound404;
 use Filament\Notifications\Auth\ResetPassword;
 
 /*Router Navbar*/
@@ -52,7 +53,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', ProfilePage::class)->name('profile');
     Route::get('/checkout', CheckoutPage::class);
     Route::get('/my-orders', MyOrdersPage::class);
-    Route::get('/my-orders/{order}', MyOrderDetailPage::class)->name('my-order.show');
+    Route::get('/my-orders/{order_id}', MyOrderDetailPage::class)->name('my-order.show');
     Route::get('/success', SuccessPage::class)->name('success');
     Route::get('/cancel', CancelPage::class)->name('cancel');
     Route::get('/data-payment/{order}', DataPayment::class)->name('data-payment');
