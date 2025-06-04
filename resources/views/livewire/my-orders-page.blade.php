@@ -7,7 +7,7 @@
           <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead>
               <tr>
-                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Memesan</th>
+                <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">No</th>
                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Tanggal</th>
                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Orderan</th>
                 <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">Status Pembayaran</th>
@@ -16,43 +16,25 @@
               </tr>
             </thead>
             <tbody>
-              <tr class="odd:bg-white even:bg-gray-100 white:odd:bg-slate-900 dark:even:bg-slate-800">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 white:text-gray-200">20</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">18-02-2024</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200"><span class="bg-orange-500 py-1 px-3 rounded text-white shadow">Tertunda</span></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200"><span class="bg-green-500 py-1 px-3 rounded text-white shadow">Dibayar</span></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">12,000.00</td>
-                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                  <a href="#" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">Lihat Detail</a>
-                </td>
-              </tr>
-
-              <tr class="odd:bg-white even:bg-gray-100 white:odd:bg-slate-900 white:even:bg-slate-800">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 white:text-gray-200">20</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">18-02-2024</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200"><span class="bg-orange-500 py-1 px-3 rounded text-white shadow">Tertunda</span></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200"><span class="bg-green-500 py-1 px-3 rounded text-white shadow">Dibayar</span></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">12,000.00</td>
-                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                  <a href="#" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">Lihat Detail</a>
-                </td>
-              </tr>
-
-              <tr class="odd:bg-white even:bg-gray-100 white:odd:bg-slate-900 dark:even:bg-slate-800">
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 white:text-gray-200">20</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">18-02-2024</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200"><span class="bg-orange-500 py-1 px-3 rounded text-white shadow">Tertunda</span></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200"><span class="bg-green-500 py-1 px-3 rounded text-white shadow">Dibayar</span></td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">12,000.00</td>
-                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                  <a href="#" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">Lihat Detail</a>
-                </td>
-              </tr>
+              
+              @foreach ($orders as $order)
+                <tr class="odd:bg-white even:bg-gray-100 white:odd:bg-slate-900" wire:key="{{ $order->id }}">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-600 white:text-gray-200">{{ ($orders->currentPage() - 1) * $orders->perPage() + $loop->iteration }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">{{ $order->created_at->format('d-m-Y') }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200"><span class="bg-orange-500 py-1 px-3 rounded text-white shadow">{{ $order->status }}</span></td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200"><span class="bg-green-500 py-1 px-3 rounded text-white shadow">{{ $order->payment_status }}</span></td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                    <a href="/my-orders/{{ $order->id }}" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">Lihat Detail</a>
+                  </td>
+                </tr>
+              @endforeach
 
             </tbody>
           </table>
         </div>
       </div>
+        {{ $orders->links() }}
     </div>
   </div>
 </div>

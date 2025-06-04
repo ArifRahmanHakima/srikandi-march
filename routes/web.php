@@ -1,11 +1,14 @@
 <?php
 
+use App\Models\Order;
+use App\Mail\OrderPlaced;
 use App\Livewire\CartPage;
 use App\Livewire\HomePage;
 use App\Livewire\AboutPage;
 use App\Livewire\ContactUs;
 use App\Livewire\CancelPage;
 use App\Livewire\DataPayment;
+use App\Livewire\NotFound404;
 use App\Livewire\ProfilePage;
 use App\Livewire\SuccessPage;
 use App\Livewire\CheckoutPage;
@@ -13,12 +16,12 @@ use App\Livewire\MyOrdersPage;
 use App\Livewire\ProductsPage;
 use App\Livewire\Auth\LoginPage;
 use App\Livewire\CategoriesPage;
-use App\Livewire\ShippingEwallet;
 use App\Livewire\OrderSuccessPage;
 use App\Livewire\Auth\RegisterPage;
 use App\Livewire\MyOrderDetailPage;
 use App\Livewire\ProductDetailPage;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Auth\ResetPasswordPage;
 use App\Livewire\Auth\ForgotPasswordPage;
@@ -49,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', ProfilePage::class)->name('profile');
     Route::get('/checkout', CheckoutPage::class);
     Route::get('/my-orders', MyOrdersPage::class);
-    Route::get('/my-orders/{order}', MyOrderDetailPage::class);
+    Route::get('/my-orders/{order}', MyOrderDetailPage::class)->name('my-order.show');
     Route::get('/success', SuccessPage::class)->name('success');
     Route::get('/cancel', CancelPage::class)->name('cancel');
     Route::get('/data-payment/{order}', DataPayment::class)->name('data-payment');
