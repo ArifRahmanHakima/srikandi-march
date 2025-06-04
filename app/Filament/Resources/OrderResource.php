@@ -15,6 +15,8 @@ use Illuminate\Support\Number;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\View;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Actions\Action;
+use Filament\Forms\Components\Actions;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
@@ -50,13 +52,14 @@ class OrderResource extends Resource
                 Group::make()->schema([
                     Section::make('Order Information')->schema([
                         Select::make('user_id')
-                            ->label('Customer')
+                            ->label('Pengguna')
                             ->relationship('user', 'name')
                             ->searchable()
                             ->preload()
                             ->required(),
 
                         Select::make('payment_method')
+                            ->label('Metode Pembayaran')
                             ->options([
                                 'dana' => 'DANA',
                                 'gopay' => 'GOPAY',
@@ -66,6 +69,7 @@ class OrderResource extends Resource
                             ->required(),
 
                         Select::make('payment_status')
+                            ->label('Status Pembayaran')
                             ->options([
                                 'pending' => 'Tertunda',
                                 'paid' => 'Dibayar',
@@ -95,6 +99,7 @@ class OrderResource extends Resource
                             ]),
 
                         Select::make('currency')
+                            ->label('Mata Uang')
                             ->options([
                                 'rp' => 'Rp',
                             ])
@@ -102,6 +107,7 @@ class OrderResource extends Resource
                             ->required(),
 
                         ToggleButtons::make('shipping_method')
+                            ->label('Metode Pengiriman')
                             ->inline()
                             ->required()
                             ->options([
@@ -114,8 +120,21 @@ class OrderResource extends Resource
                             ]),
 
                         TextInput::make('shipping_amount')
+                            ->label('Biaya Pengiriman')
                             ->numeric()
                             ->default(0),
+
+                        Actions::make([
+                            Action::make('Kunjungi Website Kurir')
+                                ->label('Cek Website Kurir')
+                                ->url(fn (callable $get) => match ($get('shipping_method')) {
+                                    'jne' => 'https://www.jne.co.id/id',
+                                    'jnt' => 'https://www.jet.co.id/',
+                                    default => '#',
+                                })
+                                ->color('primary')
+                                ->openUrlInNewTab(),
+                        ]),
                             
                         Textarea::make('notes')
                             ->columnSpanFull()
@@ -127,6 +146,7 @@ class OrderResource extends Resource
                             ->schema([
                                 Select::make('product_id')
                                     ->relationship('product', 'name')
+                                    ->label('Produk')
                                     ->searchable()
                                     ->preload()
                                     ->required()
@@ -138,6 +158,7 @@ class OrderResource extends Resource
                                     ->afterStateUpdated(fn ($state, Set $set) => $set('total_amount', Product::find($state)?->price ?? 0)),
 
                                 TextInput::make('quantity')
+                                    ->label('Jumlah')
                                     ->numeric()
                                     ->required()
                                     ->default(1)
@@ -147,6 +168,7 @@ class OrderResource extends Resource
                                     ->afterStateUpdated(fn ($state, Set $set, Get $get) => $set('total_amount', $state * $get ('unit_amount'))),
 
                                 TextInput::make('unit_amount')
+                                    ->label('Harga Satuan')
                                     ->numeric()
                                     ->required()
                                     ->disabled()
@@ -154,6 +176,7 @@ class OrderResource extends Resource
                                     ->columnSpan(3),
 
                                 TextInput::make('total_amount')
+                                    ->label('Total Harga')
                                     ->numeric()
                                     ->required()
                                     ->dehydrated()
