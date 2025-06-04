@@ -149,12 +149,6 @@
                         {{ session('message') }}
                     </div>
                 @endif
-
-                @if ($order->bukti_pembayaran)
-                    <button wire:click="konfirmasiPembayaran" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                        Konfirmasi Pembayaran
-                    </button>
-                @endif
             </div>
 
             <div class="text-xs text-blue-700 bg-blue-100 p-2 rounded">

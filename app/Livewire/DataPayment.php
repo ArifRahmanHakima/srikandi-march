@@ -75,7 +75,7 @@ class DataPayment extends Component
             case 'jne':
                 $this->orders->shipping_method = 'JNE';
                 break;
-            case 'jte':
+            case 'jnt':
                 $this->orders->shipping_method = 'J&T Express';
                 break;
             default:
@@ -96,15 +96,6 @@ class DataPayment extends Component
         $this->order->save();
 
         session()->flash('message', 'Bukti pembayaran berhasil diupload.');
-    }
-
-    public function konfirmasiPembayaran()
-    {
-        if (!$this->order->bukti_pembayaran) {
-            session()->flash('message', 'Harap upload bukti pembayaran terlebih dahulu.');
-            return;
-        }
-
         return redirect()->route('order-success', ['order' => $this->order->id]);
     }
 
