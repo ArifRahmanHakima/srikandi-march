@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Auth\ResetPasswordPage;
 use App\Livewire\Auth\ForgotPasswordPage;
+use App\Livewire\NotFound404;
 use Filament\Notifications\Auth\ResetPassword;
 
 /*Router Navbar*/
