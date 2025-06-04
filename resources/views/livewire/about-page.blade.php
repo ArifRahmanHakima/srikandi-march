@@ -5,7 +5,7 @@
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         <div class="container mx-auto px-4 w-full relative z-10">
           <div class="max-w-2xl mx-auto text-center">
-            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+            <h1 class="text-4xl md:text-5xl font-bold text-yellow-500 mb-4">
               Tentang Butik Srikandi Merch
             </h1>
             <p class="text-lg text-white mb-8">
@@ -18,21 +18,19 @@
     </section>
 
 <!-- About Section -->
-    <section class="py-16">
-      <div class="container mx-auto px-4">
-        <div class="max-w-3xl mx-auto text-center mb-12">
-          <h2 class="text-3xl font-semibold mb-6">
-            Selamat Datang di Butik Srikandi Merch
-          </h2>
-          <p class="text-gray-600 leading-relaxed">
-            Butik srikandi didirikan dengan tujuan melestarikan dan
-            mempromosikan seni batik Indonesia yang kaya akan nilai budaya dan
-            sejarah. Kami berkomitmen untuk menyediakan produk batik berkualitas
-            tinggi yang dibuat dengan keahlian tradisional sambil mengadopsi
-            sentuhan modern untuk memenuhi kebutuhan pasar saat ini.
-          </p>
-        </div>
+   <section class="py-16 bg-cover bg-center relative" style="background-image: url('https://alowedding.net/wp-content/uploads/2022/06/WDP58-02.png');">
+  <!-- Gradasi overlay -->
+  <div class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md bg-[#B58863]"></div>
 
+  <div class="relative container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 class="text-3xl font-semibold mb-6 text-yellow-500">
+        Selamat Datang di Butik Srikandi Merch
+      </h2>
+      <p class="text-gray leading-relaxed">
+        Butik srikandi didirikan dengan tujuan melestarikan dan mempromosikan seni batik Indonesia yang kaya akan nilai budaya dan sejarah. Kami berkomitmen untuk menyediakan produk batik berkualitas tinggi yang dibuat dengan keahlian tradisional sambil mengadopsi sentuhan modern untuk memenuhi kebutuhan pasar saat ini.
+      </p>
+    </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
             <img
@@ -42,8 +40,8 @@
             />
           </div>
           <div>
-            <h3 class="text-2xl font-semibold mb-4">Kisah Kami</h3>
-            <p class="text-gray-600 mb-4">
+            <h3 class="text-2xl font-semibold mb-4 text-yellow-500">Kisah Kami</h3>
+            <p class="text-gray text-justify mb-4">
               Didirikan pada tahun 2005 oleh keluarga Widodo yang memiliki latar
               belakang dalam seni batik selama tiga generasi, Batik Nusantara
               berawal dari sebuah workshop kecil di Yogyakarta. Dengan dedikasi
@@ -51,7 +49,7 @@
               kecintaan terhadap warisan budaya Indonesia, kami berkembang
               menjadi salah satu produsen batik terkemuka di Indonesia.
             </p>
-            <p class="text-gray-600">
+            <p class="text-gray text-justify mb-4">
               Selama perjalanan kami, Batik Nusantara telah berkolaborasi dengan
               lebih dari 50 pengrajin batik berbakat dari berbagai daerah di
               Indonesia, menciptakan lapangan kerja dan memastikan kelangsungan
@@ -65,9 +63,9 @@
     </section>
 
     <!-- Timeline Section -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-gray-400">
     <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-semibold mb-12 text-center">
+        <h2 class="text-3xl font-semibold mb-12 text-center text-grey">
         Perjalanan Kami
         </h2>
 
@@ -81,7 +79,7 @@
             <div class="timeline-item relative pl-16 pb-16">
                 <div class="timeline-dot absolute left-0 top-0 w-12 h-9 rounded-full bg-black flex items-center justify-center text-white z-10 border-4 border-white">
             </div>
-            <div class="bg-white p-6 rounded-lg shadow-sm">
+            <div class="bg-gray-200 p-6 rounded-lg shadow-sm">
                 <h3 class="text-xl font-semibold mb-2 text-black">2005 - Awal Mula</h3>
                 <p class="text-gray-600 mb-4">
                 Batik Nusantara didirikan sebagai workshop kecil di Yogyakarta
