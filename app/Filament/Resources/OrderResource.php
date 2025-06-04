@@ -13,6 +13,7 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Illuminate\Support\Number;
 use Filament\Resources\Resource;
+use Filament\Forms\Components\View;
 use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
@@ -100,11 +101,21 @@ class OrderResource extends Resource
                             ->default('rp')
                             ->required(),
 
-                        Select::make('shipping_method')
+                        ToggleButtons::make('shipping_method')
+                            ->inline()
+                            ->required()
                             ->options([
                                 'jne' => 'JNE',
-                                'jnt' => 'JNT',
+                                'jnt' => 'J&T Express',
+                            ])
+                            ->colors([
+                                'jne' => 'info',
+                                'jnt' => 'danger',
                             ]),
+
+                        TextInput::make('shipping_amount')
+                            ->numeric()
+                            ->default(0),
                             
                         Textarea::make('notes')
                             ->columnSpanFull()
@@ -161,6 +172,8 @@ class OrderResource extends Resource
                                 foreach($repeaters as $key => $repeater) {
                                     $total += $get("items.{$key}.total_amount");
                                 }
+
+                                $total += $get('shipping_amount');
 
                                 $set('grand_total', $total);
                                 return 'Rp ' . number_format($total, 0, ',', '.');

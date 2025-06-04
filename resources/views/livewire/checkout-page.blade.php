@@ -145,7 +145,7 @@
 					<div class="grid grid-cols-2 gap-4">
 						<!-- J&T -->
 						 <label class="shipping-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="shipping">
-							<input type="radio" wire:model="shipping_method" name="shipping_method" value="jte" class="hidden" />
+							<input type="radio" wire:model="shipping_method" name="shipping_method" value="jnt" class="hidden" />
 							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/J%26T_Express_logo.svg/2560px-J%26T_Express_logo.svg.png" alt="J&T" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">J&T</span>
 						</label>
