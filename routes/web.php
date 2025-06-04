@@ -33,7 +33,6 @@ Route::get('/products/{slug}', ProductDetailPage::class);
 Route::get('/contact-us', ContactUs::class);
 Route::get('/about-us', AboutPage::class);
 
-
 Route::middleware('guest')->group(function () {
     Route::get('/login', LoginPage::class)->name('login');
     Route::get('/register', RegisterPage::class);
@@ -57,5 +56,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/order-success/{order}', OrderSuccessPage::class)->name('order-success');
 });
 
-
+Route::fallback(NotFound404::class);
 
