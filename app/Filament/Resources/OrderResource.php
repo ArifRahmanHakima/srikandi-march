@@ -36,6 +36,7 @@ use App\Filament\Resources\OrderResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Filament\Resources\OrderResource\RelationManagers\AddressRelationManager;
+use Filament\Notifications\Notification;
 
 class OrderResource extends Resource
 {
@@ -104,7 +105,15 @@ class OrderResource extends Resource
                                 'rp' => 'Rp',
                             ])
                             ->default('rp')
-                            ->required(),
+                            ->required(),                        
+
+                        TextInput::make('shipping_amount')
+                            ->label('Biaya Pengiriman')
+                            ->numeric()
+                            ->default(0),
+
+                        Textarea::make('notes')
+                            ->columnSpanFull(),                       
 
                         ToggleButtons::make('shipping_method')
                             ->label('Metode Pengiriman')
@@ -119,12 +128,29 @@ class OrderResource extends Resource
                                 'jnt' => 'danger',
                             ]),
 
-                        TextInput::make('shipping_amount')
-                            ->label('Biaya Pengiriman')
-                            ->numeric()
-                            ->default(0),
-
                         Actions::make([
+                            Action::make('lihat_bukti_pembayaran')
+                                ->label('Lihat Bukti Pembayaran')
+                                ->icon('heroicon-m-eye')
+                                ->url(fn ($record) => $record && $record->bukti_pembayaran
+                                    ? asset('storage/' . $record->bukti_pembayaran)
+                                    : null
+                                )
+                                ->openUrlInNewTab()
+                                ->color(fn ($record) => $record && $record->bukti_pembayaran ? 'success' : 'gray')
+                                ->disabled(fn ($record) => !$record)
+                                ->action(function ($record) {
+                                    if (!$record || !$record->bukti_pembayaran) {
+                                        Notification::make()
+                                            ->title('Bukti pembayaran belum tersedia')
+                                            ->body('Pelanggan belum mengunggah bukti pembayaran.')
+                                            ->danger()
+                                            ->send();
+                                    }
+                                })
+                        ]),
+
+                        Actions::make([                          
                             Action::make('Kunjungi Website Kurir')
                                 ->label('Cek Website Kurir')
                                 ->url(fn (callable $get) => match ($get('shipping_method')) {
@@ -135,9 +161,6 @@ class OrderResource extends Resource
                                 ->color('primary')
                                 ->openUrlInNewTab(),
                         ]),
-                            
-                        Textarea::make('notes')
-                            ->columnSpanFull()
                     ])->columns(2),
 
                     Section::make('Order Items')->schema([

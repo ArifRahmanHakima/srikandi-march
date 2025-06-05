@@ -37,7 +37,7 @@
                 <h3 class="font-semibold">Detail Pesanan</h3>
                 <div class="flex justify-between">
                     <span>Subtotal</span>
-                    <span>{{ 'Rp ' . number_format($order->total, 0, ',', '.') }}</span>
+                    <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Discount</span>
@@ -45,12 +45,12 @@
                 </div>
                 <div class="flex justify-between">
                     <span>Shipping</span>
-                    <span>{{ 'Rp ' . number_format($order->ongkir, 0, ',', '.') }}</span>
+                    <span>{{ 'Rp ' . number_format($order->shipping_amount, 0, ',', '.') }}</span>
                 </div>
                 <hr class="my-2 border-gray-300">
                 <div class="flex justify-between font-bold text-lg mt-2">
                     <span>Total</span>
-                    <span>{{ 'Rp ' . number_format($order->total, 0, ',', '.') }}</span>
+                    <span>{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
                 </div>
             </div>
         </div>

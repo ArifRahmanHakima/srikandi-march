@@ -171,7 +171,7 @@
             <p>{{ $address->province }}, {{ $address->city }}, {{ $address->subdistrict }}, {{ $address->street_address }}</p>
           </div>
           <div>
-            <p class="font-semibold">No. Telephone:</p>
+            <p class="font-semibold">Nomor Telepon:</p>
             <p>{{ $address->phone }}</p>
           </div>
         </div>

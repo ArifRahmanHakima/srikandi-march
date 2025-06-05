@@ -88,8 +88,6 @@ class CheckoutPage extends Component
 
         CartManagement::clearCartItems();
 
-        Mail::to(request()->user())->send(new OrderPlaced($order));
-
         $redirect_url = route('data-payment', ['order' => $order->id]);
         return redirect($redirect_url);
     }

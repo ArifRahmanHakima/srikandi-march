@@ -27,7 +27,7 @@
 					</div>
 					<div class="mt-4">
 						<label class="block text-gray-700 grey:text-white mb-1" for="phone">
-						No.Telp
+						Nomor Telepon
 						</label>
 						<input wire:model="phone" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('phone') border-red-500 @enderror" id="phone" type="text">
 						</input>
@@ -182,41 +182,6 @@
 		<div class="md:col-span-12 lg:col-span-4 col-span-12">
 			<div class="bg-white rounded-xl shadow p-4 sm:p-7 white:bg-slate-900">
 				<div class="text-xl font-bold underline text-gray-700 grey:text-white mb-2">
-					Ringkasan Pesanan
-				</div>
-				<div class="flex justify-between mb-2 text-gray-700">
-					<span>
-						SubTotal
-					</span>
-					<span>
-						{{ 'Rp ' . number_format($grand_total, 0, ',', '.') }}
-					</span>
-				</div>
-				<div class="flex justify-between mb-2 text-gray-700">
-					<span>
-						Biaya Pengiriman
-					</span>
-					<span>
-						{{ 'Rp ' . number_format(0, 0, ',', '.') }}
-					</span>
-				</div>
-				<hr class="bg-slate-400 my-4 h-1 rounded">
-				<div class="flex justify-between mb-2 font-bold">
-					<span>
-						Total
-					</span>
-					<span>
-						{{ 'Rp ' . number_format($grand_total, 0, ',', '.') }}
-					</span>
-				</div>
-				</hr>
-			</div>
-			<button type="submit" class="bg-blue-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-blue-600">
-				<span wire:loading.remove>Buat Pesanan</span>
-				<span wire:loading>Sedang Diproses...</span>
-			</button>
-			<div class="bg-white mt-4 rounded-xl shadow p-4 sm:p-7 grey:bg-slate-900">
-				<div class="text-xl font-bold underline text-gray-700 grey:text-white mb-2">
 					Rincian Pesanan
 				</div>
 				<ul class="divide-y divide-gray-200 grey:divide-gray-700" role="list">
@@ -252,6 +217,21 @@
 					</li>
 					@endforeach
 				</ul>
+				<hr class="bg-slate-400 my-4 h-1 rounded">
+				<div class="flex justify-between mb-2 font-bold">
+					<span>
+						Total
+					</span>
+					<span>
+						{{ 'Rp ' . number_format($grand_total, 0, ',', '.') }}
+					</span>
+				</div>
+				</hr>
+			</div>
+			<button type="submit" class="bg-blue-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-blue-600">
+				<span wire:loading.remove>Buat Pesanan</span>
+				<span wire:loading>Sedang Diproses...</span>
+			</button>		
 			</div>
 		</div>
 	</div>
