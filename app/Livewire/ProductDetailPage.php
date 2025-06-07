@@ -86,7 +86,7 @@ class ProductDetailPage extends Component
         );
 
         $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);
-        session()->flash('message', 'Produk berhasil ditambahkan ke keranjang!');
+        $this->dispatch('notify', message: 'Pesanan sudah berhasil ditambahkan ke keranjang');
     }
 
     public function render()

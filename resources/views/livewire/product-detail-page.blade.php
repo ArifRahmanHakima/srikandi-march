@@ -1,4 +1,22 @@
 <div class="w-full max-w-[85rem] py-8 px-4 sm:px-6 lg:px-8 mx-auto">
+
+<div x-data="{ showNotification: false, message: '' }" 
+         x-show="showNotification"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 translate-y-2"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 translate-y-2"
+         @notify.window="showNotification = true; message = $event.detail.message; setTimeout(() => showNotification = false, 3000)"
+         class="fixed bottom-4 right-4 z-50">
+        <div class="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span x-text="message"></span>
+        </div>
+    </div>
   <!-- Product Detail Section -->
    <div class="mb-8">
         <h1 class="text-3xl font-semibold text-gray-700">Detail Produk</h1>
@@ -182,13 +200,15 @@
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 mb-8">
-              <button wire:click="addToCart({{$product->id}})" class="flex items-center justify-center px-8 py-4 bg-gradient-to-r bg-blue-500 hover:bg-gray-400 text-white font-bold rounded-lg transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                <span wire:loading.remove wire:target='addToCart({{$product->id}})'>Tambahkan ke Keranjang</span>
-                <span wire:loading wire:target='addToCart({{$product->id}})'>Proses...</span>
-              </button>
+             <button wire:click="addToCart({{$product->id}})" 
+        @click="$dispatch('notify', {message: 'Pesanan sudah berhasil ditambahkan ke keranjang'})"
+        class="flex items-center justify-center px-8 py-4 bg-gradient-to-r bg-blue-500 hover:bg-gray-400 text-white font-bold rounded-lg transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
+    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+    <span wire:loading.remove wire:target='addToCart({{$product->id}})'>Tambahkan ke Keranjang</span>
+    <span wire:loading wire:target='addToCart({{$product->id}})'>Proses...</span>
+</button>
             </div>
             
 
