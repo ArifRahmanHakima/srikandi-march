@@ -128,6 +128,18 @@
   </div>
   <!-- End Grid -->
 
+  @if ($order->payment_status === 'pending')
+    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg mt-4">
+      <p class="font-semibold">Pembayaran Belum Dilakukan</p>
+      <p>Silakan melakukan pembayaran dan unggah bukti pembayaran Anda agar pesanan dapat diproses.</p>
+      <p class="mt-2"></p>
+      <a href="{{ route('data-payment', ['order' => $order->id]) }}"
+          class="bg-blue-500 mt-6 py-1 px-3 rounded text-white shadow">
+          Klik Disini!!
+      </a>
+    </div>
+  @endif
+
   <div class="flex flex-col md:flex-row gap-4 mt-4">
     <div class="md:w-3/4">
       <div class="bg-white overflow-x-auto rounded-lg shadow-md p-6 mb-4">
@@ -183,7 +195,7 @@
         <h2 class="text-lg font-semibold mb-4">Ringkasan</h2>
         <div class="flex justify-between mb-2">
           <span>Subtotal</span>
-          <span>{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
+          <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
         </div>
         <div class="flex justify-between mb-2">
           <span>Biaya Pengiriman</span>
@@ -192,7 +204,7 @@
         <hr class="my-2">
         <div class="flex justify-between mb-2">
           <span class="font-semibold">Total</span>
-          <span class="font-semibold">{{ 'Rp ' . number_format($order->grand_total + $order->shipping_amount , 0, ',', '.') }}</span>
+          <span class="font-semibold">{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
         </div>
 
       </div>

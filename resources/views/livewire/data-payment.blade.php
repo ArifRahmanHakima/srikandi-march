@@ -9,8 +9,8 @@
     </div> -->
     <!-- Grid -->
     <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="md:col-span-2 bg-white p-6 border border-gray-200 rounded">
-            <h2 class="text-xl font-bold mb-4">Thank you. Your order has been received.</h2>
+        <div class="md:col-span-2 bg-white p-6 border border-gray-200 rounded self-start">
+            <h2 class="text-xl font-bold mb-4">Terima Kasih. Pesanan Anda Telah Diterima.</h2>
             <div class="grid grid-cols-3 text-sm gap-y-1">
                 <div class="font-semibold">Nama</div>
                 <div class="col-span-2">: {{ $address->full_name }}</div>
@@ -32,7 +32,7 @@
                 <div class="col-span-2">: {{ $order->id }}</div>
 
                 <div class="font-semibold">Tanggal</div>
-                <div class="col-span-2">: {{ $order->created_at }}</div>
+                <div class="col-span-2">: {{ $order->created_at->format('d-m-Y') }}</div>
 
                 <div class="font-semibold">Metode Pembayaran</div>
                 <div class="col-span-2">: {{ $order->payment_method }}</div>
@@ -48,11 +48,7 @@
                     <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Discount</span>
-                    <span>Rp. 00</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Shipping</span>
+                    <span>Biaya Pengiriman</span>
                     <span>{{ 'Rp ' . number_format($order->shipping_amount, 0, ',', '.') }}</span>
                 </div>
                 <hr class="my-2 border-gray-300">

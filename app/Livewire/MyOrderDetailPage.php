@@ -17,6 +17,7 @@ class MyOrderDetailPage extends Component
     {
         $this->order_id = $order_id;
     }
+    
     public function render()
     {
         $order_items = OrderItem::with('product')->where('order_id', $this->order_id)->get();
