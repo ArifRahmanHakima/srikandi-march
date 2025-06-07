@@ -17,7 +17,7 @@
     if ($order->payment_status === 'paid') {  
         $payment_status = '<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Dibayar</span>';
     } elseif ($order->payment_status === 'pending') {
-        $payment_status = '<a href="' . route('data-payment', ['order' => $order->id]) . '" class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Tertunda</a>';
+        $payment_status = '<a href="' . route('data-payment', ['order_id' => $order->id]) . '" class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Tertunda</a>';
     } elseif ($order->payment_status === 'failed') {
         $payment_status = '<span class="bg-red-500 py-1 px-3 rounded text-white shadow">Gagal</span>';
     } else {
@@ -133,7 +133,7 @@
       <p class="font-semibold">Pembayaran Belum Dilakukan</p>
       <p>Silakan melakukan pembayaran dan unggah bukti pembayaran Anda agar pesanan dapat diproses.</p>
       <p class="mt-2"></p>
-      <a href="{{ route('data-payment', ['order' => $order->id]) }}"
+      <a href="{{ route('data-payment', ['order_id' => $order->id]) }}"
           class="bg-blue-500 mt-6 py-1 px-3 rounded text-white shadow">
           Klik Disini!!
       </a>

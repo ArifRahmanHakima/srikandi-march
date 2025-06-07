@@ -6,26 +6,27 @@ use App\Models\Order;
 use App\Models\Address;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Title;
 use App\Helpers\CartManagement;
 
+#[Title('Data Payment')]
 class DataPayment extends Component
 {
     use WithFileUploads;
 
     public $buktiBayar;
-
     public $order;
     public $items;
     public $address;
     public $user;
     public $selectedPaymentMethod;
 
-    public function mount($order)
+    public function mount($order_id)
     {
-        $this->order = Order::with(['items.product', 'user'])->findOrFail($order);
+        $this->order = Order::with(['items.product', 'user'])->findOrFail($order_id);
         $this->items = $this->order->items;
         $this->user = $this->order->user;
-        $this->address = Address::where('order_id', $this->order->id)->first();
+        $this->address = Address::where('order_id', $order_id)->first();
         $this->selectedPaymentMethod = $this->order->payment_method;
 
         switch ($this->order->payment_method) {
@@ -68,10 +69,11 @@ class DataPayment extends Component
         $filename = $this->buktiBayar->store('bukti_pembayaran', 'public');
 
         $this->order->bukti_pembayaran = $filename;
+        $this->order->payment_status = 'paid';
         $this->order->save();
 
         session()->flash('message', 'Bukti pembayaran berhasil diupload.');
-        return redirect()->route('order-success', ['order' => $this->order->id]);
+        return redirect()->route('order-success');
     }
 
     public function render()

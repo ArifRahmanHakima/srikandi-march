@@ -47,7 +47,7 @@
 							@enderror
 						</div>
 						<div>
-							<label class="block text-gray-700 grey:text-white mb-1" for="zip">
+							<label class="block text-gray-700 grey:text-white mb-1" for="city">
 								Kabupaten/Kota
 							</label>
 							<input wire:model="city" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('city') border-red-500 @enderror" id="zip" type="text">

@@ -55,8 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-orders/{order_id}', MyOrderDetailPage::class)->name('my-order.show');
     Route::get('/success/{order_id}', SuccessPage::class)->name('success');
     Route::get('/cancel', CancelPage::class)->name('cancel');
-    Route::get('/data-payment/{order}', DataPayment::class)->name('data-payment');
-    Route::get('/order-success/{order}', OrderSuccessPage::class)->name('order-success');
+    Route::get('/data-payment/{order_id}', DataPayment::class)->name('data-payment');
+    Route::get('/order-success', OrderSuccessPage::class)->name('order-success');
 });
 
 Route::fallback(NotFound404::class);

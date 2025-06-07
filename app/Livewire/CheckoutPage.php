@@ -88,7 +88,7 @@ class CheckoutPage extends Component
 
         CartManagement::clearCartItems();
 
-        $redirect_url = route('data-payment', ['order' => $order->id]);
+        $redirect_url = route('success', ['order_id' => $order->id]);
         return redirect($redirect_url);
     }
 
