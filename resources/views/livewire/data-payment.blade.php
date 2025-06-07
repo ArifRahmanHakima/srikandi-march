@@ -1,56 +1,60 @@
 <div class="container mx-auto p-6 bg-gray-100 min-h-screen">
-    <div class="bg-white shadow-md rounded-lg p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <div class="md:col-span-2 bg-white p-6 border border-gray-200 rounded">
-            <h2 class="text-xl font-bold mb-4">Thank you. Your order has been received.</h2>
+    <!-- <div class="">
+        <button onclick="history.back()" class="text-gray-600 hover:text-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" 
+            width="24px" fill="#000000">
+            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
+        </svg>
+        </button>
+    </div> -->
+    <!-- Grid -->
+    <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 bg-white p-6 border border-gray-200 rounded self-start">
+            <h2 class="text-xl font-bold mb-4">Terima Kasih. Pesanan Anda Telah Diterima.</h2>
             <div class="grid grid-cols-3 text-sm gap-y-1">
                 <div class="font-semibold">Nama</div>
-                <div class="col-span-2">: {{ $address->first_name }} {{ $address->last_name }}</div>
+                <div class="col-span-2">: {{ $address->full_name }}</div>
 
                 <div class="font-semibold">Email</div>
                 <div class="col-span-2">: {{ $user->email }}</div>
 
                 <div class="font-semibold">Alamat</div>
-                <div class="col-span-2">: {{ $address->state }}, {{ $address->city }}</div>
+                <div class="col-span-2">: {{ $address->province }}, {{ $address->city }}, {{ $address->subdistrict }}</div>
 
                 <div class="font-semibold">Jalan</div>
-                <div class="col-span-2">: {{ $address->address }}</div>
+                <div class="col-span-2">: {{ $address->street_address }}</div>
             </div>
             <div class="text-sm space-y-1">
             <hr class="my-2 border-gray-300">
 
             <div class="grid grid-cols-3 text-sm gap-y-1">
                 <div class="font-semibold">Nomor Pesanan</div>
-                <div class="col-span-2">: {{ $orders->id }}</div>
+                <div class="col-span-2">: {{ $order->id }}</div>
 
                 <div class="font-semibold">Tanggal</div>
-                <div class="col-span-2">: {{ $orders->created_at }}</div>
+                <div class="col-span-2">: {{ $order->created_at->format('d-m-Y') }}</div>
 
                 <div class="font-semibold">Metode Pembayaran</div>
-                <div class="col-span-2">: {{ $orders->payment_method }}</div>
+                <div class="col-span-2">: {{ $order->payment_method }}</div>
 
                 <div class="font-semibold">Layanan Pengiriman</div>
-                <div class="col-span-2">: {{ $orders->shipping_method }}</div>
+                <div class="col-span-2">: {{ $order->shipping_method }}</div>
             </div>
             
                 <hr class="my-2 border-gray-300">
                 <h3 class="font-semibold">Detail Pesanan</h3>
                 <div class="flex justify-between">
                     <span>Subtotal</span>
-                    <span>{{ 'Rp ' . number_format($orders->total, 0, ',', '.') }}</span>
+                    <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
                 </div>
                 <div class="flex justify-between">
-                    <span>Discount</span>
-                    <span>Rp. 00</span>
-                </div>
-                <div class="flex justify-between">
-                    <span>Shipping</span>
-                    <span>{{ 'Rp ' . number_format($orders->ongkir, 0, ',', '.') }}</span>
+                    <span>Biaya Pengiriman</span>
+                    <span>{{ 'Rp ' . number_format($order->shipping_amount, 0, ',', '.') }}</span>
                 </div>
                 <hr class="my-2 border-gray-300">
                 <div class="flex justify-between font-bold text-lg mt-2">
                     <span>Total</span>
-                    <span>{{ 'Rp ' . number_format($orders->total, 0, ',', '.') }}</span>
+                    <span>{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
                 </div>
             </div>
         </div>
@@ -149,18 +153,12 @@
                         {{ session('message') }}
                     </div>
                 @endif
-
-                @if ($order->bukti_pembayaran)
-                    <button wire:click="konfirmasiPembayaran" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                        Konfirmasi Pembayaran
-                    </button>
-                @endif
             </div>
 
             <div class="text-xs text-blue-700 bg-blue-100 p-2 rounded">
                 Silakan lakukan transfer pada nomor Rekening/e-wallet di atas dan upload bukti pembayaran anda.
             </div>
         </div>
-
     </div>
+    <!-- End Grid -->
 </div>

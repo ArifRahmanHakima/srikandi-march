@@ -6,80 +6,56 @@ use App\Models\Order;
 use App\Models\Address;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Title;
 use App\Helpers\CartManagement;
 
+#[Title('Data Payment')]
 class DataPayment extends Component
 {
     use WithFileUploads;
 
     public $buktiBayar;
     public $order;
-    public $orders;
-    public $user;
-    public $address;
     public $items;
+    public $address;
+    public $user;
     public $selectedPaymentMethod;
 
-    public function mount($order)
+    public function mount($order_id)
     {
-        
-        $this->order = Order::with('items.product')->findOrFail($order);
+        $this->order = Order::with(['items.product', 'user'])->findOrFail($order_id);
+        $this->items = $this->order->items;
+        $this->user = $this->order->user;
+        $this->address = Address::where('order_id', $order_id)->first();
         $this->selectedPaymentMethod = $this->order->payment_method;
 
-        if ($this->order->user_id) {
-            $this->user = (object) [
-                'email' => $this->order->user->email ?? null,
-            ];
-        } 
-
-        $addressModel = Address::where('order_id', $this->order->id)->first();
-        if ($addressModel) {
-            $this->address = (object) [
-                'first_name' => $addressModel->first_name ?? null,
-                'last_name' => $addressModel->last_name ?? null,
-                'phone' => $addressModel->phone ?? null,
-                'address' => $addressModel->street_address ?? null,
-                'city' => $addressModel->city ?? null,
-                'state' => $addressModel->state ?? null,
-            ];
-        }
-
-        $this->orders = (object) [
-            'id' => $this->order->id,
-            'total' => $this->order->grand_total,
-            'ongkir' => $this->order->shipping_amount,
-            'payment_method' => $this->order->payment_method,
-            'shipping_method' => $this->order->shipping_method,
-            'created_at' => $this->order->created_at->format('d M Y H:i'),
-        ];
-
-        switch ($this->orders->payment_method) {
+        switch ($this->order->payment_method) {
             case 'dana':
-                $this->orders->payment_method = 'DANA';
+                $this->order->payment_method = 'DANA';
                 break;
             case 'gopay':
-                $this->orders->payment_method = 'GoPay';
+                $this->order->payment_method = 'GoPay';
                 break;
             case 'bri':
-                $this->orders->payment_method = 'BRI';
+                $this->order->payment_method = 'BRI';
                 break;
             case 'bni':
-                $this->orders->payment_method = 'BNI';
+                $this->order->payment_method = 'BNI';
                 break;
             default:
-                $this->orders->payment_method = 'Metode Pembayaran Tidak Dikenal';
+                $this->order->payment_method = 'Metode Pembayaran Tidak Dikenal';
                 break;
         }
 
-        switch ($this->orders->shipping_method) {
+        switch ($this->order->shipping_method) {
             case 'jne':
-                $this->orders->shipping_method = 'JNE';
+                $this->order->shipping_method = 'JNE';
                 break;
-            case 'jte':
-                $this->orders->shipping_method = 'J&T Express';
+            case 'jnt':
+                $this->order->shipping_method = 'J&T Express';
                 break;
             default:
-                $this->orders->shipping_method = 'Metode Pengiriman Tidak Dikenal';
+                $this->order->shipping_method = 'Metode Pengiriman Tidak Dikenal';
                 break;
         }
     }
@@ -93,23 +69,20 @@ class DataPayment extends Component
         $filename = $this->buktiBayar->store('bukti_pembayaran', 'public');
 
         $this->order->bukti_pembayaran = $filename;
+        $this->order->payment_status = 'paid';
         $this->order->save();
 
         session()->flash('message', 'Bukti pembayaran berhasil diupload.');
-    }
-
-    public function konfirmasiPembayaran()
-    {
-        if (!$this->order->bukti_pembayaran) {
-            session()->flash('message', 'Harap upload bukti pembayaran terlebih dahulu.');
-            return;
-        }
-
-        return redirect()->route('order-success', ['order' => $this->order->id]);
+        return redirect()->route('order-success');
     }
 
     public function render()
     {
-        return view('livewire.data-payment');
+        return view('livewire.data-payment', [
+            'order' => $this->order,
+            'items' => $this->items,
+            'address' => $this->address,
+            'user' => $this->user,
+        ]);
     }
 }

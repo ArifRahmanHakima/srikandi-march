@@ -27,7 +27,7 @@
 					</div>
 					<div class="mt-4">
 						<label class="block text-gray-700 grey:text-white mb-1" for="phone">
-						No.Telp
+						Nomor Telepon
 						</label>
 						<input wire:model="phone" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('phone') border-red-500 @enderror" id="phone" type="text">
 						</input>
@@ -47,7 +47,7 @@
 							@enderror
 						</div>
 						<div>
-							<label class="block text-gray-700 grey:text-white mb-1" for="zip">
+							<label class="block text-gray-700 grey:text-white mb-1" for="city">
 								Kabupaten/Kota
 							</label>
 							<input wire:model="city" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('city') border-red-500 @enderror" id="zip" type="text">
@@ -147,7 +147,7 @@
 					<div class="grid grid-cols-2 gap-4">
 						<!-- J&T -->
 						 <label class="shipping-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="shipping">
-							<input type="radio" wire:model="shipping_method" name="shipping_method" value="jte" class="hidden" />
+							<input type="radio" wire:model="shipping_method" name="shipping_method" value="jnt" class="hidden" />
 							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/J%26T_Express_logo.svg/2560px-J%26T_Express_logo.svg.png" alt="J&T" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">J&T</span>
 						</label>
@@ -177,44 +177,10 @@
 							});
 						</script>
 			<!-- End Card -->
+			</div>
 		</div>
 		<div class="md:col-span-12 lg:col-span-4 col-span-12">
 			<div class="bg-white rounded-xl shadow p-4 sm:p-7 white:bg-slate-900">
-				<div class="text-xl font-bold underline text-gray-700 grey:text-white mb-2">
-					Ringkasan Pesanan
-				</div>
-				<div class="flex justify-between mb-2 text-gray-700">
-					<span>
-						SubTotal
-					</span>
-					<span>
-						{{ 'Rp ' . number_format($grand_total, 0, ',', '.') }}
-					</span>
-				</div>
-				<div class="flex justify-between mb-2 text-gray-700">
-					<span>
-						Biaya Pengiriman
-					</span>
-					<span>
-						{{ 'Rp ' . number_format(0, 0, ',', '.') }}
-					</span>
-				</div>
-				<hr class="bg-slate-400 my-4 h-1 rounded">
-				<div class="flex justify-between mb-2 font-bold">
-					<span>
-						Total
-					</span>
-					<span>
-						{{ 'Rp ' . number_format($grand_total, 0, ',', '.') }}
-					</span>
-				</div>
-				</hr>
-			</div>
-			<button type="submit" class="bg-blue-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-blue-600">
-				<span wire:loading.remove>Buat Pesanan</span>
-				<span wire:loading>Sedang Diproses...</span>
-			</button>
-			<div class="bg-white mt-4 rounded-xl shadow p-4 sm:p-7 grey:bg-slate-900">
 				<div class="text-xl font-bold underline text-gray-700 grey:text-white mb-2">
 					Rincian Pesanan
 				</div>
@@ -251,6 +217,21 @@
 					</li>
 					@endforeach
 				</ul>
+				<hr class="bg-slate-400 my-4 h-1 rounded">
+				<div class="flex justify-between mb-2 font-bold">
+					<span>
+						Total
+					</span>
+					<span>
+						{{ 'Rp ' . number_format($grand_total, 0, ',', '.') }}
+					</span>
+				</div>
+				</hr>
+			</div>
+			<button type="submit" class="bg-blue-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-blue-600">
+				<span wire:loading.remove>Buat Pesanan</span>
+				<span wire:loading>Sedang Diproses...</span>
+			</button>		
 			</div>
 		</div>
 	</div>

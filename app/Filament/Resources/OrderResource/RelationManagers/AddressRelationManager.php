@@ -22,33 +22,40 @@ class AddressRelationManager extends RelationManager
         return $form
             ->schema([
 
-                TextInput::make('first_name')
-                    ->required()
-                    ->maxLength(255),
-
-                TextInput::make('last_name')
+                TextInput::make('full_name')
+                    ->label('Nama Lengkap')
                     ->required()
                     ->maxLength(255),
 
                 TextInput::make('phone')
+                    ->label('Nomor Telepon')
                     ->required()
                     ->tel()
                     ->maxLength(20),
 
-                TextInput::make('city')
+                TextInput::make('province')
+                    ->label('Provinsi')
                     ->required()
                     ->maxLength(255),
 
-                TextInput::make('state')
+                TextInput::make('city')
+                    ->label('Kabupaten/Kota')
+                    ->required()
+                    ->maxLength(255),
+
+                TextInput::make('subdistrict')
+                    ->label('Kecamatan')
                     ->required()
                     ->maxLength(255),
 
                 TextInput::make('zip_code')
+                    ->label('Kode Pos')
                     ->required()
                     ->numeric()
                     ->maxLength(10),
                 
                 Textarea::make('street_address')
+                    ->label('Alamat Lengkap')
                     ->required()
                     ->columnSpanFull()
             ]);
@@ -60,17 +67,25 @@ class AddressRelationManager extends RelationManager
             ->recordTitleAttribute('street_address')
             ->columns([
                 TextColumn::make('full_name')
-                    ->label('Full Name'),
+                    ->label('Nama Lengkap'),
 
-                TextColumn::make('phone'),    
+                TextColumn::make('phone')
+                    ->label('Nomor Telepon'),
                 
-                TextColumn::make('city'),
+                TextColumn::make('province')
+                    ->label('Provinsi'),
+
+                TextColumn::make('city')
+                    ->label('Kabupaten/Kota'),
                 
-                TextColumn::make('state'),
+                TextColumn::make('subdistrict')
+                    ->label('Kecamatan'),
 
-                TextColumn::make('zip_code'),
+                TextColumn::make('zip_code')
+                    ->label('Kode Pos'),
 
-                TextColumn::make('street_address'),
+                TextColumn::make('street_address')
+                    ->label('Alamat Lengkap')
             ])
             ->filters([
                 //

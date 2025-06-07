@@ -5,19 +5,21 @@ namespace App\Livewire;
 use App\Models\Order;
 use App\Models\Address;
 use Livewire\Component;
+use App\Mail\OrderPlaced;
 use Livewire\Attributes\Title;
 use App\Helpers\CartManagement;
+use Illuminate\Support\Facades\Mail;
 
 #[Title('Checkout')]
 class CheckoutPage extends Component
 {
 
-    public $first_name;
-    public $last_name;
+    public $full_name;
     public $phone;
     public $street_address;
+    public $province;
     public $city;
-    public $state;
+    public $subdistrict;
     public $zip_code;
     public $payment_method;
     public $shipping_method;
@@ -32,12 +34,12 @@ class CheckoutPage extends Component
     public function placeOrder()
     {
         $this->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
+            'full_name' => 'required',
             'phone' => 'required',
             'street_address' => 'required',
             'city' => 'required',
-            'state' => 'required',
+            'province' => 'required',
+            'subdistrict' => 'required',
             'zip_code' => 'required',
             'payment_method' => 'required',
             'shipping_method' => 'required',
@@ -59,12 +61,12 @@ class CheckoutPage extends Component
 
         $address = new Address();
         $address->order_id = $order->id;
-        $address->first_name = $this->first_name;
-        $address->last_name = $this->last_name;
+        $address->full_name = $this->full_name;
         $address->phone = $this->phone;
         $address->street_address = $this->street_address;
+        $address->province = $this->province;
         $address->city = $this->city;
-        $address->state = $this->state;
+        $address->subdistrict = $this->subdistrict;
         $address->zip_code = $this->zip_code;
         $address->save();
 
@@ -86,7 +88,7 @@ class CheckoutPage extends Component
 
         CartManagement::clearCartItems();
 
-        $redirect_url = route('data-payment', ['order' => $order->id]);
+        $redirect_url = route('success', ['order_id' => $order->id]);
         return redirect($redirect_url);
     }
 
