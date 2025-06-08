@@ -88,6 +88,8 @@ class CheckoutPage extends Component
 
         CartManagement::clearCartItems();
 
+        Mail::to('3srikandimerchofficial@gmail.com')->send(new OrderPlaced($order));
+
         $redirect_url = route('success', ['order_id' => $order->id]);
         return redirect($redirect_url);
     }

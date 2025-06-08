@@ -69,7 +69,7 @@
             <!-- Sorting produk -->
             <div class="items-center justify-between hidden px-3 py-2 bg-gray-100 md:flex ">
               <div class="flex items-center justify-between">
-                <select wire:model.live="sort" class="block w-40 text-base bg-gray-100 cursor-pointer">
+                <select wire:model.live="sort" class="block w-full text-base bg-gray-100 cursor-pointer">
                   <option value="latest">Urutkan berdasarkan terbaru</option>
                   <option value="price">Urutkan berdasarkan harga</option>
                 </select>
@@ -130,7 +130,7 @@
           </div>
           <!-- pagination start -->
           <div class="flex justify-end mt-6e">
-            {{$products->links()}}
+            {{$products->links('vendor.pagination.tailwind')}}
           </div>
           <!-- pagination end -->
         </div>

@@ -183,10 +183,6 @@ class ProductResource extends Resource
                         Toggle::make('is_active')
                             ->required()
                             ->default(true),
-                       
-                        Toggle::make('is_featured')
-                            ->label('Featured Product')
-                            ->required(),
 
                         Toggle::make('is_new')
                             ->label('New Product (Tampil di Beranda)')
@@ -231,9 +227,6 @@ class ProductResource extends Resource
 
                 TextColumn::make('size')
                     ->toggleable(),
-
-                IconColumn::make('is_featured')
-                    ->boolean(),
 
                 IconColumn::make('is_new')
                     ->boolean()

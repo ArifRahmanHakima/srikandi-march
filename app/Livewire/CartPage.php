@@ -35,6 +35,11 @@ class CartPage extends Component
         $this->grand_total = CartManagement::calculateGrandTotal($this->cart_items);
     }
 
+    public function goToCheckout()
+    {
+        return redirect('/checkout');
+    }
+
     public function render()
     {
         return view('livewire.cart-page');
