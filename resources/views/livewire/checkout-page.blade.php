@@ -50,7 +50,7 @@
 							<label class="block text-gray-700 grey:text-white mb-1" for="city">
 								Kabupaten/Kota
 							</label>
-							<input wire:model="city" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('city') border-red-500 @enderror" id="zip" type="text">
+							<input wire:model="city" class="w-full rounded-lg border py-2 px-3 grey:bg-gray-700 grey:text-white grey:border-none border-gray-400 @error('city') border-red-500 @enderror" id="city" type="text">
 							</input>
 							@error('city')
 							<div class="text-red-500 text-sm">{{ $message }}</div>
@@ -101,16 +101,16 @@
 						<div class="space-y-3">
 
 						<!-- DANA -->
-						 <label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
+						<label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
 							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
-							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/2560px-Logo_dana_blue.svg.png" alt="DANA" class="h-6">
+							<img src="https://jasalogocepat.com/wp-content/uploads/2024/03/Download-Logo-DANA-PNG-jasalogocepat-1024x299.png" alt="DANA" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">DANA</span>
 						</label>
 
 						<!-- GOPAY -->
-						 <label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
+						<label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
 							<input type="radio" wire:model="payment_method" name="payment_method" value="gopay" class="hidden" />
-							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1024px-Gopay_logo.svg.png" alt="Gopay" class="h-6">
+							<img src="https://vectorez.biz.id/wp-content/uploads/2023/10/Logo-Gopay.png" alt="GoPay" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">GOPAY</span>
 						</label>
 						</div>
@@ -123,14 +123,14 @@
 							 <!-- BRI -->
 						<label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
 							<input type="radio" wire:model="payment_method" name="payment_method" value="bri" class="hidden" />
-							<img src="https://buatlogoonline.com/wp-content/uploads/2022/10/Logo-Bank-BRI.png" alt="Gopay" class="h-6">
+							<img src="https://www.ir-bri.com/bbri_assets/vendor/img/bri-logo.png" alt="BRI" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">BRI</span>
 						</label>
 
 							<!-- BNI -->
 						<label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
 							<input type="radio" wire:model="payment_method" name="payment_method" value="bni" class="hidden" />
-							<img src="https://jasalogocepat.com/wp-content/uploads/2023/12/Logo-Bank-BNI-PNG.png" alt="Gopay" class="h-6">
+							<img src="https://jasalogocepat.com/wp-content/uploads/2023/12/Logo-Bank-BNI-PNG.png" alt="BNI" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">BNI</span>
 						</label>
 					</div>
@@ -146,7 +146,7 @@
 				</div>
 					<div class="grid grid-cols-2 gap-4">
 						<!-- J&T -->
-						 <label class="shipping-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="shipping">
+						<label class="shipping-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="shipping">
 							<input type="radio" wire:model="shipping_method" name="shipping_method" value="jnt" class="hidden" />
 							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/J%26T_Express_logo.svg/2560px-J%26T_Express_logo.svg.png" alt="J&T" class="h-6">
 							<span class="ml-2 font-semibold text-gray-700">J&T</span>

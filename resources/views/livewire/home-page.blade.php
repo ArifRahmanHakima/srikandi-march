@@ -5,7 +5,7 @@
       <div class="min-w-full relative bg-cover bg-center flex items-center"
            style="background-image: url('{{ $banner->image_url }}'); height: 100vh;">
         
-        <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-black/60"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-black/40"></div>
         
         <div class="ml-10 relative z-10 max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div>

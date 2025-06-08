@@ -4,9 +4,9 @@
   @php
     $status = '';
     if ($order->status === 'new') {
-        $status = '<span class="bg-blue-500 py-1 px-3 rounded text-white shadow">Baru</span>';
+        $status = '<span class="bg-blue-500 py-1 px-3 rounded text-white shadow">Diproses</span>';
     } elseif ($order->status === 'processing') {
-        $status = '<span class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Diproses</span>';
+        $status = '<span class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Dikemas</span>';
     } elseif ($order->status === 'shipped') {
         $status = '<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Dikirim</span>';
     } else {
@@ -128,6 +128,17 @@
   </div>
   <!-- End Grid -->
 
+  @if ($order->shipping_amount === '0')
+    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg mt-4">
+      <p class="font-semibold">Pembayaran Belum Dilakukan</p>
+      <p>Silakan melakukan pembayaran dan unggah bukti pembayaran Anda agar pesanan dapat diproses.</p>
+      <p class="mt-2"></p>
+      <a href="{{ route('data-payment', ['order_id' => $order->id]) }}"
+          class="bg-blue-500 mt-6 py-1 px-3 rounded text-white shadow">
+          Klik Disini!!
+      </a>
+    </div>
+  @endif
   @if ($order->payment_status === 'pending')
     <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded-lg mt-4">
       <p class="font-semibold">Pembayaran Belum Dilakukan</p>
@@ -139,6 +150,7 @@
       </a>
     </div>
   @endif
+
 
   <div class="flex flex-col md:flex-row gap-4 mt-4">
     <div class="md:w-3/4">

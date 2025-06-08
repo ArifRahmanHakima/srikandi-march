@@ -21,9 +21,9 @@
                 @php
                   $status = '';
                   if ($order->status === 'new') {
-                      $status = '<span class="bg-blue-500 py-1 px-3 rounded text-white shadow">Baru</span>';
+                      $status = '<span class="bg-blue-500 py-1 px-3 rounded text-white shadow">Diproses</span>';
                   } elseif ($order->status === 'processing') {
-                      $status = '<span class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Diproses</span>';
+                      $status = '<span class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Dikemas</span>';
                   } elseif ($order->status === 'shipped') {
                       $status = '<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Dikirim</span>';
                   } else {
@@ -57,7 +57,7 @@
           </table>
         </div>
       </div>
-        {{ $orders->links() }}
+        {{ $orders->links('vendor.pagination.tailwind') }}
     </div>
   </div>
 </div>

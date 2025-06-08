@@ -173,8 +173,6 @@ class OrderResource extends Resource
                                     ->searchable()
                                     ->preload()
                                     ->required()
-                                    ->distinct()
-                                    ->disableOptionsWhenSelectedInSiblingRepeaterItems()
                                     ->columnSpan(4)
                                     ->reactive()
                                     ->afterStateUpdated(fn ($state, Set $set) => $set('unit_amount', Product::find($state)?->price ?? 0))

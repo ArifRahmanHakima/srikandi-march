@@ -6,6 +6,7 @@ namespace App\Models;
 use Filament\Panel;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\FilamentUser;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -71,11 +72,17 @@ class User extends Authenticatable implements FilamentUser
         
         return count($parts) > 0 ? implode(', ', $parts) : '';
     }
-    
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($token));
+    }
     public function canAccessPanel(Panel $panel): bool
     {
-        return $this->email == 'srikandi@gmail.com';
-        return $this->email == 'admin@gmail.com';
+        return in_array($this->email, [
+            'srikandi@gmail.com',
+            'admin@gmail.com',
+        ]);
 
     }
 }
