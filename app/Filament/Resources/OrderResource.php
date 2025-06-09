@@ -87,16 +87,19 @@ class OrderResource extends Resource
                                 'new' => 'Baru',
                                 'processing' => 'Diproses',
                                 'shipped' => 'Dikirim',
+                                'delivered' => 'Diterima',
                             ])
                             ->colors([
                                 'new' => 'info',
                                 'processing' => 'warning',
                                 'shipped' => 'success',
+                                'delivered' => 'success',
                             ])
                             ->icons([
                                 'new' => 'heroicon-m-sparkles',
                                 'processing' => 'heroicon-m-arrow-path',
                                 'shipped' => 'heroicon-m-truck',
+                                'delivered' => 'heroicon-m-check-circle',
                             ]),
 
                         Select::make('currency')
@@ -105,7 +108,7 @@ class OrderResource extends Resource
                                 'rp' => 'Rp',
                             ])
                             ->default('rp')
-                            ->required(),                        
+                            ->required(),       
 
                         TextInput::make('shipping_amount')
                             ->label('Biaya Pengiriman')

@@ -17,7 +17,7 @@
     if ($order->payment_status === 'paid') {  
         $payment_status = '<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Dibayar</span>';
     } elseif ($order->payment_status === 'pending') {
-        $payment_status = '<a href="' . route('data-payment', ['order_id' => $order->id]) . '" class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Tertunda</a>';
+        $payment_status = '<span class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Tertunda</span>';
     } elseif ($order->payment_status === 'failed') {
         $payment_status = '<span class="bg-red-500 py-1 px-3 rounded text-white shadow">Gagal</span>';
     } else {

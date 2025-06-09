@@ -90,7 +90,7 @@ class CheckoutPage extends Component
 
         Mail::to('3srikandimerchofficial@gmail.com')->send(new OrderPlaced($order));
 
-        $redirect_url = route('success', ['order_id' => $order->id]);
+        $redirect_url = route('my-orders', ['order_id' => $order->id]);
         return redirect($redirect_url);
     }
 
