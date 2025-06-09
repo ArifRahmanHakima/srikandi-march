@@ -28,10 +28,10 @@ class User extends Authenticatable implements FilamentUser
         'phone',
         'bio',
         'profile_photo_path',
-        'country',
+        'province',
         'city',
-        'state',
-        'code_post',
+        'subdistrict',
+        'postal_code',
         'street_address',
     ];
 
@@ -64,11 +64,11 @@ class User extends Authenticatable implements FilamentUser
     }
 
 
-    public function getCityStateAttribute()
+    public function getCitysubdistrictAttribute()
     {
         $parts = [];
         if ($this->city) $parts[] = $this->city;
-        if ($this->state) $parts[] = $this->state;
+        if ($this->subdistrict) $parts[] = $this->subdistrict;
         
         return count($parts) > 0 ? implode(', ', $parts) : '';
     }
