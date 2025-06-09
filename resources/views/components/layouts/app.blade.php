@@ -9,11 +9,17 @@
         @livewireStyles
     </head>
     <body class="bg-slate-200 white:bg-slate-700">
-        @livewire('partials.navbar')
-        <main>
-            {{ $slot }}
-        </main>
-        @livewire('partials.footer')
+        <div class="min-h-screen flex flex-col">
+
+            @livewire('partials.navbar')
+
+            <main class="flex-grow">
+                {{ $slot }}
+            </main>
+
+            @livewire('partials.footer')
+
+        </div>
         @livewireScripts
     </body>
 </html>

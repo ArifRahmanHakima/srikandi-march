@@ -67,7 +67,7 @@
             <button type="button" 
               wire:click="goToCheckout"
               wire:loading.attr="disabled"
-              class="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white py-2 px-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center w-full mt-4">
+              class="bg-gradient-to-r from-blue-600 to-blue-900 disabled:bg-blue-400 text-white py-2 px-4 rounded-lg font-semibold transition-colors duration-200 flex items-center justify-center w-full mt-4">
               
               <span wire:loading.remove>Checkout</span>
               
