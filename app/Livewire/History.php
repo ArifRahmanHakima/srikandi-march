@@ -13,7 +13,10 @@ class History extends Component
     
     public function render()
     {
-        $my_orders = Order::where('user_id', auth()->id())->latest()->paginate(5);
+        $my_orders = Order::where('user_id', auth()->id())
+                          ->where('status', 'delivered')
+                          ->latest()
+                          ->paginate(5);
         return view('livewire.history', [
             'orders' => $my_orders,
         ]);

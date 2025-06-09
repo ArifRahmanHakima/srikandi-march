@@ -16,7 +16,7 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-semibold">Address</h3>
+                        <h3 class="font-semibold">Alamat</h3>
                         <p class="text-gray-700">Jl. Gandekan No.84, Pringgokusuman, Gedong Tengen, Kota Yogyakarta, Daerah Istimewa Yogyakarta 55272</p>
                     </div>
                 </div>
@@ -29,8 +29,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-semibold">Phone</h3>
-                        <p class="text-gray-700">125-711-811 | 125-668-886</p>
+                        <h3 class="font-semibold">Nomor Telepon</h3>
+                        <p class="text-gray-700">+62 896-9335-5575</p>
                     </div>
                 </div>
                 
@@ -42,8 +42,8 @@
                         </svg>
                     </div>
                     <div>
-                        <h3 class="font-semibold">Support</h3>
-                        <p class="text-gray-700">Support.photography@gmail.com</p>
+                        <h3 class="font-semibold">Email</h3>
+                        <p class="text-gray-700">merchsrikandi@gmail.com</p>
                     </div>
                 </div>
             </div>

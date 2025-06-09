@@ -9,6 +9,8 @@
         $status = '<span class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Dikemas</span>';
     } elseif ($order->status === 'shipped') {
         $status = '<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Dikirim</span>';
+    } elseif ($order->status === 'delivered') {
+        $status = '<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Diterima</span>';
     } else {
         $status = 'Tidak Diketahui';
     }

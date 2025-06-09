@@ -16,19 +16,10 @@
               </tr>
             </thead>
             <tbody>
-              
-              @foreach ($orders as $order)
+
+              @forelse ($orders as $order)
                 @php
-                  $status = '';
-                  if ($order->status === 'new') {
-                      $status = '<span class="bg-blue-500 py-1 px-3 rounded text-white shadow">Diproses</span>';
-                  } elseif ($order->status === 'processing') {
-                      $status = '<span class="bg-yellow-500 py-1 px-3 rounded text-white shadow">Dikemas</span>';
-                  } elseif ($order->status === 'shipped') {
-                      $status = '<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Dikirim</span>';
-                  } else {
-                      $status = 'Tidak Diketahui';
-                  }
+                  $status = '<span class="bg-green-500 py-1 px-3 rounded text-white shadow">Diterima</span>';
 
                   $payment_status = '';
                   if ($order->payment_status === 'paid') {  
@@ -48,15 +39,16 @@
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">{!! $payment_status !!}</span></td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</td>
                   <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                    <a href="/my-orders/{{ $order->id }}" class="inline-flex items-center gap-2 bg-red-600 text-white py-2 px-4 rounded-md hover:bg-slate-500 ">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4" />
-                        </svg>
-                         Hapus
-                    </a>
+                    <a href="/my-orders/{{ $order->id }}" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">Lihat Detail</a>
                   </td>
                 </tr>
-              @endforeach
+                @empty
+                  <tr>
+                    <td colspan="6" class="text-center text-gray-500 py-4">
+                      Tidak ada riwayat pesanan yang sudah selesai.
+                    </td>
+                  </tr>
+              @endforelse
 
             </tbody>
           </table>
