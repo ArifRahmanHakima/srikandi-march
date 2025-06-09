@@ -1,12 +1,4 @@
 <div class="container mx-auto p-6 bg-gray-100 min-h-screen">
-    <!-- <div class="">
-        <button onclick="history.back()" class="text-gray-600 hover:text-gray-800">
-            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" 
-            width="24px" fill="#000000">
-            <path d="m313-440 224 224-57 56-320-320 320-320 57 56-224 224h487v80H313Z"/>
-        </svg>
-        </button>
-    </div> -->
     <!-- Grid -->
     <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="md:col-span-2 bg-white p-6 border border-gray-200 rounded self-start">

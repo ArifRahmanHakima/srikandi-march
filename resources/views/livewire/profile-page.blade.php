@@ -23,7 +23,7 @@
                     <div>
                         <h2 class="text-xl font-medium text-gray-800">{{ $user->name }}</h2>
                         <p class="text-gray-500">{{ $user->bio }}</p>
-                        <p class="text-gray-500">{{ $cityState }}, {{ $country }}</p>
+                        <p class="text-gray-500">{{ $citysubdistrict }}, {{ $province }}</p>
                     </div>
                 </div>
                 <button type="button" class="px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition flex items-center" wire:click="$refresh">
@@ -129,20 +129,24 @@
             <div id="addressDisplay">
                 <div class="grid grid-cols-2 gap-6">
                     <div>
-                        <p class="text-sm text-gray-500 mb-1">Negara</p>
-                        <p class="text-gray-700">{{ $country }}</p>
+                        <p class="text-sm text-gray-500 mb-1">Provinsi</p>
+                        <p class="text-gray-700">{{ $province }}</p>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-500 mb-1">Kota/Negara</p>
-                        <p class="text-gray-700">{{ $cityState }}</p>
+                        <p class="text-sm text-gray-500 mb-1">Kabupaten/Kota</p>
+                        <p class="text-gray-700">{{ $city }}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-500 mb-1">Kecamatan</p>
+                        <p class="text-gray-700">{{ $subdistrict }}</p>
                     </div>
                     <div>
                         <p class="text-sm text-gray-500 mb-1">Kode Pos</p>
-                        <p class="text-gray-700">{{ $codePost }}</p>
+                        <p class="text-gray-700">{{ $postal_code }}</p>
                     </div>
                     <div>
-                        <p class="text-sm text-gray-500 mb-1">Alamat Jalan</p>
-                        <p class="text-gray-700">{{ $streetAddress }}</p>
+                        <p class="text-sm text-gray-500 mb-1">Alamat</p>
+                        <p class="text-gray-700">{{ $street_address }}</p>
                     </div>
                 </div>
             </div>
@@ -152,31 +156,31 @@
                 <form wire:submit.prevent="updateAddress">
                     <div class="grid grid-cols-2 gap-6">
                         <div>
-                            <label for="country" class="block text-sm text-gray-500 mb-1">Negara</label>
-                            <input type="text" id="country" wire:model="country" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                            @error('country') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                            <label for="province" class="block text-sm text-gray-500 mb-1">Provinsi</label>
+                            <input type="text" id="province" wire:model="province" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            @error('province') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <label for="city" class="block text-sm text-gray-500 mb-1">Kota</label>
+                                <label for="city" class="block text-sm text-gray-500 mb-1">Kabupaten/Kota</label>
                                 <input type="text" id="city" wire:model="city" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 @error('city') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="state" class="block text-sm text-gray-500 mb-1">Negara/Singakatan</label>
-                                <input type="text" id="state" wire:model="state" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                                @error('state') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                                <label for="subdistrict" class="block text-sm text-gray-500 mb-1">Kecamatan</label>
+                                <input type="text" id="subdistrict" wire:model="subdistrict" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                @error('subdistrict') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                             </div>
                         </div>
                         <div>
-                            <label for="codePost" class="block text-sm text-gray-500 mb-1">Postal Code</label>
-                            <input type="text" id="codePost" wire:model="codePost" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                            @error('codePost') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                            <label for="postal_code" class="block text-sm text-gray-500 mb-1">Postal Code</label>
+                            <input type="text" id="postal_code" wire:model="postal_code" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            @error('postal_code') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                         <div>
-                            <label for="streetAddress" class="block text-sm text-gray-500 mb-1">Street Address</label>
-                            <input type="text" id="streetAddress" wire:model="streetAddress" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                            @error('streetAddress') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
+                            <label for="street_address" class="block text-sm text-gray-500 mb-1">Alamat</label>
+                            <input type="text" id="street_address" wire:model="street_address" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            @error('street_address') <span class="text-red-500 text-xs">{{ $message }}</span> @enderror
                         </div>
                     </div>
                     <div class="mt-4 flex justify-end">

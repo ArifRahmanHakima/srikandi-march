@@ -20,14 +20,14 @@ class ProfilePage extends Component
     public $newProfilePhoto;
     
     // Address details
-    public $country;
+    public $province;
     public $city;
-    public $state;
-    public $codePost;
-    public $streetAddress;
+    public $subdistrict;
+    public $postal_code;
+    public $street_address;
     
     // Combined fields for display
-    public $cityState;
+    public $citysubdistrict;
     
     // Form validation rules
     protected $rules = [
@@ -36,11 +36,11 @@ class ProfilePage extends Component
         'phone' => 'nullable|string|max:20',
         'bio' => 'nullable|string|max:1000',
         'newProfilePhoto' => 'nullable|image|max:5024', // 5MB Max
-        'country' => 'nullable|string|max:255',
+        'province' => 'nullable|string|max:255',
         'city' => 'nullable|string|max:255',
-        'state' => 'nullable|string|max:255',
-        'codePost' => 'nullable|string|max:20',
-        'streetAddress' => 'nullable|string|max:255',
+        'subdistrict' => 'nullable|string|max:255',
+        'postal_code' => 'nullable|string|max:20',
+        'street_address' => 'nullable|string|max:255',
     ];
     
     public function mount()
@@ -57,14 +57,14 @@ class ProfilePage extends Component
         $this->bio = $this->user->bio;
         
         // Address fields
-        $this->country = $this->user->country;
+        $this->province = $this->user->province;
         $this->city = $this->user->city;
-        $this->state = $this->user->state;
-        $this->codePost = $this->user->code_post;
-        $this->streetAddress = $this->user->street_address;
+        $this->subdistrict = $this->user->subdistrict;
+        $this->postal_code = $this->user->postal_code;
+        $this->street_address = $this->user->street_address;
         
         // Combined display fields
-        $this->cityState = $this->user->cityState;
+        $this->citysubdistrict = $this->user->citysubdistrict;
     }
     
     public function updatePersonalInfo()
@@ -105,23 +105,23 @@ class ProfilePage extends Component
     public function updateAddress()
     {
         $this->validate([
-            'country' => 'nullable|string|max:255',
+            'province' => 'nullable|string|max:255',
             'city' => 'nullable|string|max:255',
-            'state' => 'nullable|string|max:255',
-            'codePost' => 'nullable|string|max:20',
-            'streetAddress' => 'nullable|string|max:255',
+            'subdistrict' => 'nullable|string|max:255',
+            'postal_code' => 'nullable|string|max:20',
+            'street_address' => 'nullable|string|max:255',
         ]);
         
-        $this->user->country = $this->country;
+        $this->user->province = $this->province;
         $this->user->city = $this->city;
-        $this->user->state = $this->state;
-        $this->user->code_post = $this->codePost;
-        $this->user->street_address = $this->streetAddress;
+        $this->user->subdistrict = $this->subdistrict;
+        $this->user->postal_code = $this->postal_code;
+        $this->user->street_address = $this->street_address;
         
         $this->user->save();
         
         // Reload user data to refresh the view
-        $this->cityState = trim($this->city . ' ' . $this->state);
+        $this->citysubdistrict = trim($this->city . ' ' . $this->subdistrict);
         
         session()->flash('message', 'Alamat berhasil diperbarui!');
     }
