@@ -103,7 +103,7 @@
 						<!-- DANA -->
 						<label class="payment-option flex items-center justify-between w-full p-4 border rounded-lg cursor-pointer hover:bg-gray-100" data-group="payment">
 							<input type="radio" wire:model="payment_method" name="payment_method" value="dana" class="hidden" />
-							<img src="https://jasalogocepat.com/wp-content/uploads/2024/03/Download-Logo-DANA-PNG-jasalogocepat-1024x299.png" alt="DANA" class="h-6">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Logo_dana_blue.svg/1280px-Logo_dana_blue.svg.png" alt="DANA" class="h-7">
 							<span class="ml-2 font-semibold text-gray-700">DANA</span>
 						</label>
 
@@ -228,7 +228,7 @@
 				</div>
 				</hr>
 			</div>
-			<button type="submit" class="bg-blue-500 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-blue-600">
+			<button type="submit" class="bg-gradient-to-r from-blue-600 to-blue-900 mt-4 w-full p-3 rounded-lg text-lg text-white hover:bg-gray-600">
 				<span wire:loading.remove>Buat Pesanan</span>
 				<span wire:loading>Sedang Diproses...</span>
 			</button>		
