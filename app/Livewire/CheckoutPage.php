@@ -31,6 +31,18 @@ class CheckoutPage extends Component
         }
     }
 
+    protected $messages = [
+        'full_name.required' => 'Nama lengkap wajib diisi.',
+        'phone.required' => 'Nomor telepon wajib diisi.',
+        'street_address.required' => 'Alamat lengkap wajib diisi.',
+        'province.required' => 'Provinsi wajib diisi.',
+        'city.required' => 'Kabupaten/Kota wajib diisi.',
+        'subdistrict.required' => 'Kecamatan wajib diisi.',
+        'zip_code.required' => 'Kode pos wajib diisi.',
+        'payment_method.required' => 'Metode pembayaran wajib dipilih.',
+        'shipping_method.required' => 'Metode pengiriman wajib dipilih.',
+    ];
+
     public function placeOrder()
     {
         $this->validate([
