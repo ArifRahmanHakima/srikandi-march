@@ -150,6 +150,7 @@
               
               <div class="hs-dropdown-menu transition-[opacity, margin] hs-dropdown-open:opacity-100 opacity-0 md:w-48 hidden z-10 bg-white md:shadow-md rounded-lg p-2 md:dark:border dark:border-gray-400 dark:divide-gray-700 before:absolute top-full md:border before:-top-5 before:start-0 before:w-full before:h-5">
                 <a href="/my-orders" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black hover:bg-blue-100 dark:hover:text-blue-500 font-medium">Pesanan Saya</a>
+                <a href="/history" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black hover:bg-blue-100 dark:hover:text-blue-500 font-medium">Riwayat Pesanan</a>
                 <a href="/profile" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black hover:bg-blue-100 dark:hover:text-blue-500 font-medium">Akun Saya</a>
                 <a href="/logout" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-black hover:bg-blue-100 dark:hover:text-blue-500 font-medium">Logout</a>
               </div>

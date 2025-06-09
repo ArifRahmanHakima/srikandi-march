@@ -16,6 +16,7 @@ use App\Livewire\MyOrdersPage;
 use App\Livewire\ProductsPage;
 use App\Livewire\Auth\LoginPage;
 use App\Livewire\CategoriesPage;
+use App\Livewire\History;
 use App\Livewire\OrderSuccessPage;
 use App\Livewire\Auth\RegisterPage;
 use App\Livewire\MyOrderDetailPage;
@@ -57,6 +58,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/cancel', CancelPage::class)->name('cancel');
     Route::get('/data-payment/{order_id}', DataPayment::class)->name('data-payment');
     Route::get('/order-success', OrderSuccessPage::class)->name('order-success');
+    Route::get('/history', History::class);
 });
 
 Route::fallback(NotFound404::class);
