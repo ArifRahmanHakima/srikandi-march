@@ -87,7 +87,7 @@
             <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key="{{$product->id}}">
                 <div class="relative w-full max-w-xs overflow-hidden rounded-lg bg-gray-200 shadow-md mx-auto">
                     <a href="/products/{{$product->slug}}">
-                        <img class="h-60 rounded-t-lg object-cover w-full transition-transform duration-1000 hover:scale-111" src="{{url('storage', $product->images[0]) }}" alt="{{$product->name}}" />
+                        <img class="h-60 rounded-t-lg object-cover object-top object-center w-full transition-transform duration-1000 hover:scale-111" src="{{url('storage', $product->images[0]) }}" alt="{{$product->name}}" />
                     </a>
 
                     @if(isset($product->is_new) && $product->is_new) {{-- Asumsi ada properti is_on_sale --}}

@@ -134,7 +134,7 @@
             <div class="hs-dropdown relative md:[--strategy:fixed] md:[--trigger:hover] md:py-4">
               <button type="button" class="flex items-center w-full text-gray-500 hover:text-blue-400 font-medium text-base rounded-lg transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:text-grey dark:hover:text-blue-400" aria-controls="hs-basic-dropdown" aria-haspopup="true" data-hs-dropdown="#hs-basic-dropdown">
                 @if(Auth::user()->profile_photo_path)
-                    <img src="{{ Storage::url(Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->name }}" class="h-10 w-10 rounded-full object-cover mr-2">
+                    <img src="{{ Storage::url(Auth::user()->profile_photo_path) }}" alt="{{ Auth::user()->name }}" class="h-10 w-10 rounded-full object-cover object-top object-center mr-2">
                 @else
                     <div class="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center text-gray-500 mr-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

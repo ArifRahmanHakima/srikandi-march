@@ -5,7 +5,7 @@
       @foreach ($categories as $category)
       <div class="relative group bg-gray-200 h-[400px] shadow-lg rounded-2xl overflow-hidden" href="/products?selected_categories[0]={{$category->id}}" wire:key="{{ $category->id }}">
         <img class="w-full h-full group-hover:h-64 object-cover rounded-2xl transition-all delay-150 duration-300 ease" src="{{url('storage', $category->image) }}" alt="{{ $category->name }}" />
-        <div class="bg-gray-100 w-full h-40 absolute left-0 bottom-0 -mb-44 group-hover:mb-0 rounded-b-2xl transition-all delay-150 duration-300 ease dark:bg-gray-400">
+        <div class="bg-gray-100 w-full h-40 object-cover object-top object-center absolute left-0 bottom-0 -mb-44 group-hover:mb-0 rounded-b-2xl transition-all delay-150 duration-300 ease dark:bg-gray-400">
           <div class="p-6">
             <div class="capitalize flex items-center justify-between gap-4">
               <div>

@@ -402,7 +402,7 @@ type();
           <div class="w-72 flex-shrink-0" wire:key="{{$product->id}}-duplicate">
             <div class="relative w-full overflow-hidden rounded-lg bg-gray-200 shadow-md">
               <a wire:navigate href="/products/{{$product->slug}}">
-                <img class="h-77 rounded-t-lg object-cover w-full transition-transform duration-1000 hover:scale-110" 
+                <img class="h-77 rounded-t-lg object-cover object-top object-center w-full transition-transform duration-1000 hover:scale-110" 
                      src="{{url('storage', $product->images[0]) }}" 
                      alt="{{$product->name}}" />
                 <span class="absolute top-0 left-0 w-28 translate-y-4 -translate-x-6 -rotate-45 bg-blue-600 text-center text-sm text-white">Baru</span>
