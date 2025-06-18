@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Order;
+use App\Livewire\History;
 use App\Mail\OrderPlaced;
 use App\Livewire\CartPage;
 use App\Livewire\HomePage;
@@ -16,11 +17,11 @@ use App\Livewire\MyOrdersPage;
 use App\Livewire\ProductsPage;
 use App\Livewire\Auth\LoginPage;
 use App\Livewire\CategoriesPage;
-use App\Livewire\History;
 use App\Livewire\OrderSuccessPage;
 use App\Livewire\Auth\RegisterPage;
 use App\Livewire\MyOrderDetailPage;
 use App\Livewire\ProductDetailPage;
+use App\Livewire\ReviewForm;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -58,7 +59,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/cancel', CancelPage::class)->name('cancel');
     Route::get('/data-payment/{order_id}', DataPayment::class)->name('data-payment');
     Route::get('/order-success', OrderSuccessPage::class)->name('order-success');
-    Route::get('/history', History::class);
+    Route::get('/history', History::class)->name('history');
+    Route::get('/review/{order_id}', ReviewForm::class)->name('review-form');
 });
 
 Route::fallback(NotFound404::class);
