@@ -101,10 +101,9 @@
                 </span>
               </div>
               <div class="prose prose-sm max-w-none text-gray-600 mb-6 flex items-center space-x-2">
-                <span class="font-semibold text-gray-900">Rating:</span>
 
                 {{-- Tampilkan Angka Rating --}}
-                <span class="text-gray-900 font-medium">{{ number_format($product->average_rating, 1) }} / 5</span>
+                <span class="text-gray-900 font-medium">{{ number_format($product->average_rating, 1) }}</span>
 
                 {{-- Tampilkan Bintang --}}
                 <div class="flex items-center">
@@ -133,9 +132,6 @@
                     @endif
                   @endfor
                 </div>
-
-                {{-- Jumlah Ulasan --}}
-                <span class="text-gray-500">dari {{ $product->reviews()->count() }} ulasan</span>
               </div>
 
               <div class="prose prose-sm max-w-none text-gray-600 mb-6">

@@ -98,13 +98,18 @@
 
                     <div class="mt-4 px-5 pb-5">
                         <a href="/products/{{$product->slug}}">
-                          <div class="flex items-center justify-between">
+                          <div>
                             <h5 class="text-xl font-semibold tracking-tight text-slate-900 truncate">
                               {{ $product->name }}
                             </h5>
 
+                          <span class="text-gray-500 text-xs mt-1 block mb-1">
+                              {{ $product->brand->name ?? 'N/A' }} 
+                              @if($product->category) - {{ $product->category->name }} @endif
+                          </span>
+
                             {{-- RATING BINTANG --}}
-                            <div class="flex items-center space-x-0.5 ml-2">
+                            <div class="flex items-center space-x-0.5">
                               @php
                                   $avg = $product->average_rating;
                               @endphp
@@ -136,10 +141,7 @@
                           </div>
                         </a>
 
-                        <span class="text-gray-500 text-xs mt-1 block">
-                            {{ $product->brand->name ?? 'N/A' }} 
-                            @if($product->category) - {{ $product->category->name }} @endif
-                        </span>
+                        
 
                         <div class="flex items-center justify-between mt-2.5 mb-2.5"> <p>
                                 <span class="text-l font-bold text-slate-900">{{'Rp ' . number_format($product->price, 0, ',', '.')}}</span> @if(isset($product->old_price) && $product->old_price > $product->price)
