@@ -36,6 +36,7 @@ use App\Filament\Resources\OrderResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\OrderResource\RelationManagers;
 use App\Filament\Resources\OrderResource\RelationManagers\AddressRelationManager;
+use Dom\Text;
 use Filament\Notifications\Notification;
 
 class OrderResource extends Resource
@@ -100,20 +101,16 @@ class OrderResource extends Resource
                                 'processing' => 'heroicon-m-arrow-path',
                                 'shipped' => 'heroicon-m-truck',
                                 'delivered' => 'heroicon-m-check-circle',
-                            ]),
-
-                        Select::make('currency')
-                            ->label('Mata Uang')
-                            ->options([
-                                'rp' => 'Rp',
-                            ])
-                            ->default('rp')
-                            ->required(),       
+                            ]),   
 
                         TextInput::make('shipping_amount')
                             ->label('Biaya Pengiriman')
                             ->numeric()
                             ->default(0),
+
+                        TextInput::make('no_resi')
+                            ->label('Nomor Resi')
+                            ->maxLength(255),
 
                         Textarea::make('notes')
                             ->columnSpanFull(),                       
