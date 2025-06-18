@@ -220,19 +220,26 @@
 
   
  <div class="bg-white rounded-lg shadow-md p-6">
-  <h2 class="text-lg font-semibold mb-4">No Resi</h2>
+  <h2 class="text-lg font-semibold mb-4">Cek Resi</h2>
 
   <div class="flex justify-between mb-2 items-start">
     <div>
-      <p 
+      <div class="flex">
+        <p class="font-semibold">No. Resi : </p>
+        <p 
         id="resiText" 
         class="cursor-pointer text-black-600 hover:underline"
         onclick="copyToClipboard('resiText')"
         title="Klik untuk salin"
-      >
-        {{ $address->province }}, {{ $address->city }}, {{ $address->subdistrict }}, {{ $address->street_address }}
-      </p>
-      <p id="copyMessage" class="text-sm text-green-600 mt-1 hidden">Disalin ke clipboard!</p>
+        >
+          {{ $order->no_resi }}
+        </p>
+        <p id="copyMessage" class="text-sm text-green-600 mt-1 hidden">Disalin ke clipboard!</p>
+      </div>
+      <div class="flex">
+        <p class="font-semibold">Ekspedisi : </p>
+        <p>{{ $order->shipping_method }}</p>
+      </div>
     </div>
 
     <!-- Tombol Salin -->
