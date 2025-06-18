@@ -200,23 +200,69 @@
 
     </div>
     <div class="md:w-1/4">
-      <div class="bg-white rounded-lg shadow-md p-6">
-        <h2 class="text-lg font-semibold mb-4">Ringkasan</h2>
-        <div class="flex justify-between mb-2">
-          <span>Subtotal</span>
-          <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
-        </div>
-        <div class="flex justify-between mb-2">
-          <span>Biaya Pengiriman</span>
-          <span>{{ 'Rp ' . number_format($order->shipping_amount, 0, ',', '.') }}</span>
-        </div>
-        <hr class="my-2">
-        <div class="flex justify-between mb-2">
-          <span class="font-semibold">Total</span>
-          <span class="font-semibold">{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
-        </div>
-
-      </div>
+       <div class="flex flex-col gap-4">
+  <div class="bg-white rounded-lg shadow-md p-6">
+    <h2 class="text-lg font-semibold mb-4">Ringkasan</h2>
+    <div class="flex justify-between mb-2">
+      <span>Subtotal</span>
+      <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
     </div>
+    <div class="flex justify-between mb-2">
+      <span>Biaya Pengiriman</span>
+      <span>{{ 'Rp ' . number_format($order->shipping_amount, 0, ',', '.') }}</span>
+    </div>
+    <hr class="my-2">
+    <div class="flex justify-between mb-2">
+      <span class="font-semibold">Total</span>
+      <span class="font-semibold">{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
+    </div>
+  </div>
+
+  
+ <div class="bg-white rounded-lg shadow-md p-6">
+  <h2 class="text-lg font-semibold mb-4">No Resi</h2>
+
+  <div class="flex justify-between mb-2 items-start">
+    <div>
+      <p 
+        id="resiText" 
+        class="cursor-pointer text-black-600 hover:underline"
+        onclick="copyToClipboard('resiText')"
+        title="Klik untuk salin"
+      >
+        {{ $address->province }}, {{ $address->city }}, {{ $address->subdistrict }}, {{ $address->street_address }}
+      </p>
+      <p id="copyMessage" class="text-sm text-green-600 mt-1 hidden">Disalin ke clipboard!</p>
+    </div>
+
+    <!-- Tombol Salin -->
+    <button 
+      onclick="copyToClipboard('resiText')" 
+      class="ml-4 px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition"
+    >
+      Salin
+    </button>
+  </div>
+</div>
+
+<script>
+  function copyToClipboard(elementId) {
+    const text = document.getElementById(elementId).innerText;
+    navigator.clipboard.writeText(text).then(function() {
+      // Tampilkan pesan sukses
+      const message = document.getElementById('copyMessage');
+      message.classList.remove('hidden');
+
+      // Sembunyikan kembali setelah 2 detik
+      setTimeout(() => {
+        message.classList.add('hidden');
+      }, 4000);
+    }, function(err) {
+      alert('Gagal menyalin: ', err);
+    });
+  }
+</script>
+
+  </div>
   </div>
 </div>
