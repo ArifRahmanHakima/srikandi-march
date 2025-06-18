@@ -54,12 +54,16 @@
           <div class="p-4 mb-5 bg-white border border-gray-200">
             <h2 class="text-2xl font-bold">Harga</h2>
             <div class="w-16 pb-2 mb-6 border-b border-rose-600"></div>
-            <div>
-              <div>{{ 'Rp ' . number_format($price_range, 0, ',', '.') }}</div>
-              <input type="range" wire:model.live="price_range" class="w-full h-1 mb-4 bg-blue-100 rounded appearance-none cursor-pointer" max="500000" value="300000" step="1000">
-              <div class="flex justify-between ">
-                <span class="inline-block text-lg font-bold text-blue-400 ">{{ 'Rp ' . number_format(1000, 0, ',', '.') }}</span>
-                <span class="inline-block text-lg font-bold text-blue-400 ">{{ 'Rp ' . number_format(500000, 0, ',', '.') }}</span>
+            
+            <div class="space-y-4">
+              <div>
+                <label for="min_price" class="block mb-1 text-gray-600 font-medium">Harga Minimum</label>
+                <input type="number" id="min_price" wire:model.live="min_price" class="w-full px-4 py-2 border rounded" placeholder="Contoh: 10000">
+              </div>
+
+              <div>
+                <label for="max_price" class="block mb-1 text-gray-600 font-medium">Harga Maksimum</label>
+                <input type="number" id="max_price" wire:model.live="max_price" class="w-full px-4 py-2 border rounded" placeholder="Contoh: 500000">
               </div>
             </div>
           </div>
@@ -140,8 +144,6 @@
                             </div>
                           </div>
                         </a>
-
-                        
 
                         <div class="flex items-center justify-between mt-2.5 mb-2.5"> <p>
                                 <span class="text-l font-bold text-slate-900">{{'Rp ' . number_format($product->price, 0, ',', '.')}}</span> @if(isset($product->old_price) && $product->old_price > $product->price)

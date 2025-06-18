@@ -14,11 +14,8 @@ class ProductDetailPage extends Component
 {
     public $slug;
     public $quantity = 1;
-    public $selectedColor;
-    public $selectedSize;
-    public $product;
-    public $rating_distribution;
-    public $rating_data;
+    public $selectedColor, $selectedSize;
+    public $product, $rating_distribution, $rating_data;
 
     public function mount($slug)
     {
@@ -37,10 +34,8 @@ class ProductDetailPage extends Component
             ->pluck('count', 'rating')
             ->all();
 
-        // Hitung total review
         $total = array_sum($this->rating_distribution);
 
-        // Buat array lengkap dari bintang 1 sampai 5 dengan persentase
         $this->rating_data = [];
 
         for ($i = 1; $i <= 5; $i++) {
@@ -54,7 +49,6 @@ class ProductDetailPage extends Component
         }
 
         // Fallback eksplisit jika casting model masih bermasalah
-        // Karena dd() Anda menunjukkan masih string, ini penting
         $colors_array = is_string($this->product->color) ? explode(',', $this->product->color) : ($this->product->color ?? []);
         $sizes_array = is_string($this->product->size) ? explode(',', $this->product->size) : ($this->product->size ?? []);
 
@@ -62,18 +56,17 @@ class ProductDetailPage extends Component
         $colors_array = array_filter(array_map('trim', $colors_array));
         $sizes_array = array_filter(array_map('trim', $sizes_array));
 
-        // Inisialisasi pilihan default (opsi pertama jika ada)
         // Gunakan array yang sudah diproses dan difilter
         if (count($colors_array) > 0) {
             $this->selectedColor = $colors_array[0];
         } else {
-            $this->selectedColor = null; // Penting jika tidak ada warna
+            $this->selectedColor = null;
         }
 
         if (count($sizes_array) > 0) {
             $this->selectedSize = $sizes_array[0];
         } else {
-            $this->selectedSize = null; // Penting jika tidak ada ukuran
+            $this->selectedSize = null;
         }
     }
 
@@ -96,17 +89,15 @@ class ProductDetailPage extends Component
     }
 
     public function addToCart($product_id) {
-        // Validasi apakah warna dan ukuran sudah dipilih
-        if (!$this->selectedColor && !empty($this->product->color)) { // Cek apakah memang ada pilihan warna yang harus dipilih
+        if (!$this->selectedColor && !empty($this->product->color)) {
             session()->flash('error', 'Mohon pilih warna produk.');
             return;
         }
-        if (!$this->selectedSize && !empty($this->product->size)) { // Cek apakah memang ada pilihan ukuran yang harus dipilih
+        if (!$this->selectedSize && !empty($this->product->size)) {
             session()->flash('error', 'Mohon pilih ukuran produk.');
             return;
         }
 
-        // Panggil CartManagement dengan menyertakan warna dan ukuran yang dipilih
         $total_count = CartManagement::addItemToCartWithQty(
             $this->product->id,
             $this->quantity,

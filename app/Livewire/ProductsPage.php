@@ -15,8 +15,6 @@ use App\Livewire\Partials\Navbar;
 #[Title('Products - SrikandiMarch')]
 class ProductsPage extends Component
 {
-    use WithPagination;
-
     #[Url]
     public $selected_categories = [];
 
@@ -30,7 +28,10 @@ class ProductsPage extends Component
     public $on_sale;
 
     #[Url]
-    public $price_range = 300000;
+    public $min_price = 0;
+
+    #[Url]
+    public $max_price = 500000;
 
     #[Url]
     public $sort = 'latest';
@@ -38,7 +39,6 @@ class ProductsPage extends Component
     #[Url]
     public $search = '';
 
-    // add product to cart method
     public function addToCart($product_id) {
         $total_count = CartManagement::addItemToCart($product_id);
 
@@ -65,8 +65,12 @@ class ProductsPage extends Component
             $productQuery->where('on_sale', 1);
         }
 
-        if($this->price_range) {
-            $productQuery->whereBetween('price',[0, $this->price_range]);
+        if (!is_null($this->min_price) && !is_null($this->max_price)) {
+            $productQuery->whereBetween('price', [$this->min_price, $this->max_price]);
+        }
+
+        if ($this->min_price > $this->max_price) {
+            [$this->min_price, $this->max_price] = [$this->max_price, $this->min_price];
         }
 
         if (!empty($this->search)) {

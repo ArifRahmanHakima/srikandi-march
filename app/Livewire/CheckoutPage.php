@@ -14,15 +14,8 @@ use Illuminate\Support\Facades\Mail;
 class CheckoutPage extends Component
 {
 
-    public $full_name;
-    public $phone;
-    public $street_address;
-    public $province;
-    public $city;
-    public $subdistrict;
-    public $zip_code;
-    public $payment_method;
-    public $shipping_method;
+    public $full_name, $phone, $province, $city, $subdistrict, $street_address, $zip_code;
+    public $payment_method, $shipping_method;
 
     public function mount(){
         $cart_items = CartManagement::getCartItemsFromCookie();
@@ -30,18 +23,6 @@ class CheckoutPage extends Component
             return redirect('/products');
         }
     }
-
-    protected $messages = [
-        'full_name.required' => 'Nama lengkap wajib diisi.',
-        'phone.required' => 'Nomor telepon wajib diisi.',
-        'street_address.required' => 'Alamat lengkap wajib diisi.',
-        'province.required' => 'Provinsi wajib diisi.',
-        'city.required' => 'Kabupaten/Kota wajib diisi.',
-        'subdistrict.required' => 'Kecamatan wajib diisi.',
-        'zip_code.required' => 'Kode pos wajib diisi.',
-        'payment_method.required' => 'Metode pembayaran wajib dipilih.',
-        'shipping_method.required' => 'Metode pengiriman wajib dipilih.',
-    ];
 
     public function placeOrder()
     {
@@ -105,6 +86,18 @@ class CheckoutPage extends Component
         $redirect_url = route('my-orders', ['order_id' => $order->id]);
         return redirect($redirect_url);
     }
+
+    protected $messages = [
+        'full_name.required' => 'Nama lengkap wajib diisi.',
+        'phone.required' => 'Nomor telepon wajib diisi.',
+        'street_address.required' => 'Alamat lengkap wajib diisi.',
+        'province.required' => 'Provinsi wajib diisi.',
+        'city.required' => 'Kabupaten/Kota wajib diisi.',
+        'subdistrict.required' => 'Kecamatan wajib diisi.',
+        'zip_code.required' => 'Kode pos wajib diisi.',
+        'payment_method.required' => 'Metode pembayaran wajib dipilih.',
+        'shipping_method.required' => 'Metode pengiriman wajib dipilih.',
+    ];
 
     public function render()
     {

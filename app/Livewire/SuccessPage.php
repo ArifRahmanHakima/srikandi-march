@@ -11,7 +11,6 @@ use Livewire\Attributes\Title;
 #[Title('Success')]
 class SuccessPage extends Component
 {
-
     public $order_id;
 
     public function mount($order_id)

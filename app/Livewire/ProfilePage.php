@@ -9,33 +9,15 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfilePage extends Component
 {
-    use WithFileUploads;
+    public $user, $name, $email, $phone, $bio, $newProfilePhoto;
+    public $province, $city, $subdistrict, $postal_code, $street_address, $citysubdistrict;
     
-    // User profile details
-    public $user;
-    public $name;
-    public $email;
-    public $phone;
-    public $bio;
-    public $newProfilePhoto;
-    
-    // Address details
-    public $province;
-    public $city;
-    public $subdistrict;
-    public $postal_code;
-    public $street_address;
-    
-    // Combined fields for display
-    public $citysubdistrict;
-    
-    // Form validation rules
     protected $rules = [
         'name' => 'required|string|max:255',
         'email' => 'required|email|max:255',
         'phone' => 'nullable|string|max:20',
         'bio' => 'nullable|string|max:1000',
-        'newProfilePhoto' => 'nullable|image|max:5024', // 5MB Max
+        'newProfilePhoto' => 'nullable|image|max:5024',
         'province' => 'nullable|string|max:255',
         'city' => 'nullable|string|max:255',
         'subdistrict' => 'nullable|string|max:255',
@@ -56,14 +38,11 @@ class ProfilePage extends Component
         $this->phone = $this->user->phone;
         $this->bio = $this->user->bio;
         
-        // Address fields
         $this->province = $this->user->province;
         $this->city = $this->user->city;
         $this->subdistrict = $this->user->subdistrict;
         $this->postal_code = $this->user->postal_code;
         $this->street_address = $this->user->street_address;
-        
-        // Combined display fields
         $this->citysubdistrict = $this->user->citysubdistrict;
     }
     
@@ -82,14 +61,11 @@ class ProfilePage extends Component
         $this->user->phone = $this->phone;
         $this->user->bio = $this->bio;
         
-        // Handle profile photo upload if provided
         if ($this->newProfilePhoto) {
-            // Delete old profile photo if exists
             if ($this->user->profile_photo_path) {
                 Storage::delete($this->user->profile_photo_path);
             }
             
-            // Store the new profile photo
             $path = $this->newProfilePhoto->store('profile-photos', 'public');
             $this->user->profile_photo_path = $path;
         }
@@ -98,7 +74,6 @@ class ProfilePage extends Component
         
         session()->flash('message', 'Informasi pribadi berhasil diperbarui!');
         
-        // Force a complete refresh to ensure the image is updated in the browser
         $this->redirect(request()->header('Referer'));
     }
     

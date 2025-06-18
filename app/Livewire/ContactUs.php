@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactUs extends Component
 {
-    public $name = '';
-    public $email = '';
-    public $message = '';
-    public $successMessage = '';
-    public $errorMessage = '';
+    public $name, $email, $message, $successMessage, $errorMessage;
 
     protected $rules = [
         'name' => 'required|min:2|max:100',

@@ -40,19 +40,6 @@
       <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="#">Pelanggan</a></p>
     </div>
   </div>
-
-  <!-- Newsletter -->
-  <div class="col-span-full lg:col-span-2">
-    <h4 class="font-semibold text-gray-100">Perkembangan</h4>
-    <form>
-      <div class="mt-4 flex flex-col items-center gap-2 sm:flex-row sm:gap-3 bg-white rounded-lg p-2 dark:bg-gray-800">
-        <div class="w-full">
-          <input type="text" placeholder="Masukan Email Anda" class="py-3 px-4 block w-full rounded-lg text-sm dark:bg-slate-900 dark:text-gray-400" />
-        </div>
-        <a class="w-full sm:w-auto whitespace-nowrap p-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg bg-blue-600 text-white hover:bg-blue-700" href="#">Berlangganan</a>
-      </div>
-    </form>
-  </div>
 </div>
 
     <!-- End Grid -->

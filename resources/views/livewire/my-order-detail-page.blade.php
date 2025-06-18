@@ -201,75 +201,71 @@
     </div>
     <div class="md:w-1/4">
        <div class="flex flex-col gap-4">
-  <div class="bg-white rounded-lg shadow-md p-6">
-    <h2 class="text-lg font-semibold mb-4">Ringkasan</h2>
-    <div class="flex justify-between mb-2">
-      <span>Subtotal</span>
-      <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
-    </div>
-    <div class="flex justify-between mb-2">
-      <span>Biaya Pengiriman</span>
-      <span>{{ 'Rp ' . number_format($order->shipping_amount, 0, ',', '.') }}</span>
-    </div>
-    <hr class="my-2">
-    <div class="flex justify-between mb-2">
-      <span class="font-semibold">Total</span>
-      <span class="font-semibold">{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
-    </div>
-  </div>
-
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-lg font-semibold mb-4">Ringkasan</h2>
+            <div class="flex justify-between mb-2">
+              <span>Subtotal</span>
+              <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
+            </div>
+            <div class="flex justify-between mb-2">
+              <span>Biaya Pengiriman</span>
+              <span>{{ 'Rp ' . number_format($order->shipping_amount, 0, ',', '.') }}</span>
+            </div>
+            <hr class="my-2">
+            <div class="flex justify-between mb-2">
+              <span class="font-semibold">Total</span>
+              <span class="font-semibold">{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
+            </div>
+          </div>
   
- <div class="bg-white rounded-lg shadow-md p-6">
-  <h2 class="text-lg font-semibold mb-4">Cek Resi</h2>
+          @if ($order->no_resi)
+            <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-lg font-semibold mb-2 text-slate-700">Cek Resi</h2>
+            <hr class="my-2 mb-2">
 
-  <div class="flex justify-between mb-2 items-start">
-    <div>
-      <div class="flex">
-        <p class="font-semibold">No. Resi : </p>
-        <p 
-        id="resiText" 
-        class="cursor-pointer text-black-600 hover:underline"
-        onclick="copyToClipboard('resiText')"
-        title="Klik untuk salin"
-        >
-          {{ $order->no_resi }}
-        </p>
-        <p id="copyMessage" class="text-sm text-green-600 mt-1 hidden">Disalin ke clipboard!</p>
-      </div>
-      <div class="flex">
-        <p class="font-semibold">Ekspedisi : </p>
-        <p>{{ $order->shipping_method }}</p>
-      </div>
+            <div class="flex flex-col space-y-4 text-slate-600">
+              <!-- No. Resi -->
+              <div>
+                <p class="font-semibold">No. Resi:</p>
+                <p id="resiText"
+                  class="cursor-pointer text-blue-600 hover:underline"
+                  onclick="copyToClipboard('resiText')"
+                  title="Klik untuk salin">
+                  {{ $order->no_resi }}
+                </p>
+                <p id="copyMessage" class="text-sm text-green-600 mt-1 hidden">Disalin ke clipboard!</p>
+              </div>
+
+              <!-- Ekspedisi -->
+              <div>
+                <p class="font-semibold">Metode Pengiriman :</p>
+                <p>{{ $order->shipping_method }}</p>
+              </div>
+
+              <!-- Tombol Cek Resi -->
+              <div>
+                <a href="https://cekresi.com/?noresi={{ $order->no_resi }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full flex justify-center items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg transition-all shadow">
+                  Cek Resi Online
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            function copyToClipboard(elementId) {
+              const text = document.getElementById(elementId).innerText;
+              navigator.clipboard.writeText(text).then(() => {
+                const msg = document.getElementById('copyMessage');
+                msg.classList.remove('hidden');
+                setTimeout(() => msg.classList.add('hidden'), 2000);
+              });
+            }
+          </script>
+          @endif
+
     </div>
-
-    <!-- Tombol Salin -->
-    <button 
-      onclick="copyToClipboard('resiText')" 
-      class="ml-4 px-3 py-1 bg-blue-500 text-white text-sm rounded hover:bg-blue-600 transition"
-    >
-      Salin
-    </button>
-  </div>
-</div>
-
-<script>
-  function copyToClipboard(elementId) {
-    const text = document.getElementById(elementId).innerText;
-    navigator.clipboard.writeText(text).then(function() {
-      // Tampilkan pesan sukses
-      const message = document.getElementById('copyMessage');
-      message.classList.remove('hidden');
-
-      // Sembunyikan kembali setelah 2 detik
-      setTimeout(() => {
-        message.classList.add('hidden');
-      }, 4000);
-    }, function(err) {
-      alert('Gagal menyalin: ', err);
-    });
-  }
-</script>
-
-  </div>
   </div>
 </div>

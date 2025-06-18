@@ -373,6 +373,36 @@ type();
                     {{ $product->brand->name ?? 'N/A' }} 
                     @if($product->category) - {{ $product->category->name }} @endif
                 </span>
+                {{-- RATING BINTANG --}}
+                <div class="flex items-center space-x-0.5">
+                  @php
+                      $avg = $product->average_rating;
+                  @endphp
+                  @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= floor($avg))
+                      {{-- Bintang Penuh --}}
+                      <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    @elseif ($i - $avg < 1)
+                      {{-- Bintang Setengah --}}
+                      <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <defs>
+                              <linearGradient id="half-{{ $product->id }}">
+                                  <stop offset="50%" stop-color="currentColor"/>
+                                  <stop offset="50%" stop-color="transparent"/>
+                              </linearGradient>
+                          </defs>
+                          <path fill="url(#half-{{ $product->id }})" d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    @else
+                      {{-- Bintang Kosong --}}
+                      <svg class="w-3.5 h-3.5 text-gray-300 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    @endif
+                  @endfor
+                </div>
 
                 <div class="flex items-center justify-between mt-2.5 mb-2.5">
                   <p>
@@ -417,6 +447,36 @@ type();
                     {{ $product->brand->name ?? 'N/A' }} 
                     @if($product->category) - {{ $product->category->name }} @endif
                 </span>
+                {{-- RATING BINTANG --}}
+                <div class="flex items-center space-x-0.5">
+                  @php
+                      $avg = $product->average_rating;
+                  @endphp
+                  @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= floor($avg))
+                      {{-- Bintang Penuh --}}
+                      <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    @elseif ($i - $avg < 1)
+                      {{-- Bintang Setengah --}}
+                      <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <defs>
+                              <linearGradient id="half-{{ $product->id }}">
+                                  <stop offset="50%" stop-color="currentColor"/>
+                                  <stop offset="50%" stop-color="transparent"/>
+                              </linearGradient>
+                          </defs>
+                          <path fill="url(#half-{{ $product->id }})" d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    @else
+                      {{-- Bintang Kosong --}}
+                      <svg class="w-3.5 h-3.5 text-gray-300 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    @endif
+                  @endfor
+                </div>
 
                 <div class="flex items-center justify-between mt-2.5 mb-2.5">
                   <p>
