@@ -100,6 +100,43 @@
                   {{'Rp ' . number_format($product->price, 0, ',', '.')}}
                 </span>
               </div>
+              <div class="prose prose-sm max-w-none text-gray-600 mb-6 flex items-center space-x-2">
+                <span class="font-semibold text-gray-900">Rating:</span>
+
+                {{-- Tampilkan Angka Rating --}}
+                <span class="text-gray-900 font-medium">{{ number_format($product->average_rating, 1) }} / 5</span>
+
+                {{-- Tampilkan Bintang --}}
+                <div class="flex items-center">
+                  @for ($i = 1; $i <= 5; $i++)
+                    @if ($i <= floor($product->average_rating))
+                      {{-- Bintang Penuh --}}
+                      <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    @elseif ($i - $product->average_rating < 1)
+                      {{-- Bintang Setengah --}}
+                      <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                          <defs>
+                              <linearGradient id="half">
+                                  <stop offset="50%" stop-color="currentColor"/>
+                                  <stop offset="50%" stop-color="transparent"/>
+                              </linearGradient>
+                          </defs>
+                          <path fill="url(#half)" d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    @else
+                      {{-- Bintang Kosong --}}
+                      <svg class="w-5 h-5 text-gray-300 fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                      </svg>
+                    @endif
+                  @endfor
+                </div>
+
+                {{-- Jumlah Ulasan --}}
+                <span class="text-gray-500">dari {{ $product->reviews()->count() }} ulasan</span>
+              </div>
 
               <div class="prose prose-sm max-w-none text-gray-600 mb-6">
                 <span class="font-semibold text-gray-900">SKU : </span>
@@ -188,15 +225,15 @@
 
             <!-- Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 mb-8">
-             <button wire:click="addToCart({{$product->id}})" 
-        @click="$dispatch('notify', {message: 'Pesanan sudah berhasil ditambahkan ke keranjang'})"
-        class="flex items-center justify-center px-8 py-4 bg-gradient-to-r bg-blue-500 hover:bg-gray-400 text-white font-bold rounded-lg transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
-    <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-    </svg>
-    <span wire:loading.remove wire:target='addToCart({{$product->id}})'>Tambahkan ke Keranjang</span>
-    <span wire:loading wire:target='addToCart({{$product->id}})'>Proses...</span>
-</button>
+              <button wire:click="addToCart({{$product->id}})" 
+                  @click="$dispatch('notify', {message: 'Pesanan sudah berhasil ditambahkan ke keranjang'})"
+                  class="flex items-center justify-center px-8 py-4 bg-gradient-to-r bg-blue-500 hover:bg-gray-400 text-white font-bold rounded-lg transition-transform transform-gpu hover:-translate-y-1 hover:shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span wire:loading.remove wire:target='addToCart({{$product->id}})'>Tambahkan ke Keranjang</span>
+                <span wire:loading wire:target='addToCart({{$product->id}})'>Proses...</span>
+              </button>
             </div>
             
 
@@ -209,13 +246,13 @@
                 href="https://www.instagram.com/srikandimerch_official" target="_blank">
                   <svg class="w-6 h-6 transition" xmlns="http://www.w3.org/2000/svg" viewBox="0,0,256,256">
                       <g fill="currentColor"> <g transform="scale(4,4)">
-                              <path d="M21.58008,7c-8.039,0-14.58008,6.54494-14.58008,14.58594v20.83203c0,8.04,6.54494,14.58203,14.58594,14.58203h20.83203c8.04,0,14.58203-6.54494,14.58203-14.58594v-20.83398c0-8.039-6.54494-14.58008-14.58594-14.58008zM47,15c1.104,0,2,0.896,2,2c0,1.104-0.896,2-2,2c-1.104,0-2-0.896-2-2c0-1.104,0.896-2,2-2zM32,19c7.17,0,13,5.83,13,13c0,7.17-5.831,13-13,13c-7.17,0-13-5.831-13-13c0-7.169,5.83-13,13-13zM32,23c-4.971,0-9,4.029-9,9c0,4.971,4.029,9,9,9c4.971,0,9-4.029,9-9c0-4.971-4.029-9-9-9z" />
-                          </g>
+                        <path d="M21.58008,7c-8.039,0-14.58008,6.54494-14.58008,14.58594v20.83203c0,8.04,6.54494,14.58203,14.58594,14.58203h20.83203c8.04,0,14.58203-6.54494,14.58203-14.58594v-20.83398c0-8.039-6.54494-14.58008-14.58594-14.58008zM47,15c1.104,0,2,0.896,2,2c0,1.104-0.896,2-2,2c-1.104,0-2-0.896-2-2c0-1.104,0.896-2,2-2zM32,19c7.17,0,13,5.83,13,13c0,7.17-5.831,13-13,13c-7.17,0-13-5.831-13-13c0-7.169,5.83-13,13-13zM32,23c-4.971,0-9,4.029-9,9c0,4.971,4.029,9,9,9c4.971,0,9-4.029,9-9c0-4.971-4.029-9-9-9z" />
+                        </g>
                       </g>
                   </svg>
                   <span>Instagram</span>
               </a>
-          </div>
+            </div>
             
 
             <!-- Product Features -->
@@ -272,6 +309,11 @@
               :class="activeTab === 'sizechart' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
               class="py-4 px-6 border-b-2 font-medium text-sm focus:outline-none transition-colors">
         Panduan Ukuran
+      </button>
+      <button @click="activeTab = 'reviews'" 
+              :class="activeTab === 'reviews' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+              class="py-4 px-6 border-b-2 font-medium text-sm focus:outline-none transition-colors">
+        Ulasan Pelanggan
       </button>
     </div>
 
@@ -385,53 +427,39 @@
           <!-- Review Summary -->
           <div class="bg-gray-50 rounded-lg p-6">
             <div class="flex items-center space-x-4">
+              <!-- Rata-rata Rating & Total Review -->
               <div class="text-center">
-                <div class="text-3xl font-bold text-gray-900">4.5</div>
+                <div class="text-3xl font-bold text-gray-900">
+                  {{ number_format($product->reviews_avg_rating, 1) }} / 5
+                </div>
+
                 <div class="flex items-center justify-center mt-1">
-                  @for($i = 1; $i <= 5; $i++)
-                    <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                  @for ($i = 1; $i <= 5; $i++)
+                    <svg class="w-4 h-4 {{ $i <= round($product->reviews_avg_rating) ? 'text-yellow-400' : 'text-gray-300' }} fill-current" viewBox="0 0 20 20">
                       <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
                     </svg>
                   @endfor
                 </div>
-                <div class="text-sm text-gray-500 mt-1">24 ulasan</div>
+
+                <div class="text-sm text-gray-500 mt-1">
+                  {{ $product->reviews_count }} ulasan
+                </div>
               </div>
+
+              <!-- Rating Distribution -->
               <div class="flex-1 space-y-2">
-                <div class="flex items-center">
-                  <span class="text-sm text-gray-600 w-8">5★</span>
-                  <div class="flex-1 mx-2 bg-gray-200 rounded-full h-2">
-                    <div class="bg-yellow-400 h-2 rounded-full" style="width: 60%"></div>
+                @for ($i = 5; $i >= 1; $i--)
+                  @php
+                    $data = $rating_data[$i] ?? ['count' => 0, 'percentage' => 0];
+                  @endphp
+                  <div class="flex items-center">
+                    <span class="text-sm text-gray-600 w-8">{{ $i }}★</span>
+                    <div class="flex-1 mx-2 bg-gray-200 rounded-full h-2">
+                        <div class="bg-yellow-400 h-2 rounded-full" style="width: {{ $data['percentage'] }}%"></div>
+                    </div>
+                    <span class="text-sm text-gray-600 w-8">{{ $data['count'] }}</span>
                   </div>
-                  <span class="text-sm text-gray-600 w-8">15</span>
-                </div>
-                <div class="flex items-center">
-                  <span class="text-sm text-gray-600 w-8">4★</span>
-                  <div class="flex-1 mx-2 bg-gray-200 rounded-full h-2">
-                    <div class="bg-yellow-400 h-2 rounded-full" style="width: 25%"></div>
-                  </div>
-                  <span class="text-sm text-gray-600 w-8">6</span>
-                </div>
-                <div class="flex items-center">
-                  <span class="text-sm text-gray-600 w-8">3★</span>
-                  <div class="flex-1 mx-2 bg-gray-200 rounded-full h-2">
-                    <div class="bg-yellow-400 h-2 rounded-full" style="width: 8%"></div>
-                  </div>
-                  <span class="text-sm text-gray-600 w-8">2</span>
-                </div>
-                <div class="flex items-center">
-                  <span class="text-sm text-gray-600 w-8">2★</span>
-                  <div class="flex-1 mx-2 bg-gray-200 rounded-full h-2">
-                    <div class="bg-yellow-400 h-2 rounded-full" style="width: 4%"></div>
-                  </div>
-                  <span class="text-sm text-gray-600 w-8">1</span>
-                </div>
-                <div class="flex items-center">
-                  <span class="text-sm text-gray-600 w-8">1★</span>
-                  <div class="flex-1 mx-2 bg-gray-200 rounded-full h-2">
-                    <div class="bg-yellow-400 h-2 rounded-full" style="width: 0%"></div>
-                  </div>
-                  <span class="text-sm text-gray-600 w-8">0</span>
-                </div>
+                @endfor
               </div>
             </div>
           </div>
@@ -439,141 +467,45 @@
           <!-- Individual Reviews -->
           <div class="space-y-6">
             <!-- Review 1 -->
-            <div class="border-b border-gray-200 pb-6">
-              <div class="flex items-start space-x-4">
-                <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-                  <span class="text-sm font-medium text-gray-600">JD</span>
-                </div>
-                <div class="flex-1">
-                  <div class="flex items-center space-x-2 mb-2">
-                    <h4 class="font-medium text-gray-900">John Doe</h4>
-                    <span class="text-sm text-gray-500">•</span>
-                    <span class="text-sm text-gray-500">01 Jan 2045</span>
+            @forelse ($product->reviews as $review)
+              <div class="border-b border-gray-200 pb-6">
+                <div class="flex items-start space-x-4">
+                  <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
+                    @if($review->user && $review->user->profile_photo_path)
+                      <img src="{{ asset('storage/' . $review->user->profile_photo_path) }}" alt="{{ $review->user->name }}" class="w-full h-full object-cover object-top object-center rounded-full">
+                    @else
+                      <span class="text-sm font-medium text-gray-600">
+                          {{ strtoupper(substr($review->user->name ?? '?', 0, 1)) }}
+                      </span>
+                    @endif
                   </div>
-                  <div class="flex items-center mb-3">
-                    @for($i = 1; $i <= 4; $i++)
-                      <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                      </svg>
-                    @endfor
-                    <svg class="w-4 h-4 text-gray-300 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                    </svg>
+                  <div class="flex-1">
+                    <div class="flex items-center space-x-2 mb-2">
+                      <h4 class="font-medium text-gray-900">{{ $review->user->name }}</h4>
+                      <span class="text-sm text-gray-500">•</span>
+                      <span class="text-sm text-gray-500">{{ $review->created_at->diffForHumans() }}</span>
+                    </div>
+                    <div class="flex items-center mb-3">
+                      @for($i = 1; $i <= 5; $i++)
+                        <svg class="w-4 h-4 {{ $i <= $review->rating ? 'text-yellow-400' : 'text-gray-300' }} fill-current" viewBox="0 0 20 20">
+                          <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                        </svg>
+                      @endfor
+                    </div>
+                    <p class="text-gray-600">
+                      {{ $review->comment }}
+                    </p>
                   </div>
-                  <p class="text-gray-600">
-                    Kualitas batik sangat bagus, bahan adem dan nyaman dipakai. Motifnya juga cantik dan tidak mudah pudar. 
-                    Pengiriman cepat dan packaging rapi. Sangat puas dengan pembelian ini!
-                  </p>
                 </div>
-              </div>
+              </div>          
             </div>
-
-            <!-- Review 2 -->
-            <div class="border-b border-gray-200 pb-6">
-              <div class="flex items-start space-x-4">
-                <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-                  <span class="text-sm font-medium text-gray-600">AB</span>
-                </div>
-                <div class="flex-1">
-                  <div class="flex items-center space-x-2 mb-2">
-                    <h4 class="font-medium text-gray-900">Ahmad Budi</h4>
-                    <span class="text-sm text-gray-500">•</span>
-                    <span class="text-sm text-gray-500">28 Des 2024</span>
-                  </div>
-                  <div class="flex items-center mb-3">
-                    @for($i = 1; $i <= 5; $i++)
-                      <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                      </svg>
-                    @endfor
-                  </div>
-                  <p class="text-gray-600">
-                    Kemeja batik ini benar-benar premium! Ukurannya pas sesuai size chart, warnanya bagus tidak luntur saat dicuci. 
-                    Cocok untuk acara formal maupun santai. Akan order lagi untuk koleksi warna lain.
-                  </p>
-                </div>
+            @empty
+              <div class="text-gray-500 text-center py-6">
+                Belum ada ulasan untuk produk ini.
               </div>
-            </div>
-
-            <!-- Review 3 -->
-            <div class="border-b border-gray-200 pb-6">
-              <div class="flex items-start space-x-4">
-                <div class="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-                  <span class="text-sm font-medium text-gray-600">RP</span>
-                </div>
-                <div class="flex-1">
-                  <div class="flex items-center space-x-2 mb-2">
-                    <h4 class="font-medium text-gray-900">Rudi Pratama</h4>
-                    <span class="text-sm text-gray-500">•</span>
-                    <span class="text-sm text-gray-500">15 Des 2024</span>
-                  </div>
-                  <div class="flex items-center mb-3">
-                    @for($i = 1; $i <= 4; $i++)
-                      <svg class="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                      </svg>
-                    @endfor
-                    <svg class="w-4 h-4 text-gray-300 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                    </svg>
-                  </div>
-                  <p class="text-gray-600">
-                    Batik dengan kualitas yang memuaskan. Jahitannya rapi dan bahan terasa premium. 
-                    Harga sebanding dengan kualitas yang didapat. Recommended!
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Write Review Form -->
-          <div class="bg-gray-50 rounded-lg p-6">
-            <h4 class="text-lg font-semibold text-gray-900 mb-4">Tulis Ulasan Anda</h4>
-            <form class="space-y-4">
-              <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Rating Anda *</label>
-                <div class="flex items-center space-x-1">
-                  @for($i = 1; $i <= 5; $i++)
-                    <button type="button" class="text-gray-300 hover:text-yellow-400 focus:text-yellow-400 transition-colors">
-                      <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20">
-                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
-                      </svg>
-                    </button>
-                  @endfor
-                </div>
-              </div>
-              
-              <div>
-                <label for="review" class="block text-sm font-medium text-gray-700 mb-2">Ulasan Anda *</label>
-                <textarea id="review" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Bagikan pengalaman Anda dengan produk ini..."></textarea>
-              </div>
-              
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nama Anda *</label>
-                  <input type="text" id="name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan nama Anda">
-                </div>
-                <div>
-                  <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email *</label>
-                  <input type="email" id="email" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Masukkan email Anda">
-                </div>
-              </div>
-              
-              <div class="flex items-center">
-                <input type="checkbox" id="save-info" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                <label for="save-info" class="ml-2 text-sm text-gray-600">
-                  Simpan nama dan email untuk ulasan selanjutnya
-                </label>
-              </div>
-              
-              <button type="submit" class="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500">
-                Kirim Ulasan
-              </button>
-            </form>
+            @endforelse
           </div>
         </div>
       </div>
-    </div>
   </section>
-
 </div>

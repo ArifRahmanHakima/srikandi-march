@@ -40,14 +40,13 @@
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 white:text-gray-200">{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</td>
                   <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                     <a href="/my-orders/{{ $order->id }}" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">Lihat Detail</a>
+                    <a href="/review/{{ $order->id }}" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">Beri Ulasan</a>
                   </td>
                 </tr>
-                @empty
-                  <tr>
-                    <td colspan="6" class="text-center text-gray-500 py-4">
-                      Tidak ada riwayat pesanan yang sudah selesai.
-                    </td>
-                  </tr>
+              @empty
+                <tr>
+                  <td colspan="5" class="py-4 text-center text-4x1 font-semibold text-slate-500">Belum ada riwayat pesanan yang selesai.</td>
+                </tr>
               @endforelse
 
             </tbody>

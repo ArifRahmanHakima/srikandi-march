@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Review;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\Attributes\Title;
@@ -16,11 +17,41 @@ class ProductDetailPage extends Component
     public $selectedColor;
     public $selectedSize;
     public $product;
+    public $rating_distribution;
+    public $rating_data;
 
     public function mount($slug)
     {
         $this->slug = $slug;
-        $this->product = Product::where('slug', $this->slug)->firstOrFail();
+        $this->product = Product::with(['reviews' => function ($query) {
+            $query->latest();
+        }])
+        ->withCount('reviews') // untuk $product->reviews_count
+        ->withAvg('reviews', 'rating') // untuk $product->reviews_avg_rating
+        ->where('slug', $slug)
+        ->firstOrFail();
+
+        $this->rating_distribution = Review::selectRaw('rating, COUNT(*) as count')
+            ->where('product_id', $this->product->id)
+            ->groupBy('rating')
+            ->pluck('count', 'rating')
+            ->all();
+
+        // Hitung total review
+        $total = array_sum($this->rating_distribution);
+
+        // Buat array lengkap dari bintang 1 sampai 5 dengan persentase
+        $this->rating_data = [];
+
+        for ($i = 1; $i <= 5; $i++) {
+            $count = $this->rating_distribution[$i] ?? 0;
+            $percentage = $total > 0 ? round(($count / $total) * 100, 2) : 0;
+
+            $this->rating_data[$i] = [
+                'count' => $count,
+                'percentage' => $percentage,
+            ];
+        }
 
         // Fallback eksplisit jika casting model masih bermasalah
         // Karena dd() Anda menunjukkan masih string, ini penting

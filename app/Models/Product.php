@@ -51,6 +51,12 @@ class Product extends Model
         return $this->hasMany(OrderItem::class);
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
     // Method untuk generate SKU otomatis
     public static function generateSKU($categoryName, $brandName)
     {

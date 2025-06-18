@@ -87,7 +87,7 @@
             <div class="w-full px-3 mb-6 sm:w-1/2 md:w-1/3" wire:key="{{$product->id}}">
                 <div class="relative w-full max-w-xs overflow-hidden rounded-lg bg-gray-200 shadow-md mx-auto">
                     <a href="/products/{{$product->slug}}">
-                        <img class="h-60 rounded-t-lg object-cover w-full transition-transform duration-1000 hover:scale-111" src="{{url('storage', $product->images[0]) }}" alt="{{$product->name}}" />
+                        <img class="h-60 rounded-t-lg object-cover object-top object-center w-full transition-transform duration-1000 hover:scale-111" src="{{url('storage', $product->images[0]) }}" alt="{{$product->name}}" />
                     </a>
 
                     @if(isset($product->is_new) && $product->is_new) {{-- Asumsi ada properti is_on_sale --}}
@@ -98,7 +98,42 @@
 
                     <div class="mt-4 px-5 pb-5">
                         <a href="/products/{{$product->slug}}">
-                            <h5 class="text-xl font-semibold tracking-tight text-slate-900 truncate">{{$product->name}}</h5>
+                          <div class="flex items-center justify-between">
+                            <h5 class="text-xl font-semibold tracking-tight text-slate-900 truncate">
+                              {{ $product->name }}
+                            </h5>
+
+                            {{-- RATING BINTANG --}}
+                            <div class="flex items-center space-x-0.5 ml-2">
+                              @php
+                                  $avg = $product->average_rating;
+                              @endphp
+                              @for ($i = 1; $i <= 5; $i++)
+                                @if ($i <= floor($avg))
+                                  {{-- Bintang Penuh --}}
+                                  <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                  </svg>
+                                @elseif ($i - $avg < 1)
+                                  {{-- Bintang Setengah --}}
+                                  <svg class="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                      <defs>
+                                          <linearGradient id="half-{{ $product->id }}">
+                                              <stop offset="50%" stop-color="currentColor"/>
+                                              <stop offset="50%" stop-color="transparent"/>
+                                          </linearGradient>
+                                      </defs>
+                                      <path fill="url(#half-{{ $product->id }})" d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                  </svg>
+                                @else
+                                  {{-- Bintang Kosong --}}
+                                  <svg class="w-3.5 h-3.5 text-gray-300 fill-current" viewBox="0 0 20 20">
+                                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                  </svg>
+                                @endif
+                              @endfor
+                            </div>
+                          </div>
                         </a>
 
                         <span class="text-gray-500 text-xs mt-1 block">
