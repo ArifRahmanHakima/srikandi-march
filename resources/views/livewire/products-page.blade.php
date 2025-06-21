@@ -39,7 +39,7 @@
               <li class="mb-4">
                 <label for="featured" class="flex items-center">
                   <input type="checkbox" id="featured" wire:model.live="featured" value="1" class="w-4 h-4 mr-2">
-                  <span class="text-lg">Produk Ungulan</span>
+                  <span class="text-lg">Produk Unggulan</span>
                 </label>
               </li>
               <li class="mb-4">

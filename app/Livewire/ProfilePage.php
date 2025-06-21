@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ProfilePage extends Component
 {
+    use WithFileUploads;
     public $user, $name, $email, $phone, $bio, $newProfilePhoto;
     public $province, $city, $subdistrict, $postal_code, $street_address, $citysubdistrict;
     

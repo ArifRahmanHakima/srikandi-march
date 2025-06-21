@@ -261,6 +261,7 @@ class OrderResource extends Resource
                         'new' => 'Baru',
                         'processing' => 'Diproses',
                         'shipped' => 'Dikirim',
+                        'delivered' => 'Diterima',
                     ])
                     ->searchable()
                     ->sortable(),
