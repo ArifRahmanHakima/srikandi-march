@@ -11,8 +11,7 @@ use App\Livewire\Partials\Navbar;
 class CartPage extends Component
 {
 
-    public $cart_items = [];
-    public $grand_total;
+    public $grand_total, $cart_items = [];
 
     public function mount() {
         $this->cart_items = CartManagement::getCartItemsFromCookie();

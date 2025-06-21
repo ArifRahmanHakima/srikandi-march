@@ -48,7 +48,7 @@
                   <td class="px-6 py-4 whitespace-nowrap text-l text-gray-800 white:text-gray-200">{!! $payment_status !!}</span></td>
                   <td class="px-6 py-4 whitespace-nowrap text-l text-gray-800 white:text-gray-200">{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</td>
                   <td class="px-6 py-4 whitespace-nowrap text-center text-l font-medium">
-                    <a href="/my-orders/{{ $order->id }}" class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">Lihat Detail</a>
+                    <a href="/my-orders/{{ $order->id }}" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-md">Lihat Detail</a>
                   </td>
                 </tr>
               @empty

@@ -9,8 +9,6 @@ use Livewire\Attributes\Title;
 
 class History extends Component
 {
-    use WithPagination;
-    
     public function render()
     {
         $my_orders = Order::where('user_id', auth()->id())

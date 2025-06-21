@@ -5,6 +5,8 @@
                 <p class="text-sm text-gray-700">
                     Menampilkan
                     <span class="font-medium">{{ $paginator->firstItem() }}</span>
+                    sampai
+                    <span class="font-medium">{{ $paginator->lastItem() }}</span>
                     dari
                     <span class="font-medium">{{ $paginator->total() }}</span>
                 </p>
@@ -39,7 +41,7 @@
                             @foreach ($element as $page => $url)
                                 @if ($page == $paginator->currentPage())
                                     <span aria-current="page"
-                                          class="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                          class="relative z-10 inline-flex items-center bg-blue-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
                                         {{ $page }}
                                     </span>
                                 @else

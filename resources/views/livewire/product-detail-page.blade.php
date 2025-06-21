@@ -415,9 +415,6 @@
         <div x-show="activeTab === 'reviews'" class="space-y-8">
           <div class="flex justify-between items-center">
             <h3 class="text-xl font-semibold text-gray-900">Ulasan Pelanggan</h3>
-            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-              Tulis Ulasan
-            </button>
           </div>
 
           <!-- Review Summary -->

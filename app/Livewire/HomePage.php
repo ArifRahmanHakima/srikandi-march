@@ -13,7 +13,6 @@ use App\Livewire\Partials\Navbar;
 #[Title ('Home Page - SrikandiMarch')]
 class HomePage extends Component
 {
-    // add product to cart method
     public function addToCart($product_id) {
         $total_count = CartManagement::addItemToCart($product_id);
 

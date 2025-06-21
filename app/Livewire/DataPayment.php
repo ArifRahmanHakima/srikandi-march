@@ -13,13 +13,7 @@ use App\Helpers\CartManagement;
 class DataPayment extends Component
 {
     use WithFileUploads;
-
-    public $buktiBayar;
-    public $order;
-    public $items;
-    public $address;
-    public $user;
-    public $selectedPaymentMethod;
+    public $buktiBayar, $order, $items, $address, $user, $selectedPaymentMethod;
 
     public function mount($order_id)
     {

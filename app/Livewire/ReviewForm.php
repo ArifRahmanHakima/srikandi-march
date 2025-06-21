@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Validator;
 #[Title('Review Products')]
 class ReviewForm extends Component
 {
-    public $order;
-    public $reviews = [];
+    public $order, $reviews = [];
 
     public function mount(Order $order_id)
     {
