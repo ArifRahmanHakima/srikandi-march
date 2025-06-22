@@ -1,54 +1,57 @@
 <div class="container mx-auto p-6 bg-gray-100 min-h-screen">
-    <!-- Grid -->
-    <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="md:col-span-2 bg-white p-6 border border-gray-200 rounded self-start">
-            <h2 class="text-xl font-bold mb-4">Terima Kasih. Pesanan Anda Telah Diterima.</h2>
-            <div class="grid grid-cols-3 text-lg gap-y-1">
-                <div class="font-semibold">Nama</div>
-                <div class="col-span-2">: {{ $address->full_name }}</div>
+  <!-- Grid -->
+  <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Informasi Pesanan -->
+    <div class="md:col-span-2 bg-white p-6 border border-gray-200 rounded self-start space-y-4">
+      <h2 class="text-2xl font-bold text-gray-800">Terima Kasih. Pesanan Anda Telah Diterima.</h2>
 
-                <div class="font-semibold">Email</div>
-                <div class="col-span-2">: {{ $user->email }}</div>
+      <div class="grid grid-cols-3 text-base gap-y-2">
+        <div class="font-semibold text-gray-700">Nama</div>
+        <div class="col-span-2 text-gray-800">: {{ $address->full_name }}</div>
 
-                <div class="font-semibold">Alamat</div>
-                <div class="col-span-2">: {{ $address->province }}, {{ $address->city }}, {{ $address->subdistrict }}</div>
+        <div class="font-semibold text-gray-700">Email</div>
+        <div class="col-span-2 text-gray-800">: {{ $user->email }}</div>
 
-                <div class="font-semibold">Jalan</div>
-                <div class="col-span-2">: {{ $address->street_address }}</div>
-            </div>
-            <div class="text-sm space-y-1">
-            <hr class="my-2 border-gray-300">
+        <div class="font-semibold text-gray-700">Alamat</div>
+        <div class="col-span-2 text-gray-800">: {{ $address->province }}, {{ $address->city }}, {{ $address->subdistrict }}</div>
 
-            <div class="grid grid-cols-3 text-lg gap-y-1">
-                <div class="font-semibold">Nomor Pesanan</div>
-                <div class="col-span-2">: {{ $order->id }}</div>
+        <div class="font-semibold text-gray-700">Jalan</div>
+        <div class="col-span-2 text-gray-800">: {{ $address->street_address }}</div>
+      </div>
 
-                <div class="font-semibold">Tanggal</div>
-                <div class="col-span-2">: {{ $order->created_at->format('d-m-Y') }}</div>
+      <hr class="my-4 border-gray-300">
 
-                <div class="font-semibold">Metode Pembayaran</div>
-                <div class="col-span-2">: {{ $order->payment_method }}</div>
+      <div class="grid grid-cols-3 text-base gap-y-2">
+        <div class="font-semibold text-gray-700">Nomor Pesanan</div>
+        <div class="col-span-2 text-gray-800">: {{ $order->id }}</div>
 
-                <div class="font-semibold">Layanan Pengiriman</div>
-                <div class="col-span-2">: {{ $order->shipping_method }}</div>
-            </div>
-            
-            <hr class="my-2 border-gray-300">
-                <h3 class="font-semibold text-lg">Detail Pesanan</h3>
-                <div class="flex justify-between text-lg">
-                    <span>Subtotal</span>
-                    <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
-                </div>
-                <div class="flex justify-between text-lg">
-                    <span>Biaya Pengiriman</span>
-                    <span>{{ 'Rp ' . number_format($order->shipping_amount, 0, ',', '.') }}</span>
-                </div>
-            <hr class="my-2 border-gray-300">
-            <div class="flex justify-between font-bold text-lg mt-2">
-                <span>Total</span>
-                <span>{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
-            </div>
+        <div class="font-semibold text-gray-700">Tanggal</div>
+        <div class="col-span-2 text-gray-800">: {{ $order->created_at->format('d-m-Y') }}</div>
+
+        <div class="font-semibold text-gray-700">Metode Pembayaran</div>
+        <div class="col-span-2 text-gray-800">: {{ $order->payment_method }}</div>
+
+        <div class="font-semibold text-gray-700">Layanan Pengiriman</div>
+        <div class="col-span-2 text-gray-800">: {{ $order->shipping_method }}</div>
+      </div>
+
+      <hr class="my-4 border-gray-300">
+
+      <h3 class="font-semibold text-lg text-gray-800">Detail Pembayaran</h3>
+      <div class="space-y-1">
+        <div class="flex justify-between">
+          <span>Subtotal</span>
+          <span>{{ 'Rp ' . number_format($order->grand_total - $order->shipping_amount, 0, ',', '.') }}</span>
         </div>
+        <div class="flex justify-between">
+          <span>Biaya Pengiriman</span>
+          <span>{{ 'Rp ' . number_format($order->shipping_amount, 0, ',', '.') }}</span>
+        </div>
+        <div class="flex justify-between font-bold">
+          <span>Total</span>
+          <span>{{ 'Rp ' . number_format($order->grand_total, 0, ',', '.') }}</span>
+        </div>
+      </div>
     </div>
 
     <div class="bg-white p-6 border border-gray-200 rounded space-y-4">
