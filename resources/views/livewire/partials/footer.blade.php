@@ -5,6 +5,7 @@
   <!-- Brand -->
   <div class="col-span-full lg:col-span-1">
     <a class="flex-none text-xl font-semibold text-white" href="#">Srikandi Merch</a>
+    <img src="../img/logo.jpg" alt="Logo Srikandi Merch" class="object-cover mt-4 w-20 h-20 rounded-full">
   </div>
 
   <!-- Product -->
@@ -32,22 +33,12 @@
     </div>
   </div>
 
-  <!-- Company -->
+  <!-- Bantuan -->
   <div>
-    <h4 class="font-semibold text-gray-100">Perusahaan</h4>
+    <h4 class="font-semibold text-gray-100">Bantuan</h4>
     <div class="mt-3 grid space-y-3">
-      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="contactus">Kontak</a></p>
-      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="#">Pelanggan</a></p>
-    </div>
-  </div>
-
-    <!-- Bantuan -->
-    <div>
-      <h4 class="font-semibold text-gray-100">Bantuan</h4>
-      <div class="mt-3 grid space-y-3">
-        <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="#">FAQ</a></p>
-        <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="#">Syarat & Ketentuan</a></p>
-      </div>
+      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="/contact-us">Kontak</a></p>
+      <p><a class="inline-flex gap-x-2 text-gray-400 hover:text-gray-200" href="/about-us">Tentang Kami</a></p>
     </div>
   </div>
 

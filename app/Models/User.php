@@ -33,6 +33,7 @@ class User extends Authenticatable implements FilamentUser
         'subdistrict',
         'postal_code',
         'street_address',
+        'role',
     ];
 
     /**

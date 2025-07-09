@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Akun Admin',
                 'email' => 'srikandi@gmail.com',
                 'password' => Hash::make('hanyaadmin123'),
+                'role' => 'admin',
             ]);
             $this->command->info('Pengguna admin berhasil dibuat.'); // Optional: Berikan informasi di console
         } else {
