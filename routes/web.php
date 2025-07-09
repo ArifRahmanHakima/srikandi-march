@@ -33,7 +33,6 @@ use Filament\Notifications\Auth\ResetPassword;
 Route::get('/', HomePage::class);
 Route::get('/categories', CategoriesPage::class);
 Route::get('/products', ProductsPage::class);
-Route::get('/cart', CartPage::class);
 Route::get('/products/{slug}', ProductDetailPage::class);
 Route::get('/contact-us', ContactUs::class);
 Route::get('/about-us', AboutPage::class);
@@ -51,6 +50,7 @@ Route::middleware('auth')->group(function () {
 
         return redirect('/');
     });
+    Route::get('/cart', CartPage::class);
     Route::get('/profile', ProfilePage::class)->name('profile');
     Route::get('/checkout', CheckoutPage::class);
     Route::get('/my-orders', MyOrdersPage::class);
