@@ -64,8 +64,7 @@
                 <li class="py-3 sm:py-4">
                     <div class="flex items-center">
                         <div class="flex-shrink-0">
-                            <img alt="{{ $item->product->name }}" class="w-12 h-12 rounded-full" src="{{ url('storage/', $item->product->images) }}">
-                            </img>
+                            <img class="h-16 w-16 mr-4 rounded-full" src="{{ url('storage/', $item->product->images[0]) }}" alt="{{ $item->product->name }}">
                         </div>
                         <div class="flex-1 min-w-0 ms-4">
                             <p class="text-sm font-medium text-gray-900 truncate grey:text-white">
