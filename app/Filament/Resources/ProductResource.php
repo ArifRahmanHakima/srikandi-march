@@ -76,6 +76,7 @@ class ProductResource extends Resource
                             ->maxLength(255),
 
                         TextInput::make('sku')
+                            
                             ->required()
                             ->unique(Product::class, 'sku', ignoreRecord: true)
                             ->maxLength(255)
@@ -100,18 +101,18 @@ class ProductResource extends Resource
                             ->placeholder('Contoh: Katun, Sutra, Rayon'),
 
                         TextInput::make('pattern')
-                            ->label('Motif')
+                            ->label('Pattern')
                             ->maxLength(255)
                             ->placeholder('Contoh: Parang, Mega Mendung, Kawung'),
 
                         TextInput::make('weight')
-                            ->label('Berat (gram)')
+                            ->label('Weight (gram)')
                             ->numeric()
                             ->step(0.01)
                             ->placeholder('100'),
 
                         TextInput::make('warranty')
-                            ->label('Garansi')
+                            ->label('Warranty')
                             ->maxLength(255)
                             ->placeholder('Contoh: 1 Tahun, 6 Bulan'),
                     ])->columns(2),
@@ -185,9 +186,8 @@ class ProductResource extends Resource
                             ->default(true),
 
                         Toggle::make('is_new')
-                            ->label('New Product (Tampil di Beranda)')
-                            ->required()
-                            ->helperText('Aktifkan untuk menampilkan produk di section "Produk Terbaru" beranda'),
+                            ->label('New Product')
+                            ->required(),
 
                         Toggle::make('on_sale')
                             ->required(),

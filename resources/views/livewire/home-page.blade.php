@@ -9,7 +9,7 @@
         
         <div class="ml-10 relative z-10 max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
           <div>
-            <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white" style="max-width: 50%;">Kuasai Dunia Fashion Bersama <span class="text-blue-600">Srikandi March</span></h1>
+            <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white max-w-full md: max-w-[50%]">Kuasai Dunia Fashion Bersama <span class="text-blue-600">Srikandi March</span></h1>
               <div class="flex w-120 mt-2 mb-6 overflow-hidden rounded" style="max-width: 50%;">
                 <div class="flex-1 h-2 bg-blue-200"></div>
                 <div class="flex-1 h-2 bg-blue-400"></div>
